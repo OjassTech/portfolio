@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ojass Tech · Service Page</title>
+
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
+  <!-- Spline -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js"></script>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Lottie -->
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
+  <!-- Font Awesome (arrow) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+
+
+  <style>
+    :root {
+      --gold1: #D4AF37;
+      --gold2: #FFD700;
+      --gold3: #b68d2a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1a1a1a, #050505);
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .carousel {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .carousel .list {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .carousel .list .item {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+    /* First child visible instantly — prevents black flash before JS runs */
+    .carousel .list .item:first-child {
+      opacity: 1;
+      z-index: 10;
+      pointer-events: auto;
+    }
+
+    .carousel .list .item.active {
+      opacity: 1;
+      z-index: 10;
+      pointer-events: auto;
+    }
+
+    .carousel .list .item>img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.35);
+    }
+
+    .slide-content {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #fff;
+      z-index: 5;
+    }
+
+    .gold-text {
+      background: linear-gradient(45deg, var(--gold1), var(--gold2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 70px);
+    }
+
+    .slide-content p {
+      color: #ddd;
+      max-width: 600px;
+    }
+
+    .btn-gold {
+      background: linear-gradient(45deg, var(--gold1), var(--gold2));
+      border: none;
+      color: #000;
+      font-weight: 600;
+    }
+
+    .btn-outline-gold {
+      border: 1px solid var(--gold1);
+      color: var(--gold2);
+      background: transparent;
+    }
+
+    .btn-outline-gold:hover {
+      background: var(--gold1);
+      color: #000;
+    }
+
+    .carousel .thumbnail {
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px 20px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+
+    .carousel .thumbnail::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .carousel .thumbnail::-webkit-scrollbar-track {
+      background: #1e1e1e;
+    }
+
+    .carousel .thumbnail::-webkit-scrollbar-thumb {
+      background: var(--gold1);
+      border-radius: 4px;
+    }
+
+    .carousel .thumbnail .item {
+      position: relative;
+      min-width: 110px;
+      width: 110px;
+      height: 150px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      cursor: pointer;
+      border: 2px solid transparent;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+      transition: all 0.2s ease;
+    }
+
+    .carousel .thumbnail .item.active {
+      border-color: var(--gold1);
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ffd70090;
+    }
+
+    .carousel .thumbnail .item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel .thumbnail .item::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: 6px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.7);
+      color: var(--gold2);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 30px;
+      border: 1px solid var(--gold1);
+      z-index: 2;
+    }
+
+    .nav-arrows {
+      position: absolute;
+      top: 80%;
+      width: 100%;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      padding: 0 30px;
+      z-index: 30;
+      pointer-events: none;
+    }
+
+    .nav-arrows button {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--gold1);
+      background: rgba(0, 0, 0, 0.6);
+      color: var(--gold2);
+      font-size: 24px;
+      backdrop-filter: blur(6px);
+      transition: background 0.3s, color 0.3s;
+      pointer-events: auto;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-arrows button:hover {
+      background: var(--gold1);
+      color: #000;
+    }
+
+    @media (max-width: 768px) {
+      .carousel .thumbnail .item {
+        min-width: 75px;
+        width: 75px;
+        height: 105px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- DESKTOP NAVBAR (UNCHANGED) -->
+  <div class="navbar-wrap">
+    <div class="pill logo-pill">
+      <img src="assets/ojasstechlogo.png" class="logo-img" />
+    </div>
+
+    <div class="pill nav-pill">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a class="active" href="#">Service</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="pill right-pill">
+      <div class="lottie-box">
+        <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
+          loop></dotlottie-wc>
+      </div>
+
+      <div class="theme-toggle" id="themeToggle">
+        <span>
+          <i class="bi bi-moon-stars"></i>
+          <i class="bi bi-brightness-high"></i>
+        </span>
+        <div class="toggle-ball"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE NAVBAR (COPIED LAYOUT STYLE) -->
+  <div class="mobile-navbar">
+    <div class="mobile-top">
+      <div class="mobile-logo"><img src="assets/ojasstechlogo.png" class="logo-img-mob" /></div>
+
+      <button class="menu-btn" id="menuToggle">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="mobile-actions">
+        <div class="lottie-box-mob  ">
+          <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
+            loop></dotlottie-wc>
+        </div>
+        <div class="theme-toggle" id="themeToggleMobile">
+          <div class="toggle-ball"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a class="active" href="#">Service</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+
+  <!-- main section  -->
+  <div class="carousel">
+    <div class="list"></div>
+    <div class="thumbnail mt-5"></div>
+    <div class="nav-arrows d-none d-md-flex">
+      <button id="prev">&#10094;</button>
+      <button id="next">&#10095;</button>
+    </div>
+  </div>
+
+
+  
+
+  <!-- nav script  -->
+  <script>
+    // Desktop toggle
+    document.getElementById("themeToggle").onclick = () => {
+      document.body.classList.toggle("light");
+    };
+
+    // Mobile toggle
+    document.getElementById("themeToggleMobile").onclick = () => {
+      document.body.classList.toggle("light");
+    };
+
+    // Mobile menu
+    document.getElementById("menuToggle").onclick = () => {
+      document.getElementById("mobileMenu").classList.toggle("show");
+    };
+  </script>
+
+  <script>
+    (function () {
+
+      const slidesData = [
+        { title: "Frontend Development", desc: "We build fast, responsive, and user-friendly interfaces that work beautifully across all devices. Clean UI, smooth interactions, and performance-focused experiences.", img: "assets/services/frontend.jpg" },
+        { title: "Backend Development", desc: "Powerful, secure, and scalable server-side systems to run your applications smoothly. APIs, databases, authentication, and business logic done right.", img: "assets/services/backend.jpg" },
+        { title: "Brand & Identity Design", desc: "We craft strong brand identities with logos, colours, and visual styles that make your business instantly recognisable and trustworthy.", img: "assets/services/Brand & Identity Design.jpg" },
+        { title: "UI / UX Design", desc: "User-centred designs that are intuitive, engaging, and conversion-focused. We design interfaces people love to use.", img: "assets/services/UI  UX Design.jpeg" },
+        { title: "Marketing & Creative Design", desc: "High-impact creatives for ads, social media, banners, and campaigns. Designed to grab attention and boost engagement.", img: "assets/services/creative design.jpg" },
+        { title: "Visual & Motion", desc: "Eye-catching visuals and motion graphics that bring your brand and products to life. Perfect for explainers, promos, and UI animations.", img: "assets/services/Visual & Motion.jpg" },
+        { title: "Data Analytics", desc: "Turn raw data into clear insights with dashboards, reports, and performance tracking. Make smarter business decisions with real-time data.", img: "assets/services/Data Analytics.jpg" },
+        { title: "Machine Learning & AI", desc: "Build intelligent systems for prediction, automation, and personalisation. From recommendations to smart automation, we make data work for you.", img: "assets/services/Machine Learning & AI.jpg" },
+        { title: "Data Engineering", desc: "Design and build reliable data pipelines and storage systems. We ensure your data is clean, accessible, and ready for analytics or AI.", img: "assets/services/Data Engineering.jpg" },
+        { title: "Applied Data Solutions", desc: "Solve real business problems using data-driven models and insights. From customer behaviour to forecasting, we turn data into action.", img: "assets/services/Applied Data Solutions.png" },
+        { title: "Cloud Architecture & Infrastructure", desc: "Design scalable, secure, and cost-efficient cloud systems. We help you migrate, optimise, and grow on the cloud with confidence.", img: "assets/services/cloud.png" },
+        { title: "DevOps & Automation", desc: "Automate deployments, testing, and infrastructure for faster delivery and higher reliability. Build, ship, and scale without friction.", img: "assets/services/DevOps & Automation.jpg" },
+      ];
+
+      const listEl = document.querySelector('.carousel .list');
+      const thumbEl = document.querySelector('.carousel .thumbnail');
+      const nextBtn = document.getElementById('next');
+      const prevBtn = document.getElementById('prev');
+
+      const AUTO_MS = 7000;
+      const THUMB_LIMIT = 5;
+
+      let autoTimer;
+
+      /* ── Build Slides & Thumbnails ── */
+      slidesData.forEach((data, idx) => {
+        const isFirst = idx === 0;
+
+        const slide = document.createElement('div');
+        slide.className = `item${isFirst ? ' active' : ''}`;
+        slide.innerHTML = `
+          <img src="${data.img}" alt="${data.title}">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-7 slide-content">
+                <h1 class="gold-text">${data.title}</h1>
+                <p class="mt-2">${data.desc}</p>
+                <div class="mt-3 d-flex gap-2">
+                  <button class="btn btn-gold">Explore</button>
+                  <button class="btn btn-outline-gold">Contact</button>
+                </div>
+              </div>
+            </div>
+          </div>`;
+        listEl.appendChild(slide);
+
+        const thumb = document.createElement('div');
+        thumb.className = `item${isFirst ? ' active' : ''}`;
+        thumb.setAttribute('data-label', idx + 1);
+        thumb.innerHTML = `<img src="${data.img}" alt="${data.title} thumb">`;
+        thumbEl.appendChild(thumb);
+      });
+
+      /* ── Helpers ── */
+      function limitThumbnails() {
+        thumbEl.querySelectorAll('.item').forEach((t, i) => {
+          t.style.display = i < THUMB_LIMIT ? 'block' : 'none';
+        });
+      }
+
+      function syncActive() {
+        listEl.querySelectorAll('.item').forEach(s => s.classList.remove('active'));
+        thumbEl.querySelectorAll('.item').forEach(t => t.classList.remove('active'));
+
+        listEl.querySelector('.item')?.classList.add('active');
+        const firstThumb = thumbEl.querySelector('.item');
+        firstThumb?.classList.add('active');
+        firstThumb?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+        limitThumbnails();
+      }
+
+      function resetAutoTimer() {
+        clearTimeout(autoTimer);
+        autoTimer = setTimeout(() => nextBtn.click(), AUTO_MS);
+      }
+
+      function showSlider(direction) {
+        if (direction === 'next') {
+          listEl.appendChild(listEl.querySelector('.item'));
+          thumbEl.appendChild(thumbEl.querySelector('.item'));
+        } else {
+          const slides = listEl.querySelectorAll('.item');
+          const thumbs = thumbEl.querySelectorAll('.item');
+          listEl.prepend(slides[slides.length - 1]);
+          thumbEl.prepend(thumbs[thumbs.length - 1]);
+        }
+        syncActive();
+        resetAutoTimer();
+      }
+
+      /* ── Events ── */
+      nextBtn.addEventListener('click', () => showSlider('next'));
+      prevBtn.addEventListener('click', () => showSlider('prev'));
+
+      thumbEl.addEventListener('click', (e) => {
+        const thumb = e.target.closest('.item');
+        if (!thumb) return;
+        const allThumbs = Array.from(thumbEl.querySelectorAll('.item'));
+        const targetIdx = allThumbs.indexOf(thumb);
+        if (targetIdx === 0) return;
+        for (let i = 0; i < targetIdx; i++) {
+          listEl.appendChild(listEl.querySelector('.item'));
+          thumbEl.appendChild(thumbEl.querySelector('.item'));
+        }
+        syncActive();
+        resetAutoTimer();
+      });
+
+      /* ── Init immediately — no waiting for window.load ── */
+      limitThumbnails();
+      thumbEl.querySelector('.item.active')
+        ?.scrollIntoView({ inline: 'center', block: 'nearest' });
+      resetAutoTimer();
+
+    })();
+  </script>
+
+</body>
+
+</html>
