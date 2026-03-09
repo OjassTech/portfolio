@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ojasstech - about us</title>
+
+    <!-- Spline -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js"></script>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Lottie -->
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
+    <!-- Font Awesome (arrow) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    :root {
+        --gold: #D4A017;
+        --gold-light: #F0C040;
+        --black: #0A0A0A;
+        --black-mid: #111111;
+        --black-card: #161616;
+        --white: #F5F0E8;
+        --border: rgba(212, 160, 23, 0.2);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: radial-gradient(circle at top, #1a1a1a, #050505);
+        color: var(--white);
+        font-family: 'Rajdhani', sans-serif;
+        overflow-x: hidden;
+    }
+
+    /* Noise overlay */
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.4;
+    }
+
+    /* ── Navbar ── */
+    .navbar {
+        background: rgba(10, 10, 10, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        transition: padding 0.3s, box-shadow 0.3s;
+    }
+
+    .navbar.scrolled {
+        padding-top: 0.7rem !important;
+        padding-bottom: 0.7rem !important;
+        box-shadow: 0 4px 40px rgba(212, 160, 23, 0.08);
+    }
+
+    .navbar-brand {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--gold) !important;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .navbar-brand span {
+        color: var(--white);
+    }
+
+    .nav-link {
+        color: rgba(245, 240, 232, 0.75) !important;
+        font-size: 0.78rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.2s;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        right: 50%;
+        height: 1px;
+        background: var(--gold);
+        transition: left 0.3s, right 0.3s;
+    }
+
+    .nav-link:hover {
+        color: var(--gold) !important;
+    }
+
+    .nav-link:hover::after {
+        left: 1.1rem;
+        right: 1.1rem;
+    }
+
+    .navbar-toggler {
+        border-color: var(--border);
+    }
+
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23D4A017' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .btn-nav {
+        border: 1px solid var(--gold) !important;
+        color: var(--gold) !important;
+        font-size: 0.78rem !important;
+        letter-spacing: 2px;
+        transition: background 0.25s, color 0.25s;
+        border-radius: 0 !important;
+    }
+
+    .btn-nav:hover {
+        background: var(--gold) !important;
+        color: var(--black) !important;
+    }
+
+    /* ── Hero ── */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(ellipse 60% 60% at 70% 50%, rgba(212, 160, 23, 0.07) 0%, transparent 70%),
+            radial-gradient(ellipse 40% 40% at 20% 80%, rgba(212, 160, 23, 0.04) 0%, transparent 60%),
+            var(--black);
+    }
+
+    .hero-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 1px;
+        background: linear-gradient(to bottom, transparent, var(--border), transparent);
+        opacity: 0.5;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.72rem;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 500;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.3s forwards;
+    }
+
+    .hero-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(3.5rem, 9vw, 8.5rem);
+        font-weight: 300;
+        line-height: 0.95;
+        letter-spacing: -1px;
+        opacity: 0;
+        animation: fadeUp 0.9s 0.5s forwards;
+    }
+
+    .hero-title em {
+        font-style: italic;
+        color: var(--gold);
+        display: block;
+    }
+
+    .hero-sub {
+        font-size: 0.95rem;
+        letter-spacing: 2px;
+        line-height: 1.8;
+        color: rgba(245, 240, 232, 0.55);
+        max-width: 400px;
+        opacity: 0;
+        animation: fadeUp 0.9s 0.7s forwards;
+    }
+
+    .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 0.85rem 2.2rem;
+        background: transparent;
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.82rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: background 0.3s, color 0.3s;
+        opacity: 0;
+        animation: fadeUp 0.9s 0.9s forwards;
+    }
+
+    .hero-cta:hover {
+        background: var(--gold);
+        color: var(--black);
+    }
+
+    .hero-cta:hover i {
+        transform: translateX(5px);
+    }
+
+    .hero-cta i {
+        transition: transform 0.3s;
+    }
+
+    .hero-badge {
+        position: absolute;
+        right: 8%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 160px;
+        height: 160px;
+        border: 1px solid var(--border);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        opacity: 0;
+        animation: fadeIn 1.2s 1.2s forwards;
+    }
+
+    .hero-badge::before {
+        content: '';
+        position: absolute;
+        inset: -8px;
+        border-radius: 50%;
+        border: 1px solid rgba(212, 160, 23, 0.1);
+    }
+
+    .hero-badge .badge-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2.8rem;
+        color: var(--gold);
+        line-height: 1;
+    }
+
+    .hero-badge .badge-label {
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(245, 240, 232, 0.5);
+        margin-top: 0.3rem;
+    }
+
+    .hero-scroll {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        opacity: 0;
+        animation: fadeIn 1s 1.5s forwards;
+    }
+
+    .hero-scroll span {
+        font-size: 0.6rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: rgba(245, 240, 232, 0.4);
+    }
+
+    .scroll-line {
+        width: 1px;
+        height: 50px;
+        background: linear-gradient(to bottom, var(--gold), transparent);
+        animation: scrollPulse 2s infinite;
+    }
+
+    /* ── Shared section utilities ── */
+    .section-label {
+        font-size: 0.68rem;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 600;
+    }
+
+    .section-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(2.2rem, 5vw, 4rem);
+        font-weight: 300;
+        line-height: 1.1;
+    }
+
+    .section-title em {
+        font-style: italic;
+        color: var(--gold);
+    }
+
+    .gold-line {
+        width: 50px;
+        height: 1px;
+        background: var(--gold);
+    }
+
+    .section-text {
+        font-size: 0.95rem;
+        line-height: 1.85;
+        color: rgba(245, 240, 232, 0.6);
+        font-weight: 300;
+    }
+
+    /* ── Section backgrounds ── */
+    .bg-black-mid {
+        background: var(--black-mid);
+    }
+
+    .border-gold-top {
+        border-top: 1px solid var(--border);
+    }
+
+    .border-gold-bottom {
+        border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Section number watermarks ── */
+    .section-num::before {
+        content: attr(data-num);
+        position: absolute;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 12rem;
+        color: rgba(212, 160, 23, 0.04);
+        line-height: 1;
+        pointer-events: none;
+        top: 3rem;
+    }
+
+    .section-num-right::before {
+        right: 1rem;
+    }
+
+    .section-num-left::before {
+        left: 1rem;
+    }
+
+    /* ── Who We Are image ── */
+    .who-img-wrapper,
+    .why-img-wrapper {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .who-img-wrapper img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        filter: grayscale(20%) contrast(1.1);
+        transition: transform 0.8s ease;
+        display: block;
+    }
+
+    .who-img-wrapper:hover img,
+    .why-img-wrapper:hover img {
+        transform: scale(1.04);
+    }
+
+    .who-img-wrapper::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(212, 160, 23, 0.15) 0%, transparent 60%);
+        pointer-events: none;
+    }
+
+    .img-border-accent {
+        position: absolute;
+        bottom: -12px;
+        right: -12px;
+        width: 80%;
+        height: 80%;
+        border: 1px solid var(--border);
+        z-index: -1;
+    }
+
+    /* ── Why We Are image ── */
+    .why-img-wrapper img {
+        width: 100%;
+        height: 600px;
+        object-fit: cover;
+        filter: grayscale(20%) contrast(1.1);
+        transition: transform 0.8s ease;
+    }
+
+    .why-img-wrapper::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(225deg, rgba(212, 160, 23, 0.12) 0%, transparent 60%);
+        pointer-events: none;
+    }
+
+    /* ── Stat box ── */
+    .stat-box {
+        border-top: 1px solid var(--border);
+    }
+
+    .stat-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 3rem;
+        color: var(--gold);
+        line-height: 1;
+    }
+
+    .stat-label {
+        font-size: 0.72rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(245, 240, 232, 0.45);
+        margin-top: 0.3rem;
+    }
+
+    /* ── Service card ── */
+    .card-gold {
+        background: var(--black-card);
+        border: 1px solid var(--border) !important;
+        height: 100%;
+        transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+        border-radius: 0 !important;
+    }
+
+    .card-gold::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 0;
+        background: var(--gold);
+        transition: height 0.4s;
+    }
+
+    .card-gold:hover {
+        border-color: rgba(212, 160, 23, 0.5) !important;
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(212, 160, 23, 0.08);
+    }
+
+    .card-gold:hover::before {
+        height: 100%;
+    }
+
+    .card-icon {
+        width: 52px;
+        height: 52px;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        font-size: 1.2rem;
+        transition: background 0.3s, border-color 0.3s;
+    }
+
+    .card-gold:hover .card-icon {
+        background: var(--gold);
+        color: var(--black);
+        border-color: var(--gold);
+    }
+
+    .card-title-sm {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.4rem;
+        color: var(--white);
+    }
+
+    .card-text-sm {
+        font-size: 0.88rem;
+        line-height: 1.75;
+        color: rgba(245, 240, 232, 0.5);
+        font-weight: 300;
+    }
+
+    /* ── Why checklist ── */
+    .check-box {
+        width: 20px;
+        height: 20px;
+        border: 1px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .check-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.1rem;
+        color: var(--white);
+    }
+
+    /* ── CTA banner ── */
+    .cta-section {
+        background: var(--black-mid);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 60% 100% at 50% 50%, rgba(212, 160, 23, 0.06) 0%, transparent 70%);
+    }
+
+    .cta-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(2.5rem, 6vw, 5.5rem);
+        font-weight: 300;
+        line-height: 1.05;
+    }
+
+    .cta-title em {
+        font-style: italic;
+        color: var(--gold);
+    }
+
+    /* ── Buttons ── */
+    .btn-gold {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 2.8rem;
+        background: var(--gold);
+        color: var(--black);
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.82rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 700;
+        border: none;
+        border-radius: 0;
+        transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-gold:hover {
+        background: var(--gold-light);
+        color: var(--black);
+        transform: translateY(-2px);
+    }
+
+    .btn-outline-gold {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        padding: 1rem 2.8rem;
+        background: transparent;
+        color: var(--gold);
+        font-family: 'Rajdhani', sans-serif;
+        font-size: 0.82rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 700;
+        border: 1px solid var(--gold);
+        border-radius: 0;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .btn-outline-gold:hover {
+        background: var(--gold);
+        color: var(--black);
+    }
+
+    /* ── Ticker ── */
+    .ticker-section {
+        overflow: hidden;
+        background: var(--black-mid);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .ticker-track {
+        display: flex;
+        gap: 4rem;
+        animation: ticker 20s linear infinite;
+        white-space: nowrap;
+        width: max-content;
+    }
+
+    .ticker-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.75rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: rgba(245, 240, 232, 0.4);
+    }
+
+    .ticker-item i {
+        color: var(--gold);
+        font-size: 0.5rem;
+    }
+
+    /* ── Footer ── */
+    .footer-brand {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 2px;
+    }
+
+    .footer-brand span {
+        color: var(--white);
+    }
+
+    .footer-tagline {
+        font-size: 0.75rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(245, 240, 232, 0.35);
+    }
+
+    .footer-heading {
+        font-size: 0.72rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 600;
+    }
+
+    .footer-link {
+        display: block;
+        color: rgba(245, 240, 232, 0.5);
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 0.3rem 0;
+        transition: color 0.2s;
+        font-weight: 300;
+    }
+
+    .footer-link:hover {
+        color: var(--gold);
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--border);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(245, 240, 232, 0.5);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .social-icon:hover {
+        border-color: var(--gold);
+        color: var(--black);
+        background: var(--gold);
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+        transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+        transition-delay: 0.25s;
+    }
+
+    .reveal-delay-3 {
+        transition-delay: 0.4s;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes scrollPulse {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.3;
+        }
+    }
+
+    @keyframes ticker {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+        .hero-badge {
+            display: none;
+        }
+
+        .who-img-wrapper img {
+            height: 300px;
+        }
+
+        .why-img-wrapper img {
+            height: 300px;
+        }
+
+        .img-border-accent {
+            display: none;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-title {
+            font-size: 3rem;
+        }
+    }
+</style>
+
+<body>
+
+    <!-- DESKTOP NAVBAR (UNCHANGED) -->
+    <div class="navbar-wrap">
+        <div class="pill logo-pill">
+            <img src="assets/ojasstechlogo.png" class="logo-img" />
+        </div>
+
+        <div class="pill nav-pill">
+            <a href="index.html">Home</a>
+            <a class="active" href="#">About</a>
+            <a href="service.html">Service</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="pill right-pill">
+            <div class="lottie-box">
+                <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
+                    loop></dotlottie-wc>
+            </div>
+
+            <div class="theme-toggle" id="themeToggle">
+                <span>
+                    <i class="bi bi-moon-stars"></i>
+                    <i class="bi bi-brightness-high"></i>
+                </span>
+                <div class="toggle-ball"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE NAVBAR (COPIED LAYOUT STYLE) -->
+    <div class="mobile-navbar">
+        <div class="mobile-top">
+            <div class="mobile-logo"><img src="assets/ojasstechlogo.png" class="logo-img-mob" /></div>
+
+            <button class="menu-btn" id="menuToggle">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <div class="mobile-actions">
+                <div class="lottie-box-mob  ">
+                    <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie"
+                        autoplay loop></dotlottie-wc>
+                </div>
+                <div class="theme-toggle" id="themeToggleMobile">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#">Home</a>
+            <a class="active" href="#">About</a>
+            <a href="service.html">Service</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <!-- ════════ HERO ════════ -->
+    <section class="hero pt-5 pb-4" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-line"></div>
+        <div class="container position-relative py-5">
+            <div class="row">
+                <div class="col-lg-8 col-md-10">
+                    <p class="hero-eyebrow mb-4">Digital Innovation Studio</p>
+                    <h1 class="hero-title mb-0">
+                        Between<br>
+                        <em>Reality</em>
+                        &amp; Dream
+                    </h1>
+                    <p class="hero-sub mt-4">Architects of digital innovation — crafting custom solutions that empower
+                        businesses to thrive in the online world.</p>
+                    <a href="#about" class="hero-cta mt-4">Explore Our Work <i
+                            class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+            <div class="hero-badge d-none d-lg-flex">
+                <div class="badge-num">2+</div>
+                <div class="badge-label">Years of<br>Excellence</div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ════════ TICKER ════════ -->
+    <div class="ticker-section py-3">
+        <div class="ticker-track">
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> Web Development</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> UI/UX Design</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> Data-Driven Apps</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> Digital Strategy</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> Brand Identity</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> SEO Optimization</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> Cloud Solutions</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> E-Commerce</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> Web Development</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> UI/UX Design</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> Data-Driven Apps</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> Digital Strategy</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> Brand Identity</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> SEO Optimization</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> Cloud Solutions</span>
+            <span class="ticker-item"><i class="fa-solid fa-circle"></i> E-Commerce</span>
+        </div>
+    </div>
+
+    <!-- ════════ WHO WE ARE ════════ -->
+    <section class="py-5 position-relative section-num section-num-right" id="about" data-num="01">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 order-lg-2 reveal">
+                    <div class="who-img-wrapper">
+                        <img src="assets/about-hero.png" alt="Ojass Tech Team"
+                            onerror="this.style.background='linear-gradient(135deg,#1a1a1a,#2a2a2a)';this.style.height='500px';this.style.display='block';" />
+                        <div class="img-border-accent"></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1 reveal reveal-delay-1">
+                    <p class="section-label mb-3">01 — Who We Are</p>
+                    <h2 class="section-title">Architects of<br><em>Digital Innovation</em></h2>
+                    <div class="gold-line my-4"></div>
+                    <p class="section-text">At Ojass Tech, we are more than just a website development agency. With a
+                        passion for creativity and technology, we specialize in crafting custom digital solutions that
+                        empower businesses to thrive in the online world.</p>
+                    <p class="section-text mt-3">From sleek websites to advanced data-driven applications, we bring
+                        ideas to life with precision, strategy, and excellence.</p>
+                    <a href="#contact" class="hero-cta mt-4" style="opacity:1;animation:none;">Start a Project <i
+                            class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ MISSION & VISION ════════ -->
+    <section class="py-5 bg-black-mid position-relative section-num section-num-left" id="mission" data-num="02">
+        <div class="container py-5">
+            <div class="row mb-5 g-4">
+                <div class="col-lg-6 reveal">
+                    <p class="section-label mb-3">02 — Mission &amp; Vision</p>
+                    <h2 class="section-title">Transforming Business<br><em>Through Technology</em></h2>
+                    <div class="gold-line my-4"></div>
+                    <p class="section-text">Our mission is to transform businesses through technology, delivering
+                        cutting-edge solutions that enhance online presence and operational efficiency. We envision a
+                        world where every business leverages digital tools to unlock its full potential.</p>
+                </div>
+                <div class="col-lg-5 offset-lg-1 d-flex align-items-center reveal reveal-delay-1">
+                    <div class="row g-3 w-100 mt-2">
+                        <div class="col-6">
+                            <div class="stat-box pt-3">
+                                <div class="stat-num">200+</div>
+                                <div class="stat-label">Projects Delivered</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-box pt-3">
+                                <div class="stat-num">98%</div>
+                                <div class="stat-label">Client Satisfaction</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-box pt-3">
+                                <div class="stat-num">50+</div>
+                                <div class="stat-label">Global Clients</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="stat-box pt-3">
+                                <div class="stat-num">7+</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Cards -->
+            <div class="row g-4 mt-2">
+                <div class="col-lg-4 col-md-6 reveal">
+                    <div class="card-gold card p-4">
+                        <div class="card-icon mb-4"><i class="fa-solid fa-code"></i></div>
+                        <h3 class="card-title-sm mb-2">Web Development</h3>
+                        <p class="card-text-sm mb-0">Custom websites and web applications engineered for performance,
+                            scalability, and lasting impact.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal reveal-delay-1">
+                    <div class="card-gold card p-4">
+                        <div class="card-icon mb-4"><i class="fa-solid fa-palette"></i></div>
+                        <h3 class="card-title-sm mb-2">UI/UX Design</h3>
+                        <p class="card-text-sm mb-0">Intuitive, user-centric designs that captivate your audience and
+                            convert visitors into loyal customers.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal reveal-delay-2">
+                    <div class="card-gold card p-4">
+                        <div class="card-icon mb-4"><i class="fa-solid fa-chart-line"></i></div>
+                        <h3 class="card-title-sm mb-2">Digital Strategy</h3>
+                        <p class="card-text-sm mb-0">Data-driven strategies that accelerate growth, enhance visibility,
+                            and maximize your digital ROI.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal reveal-delay-1">
+                    <div class="card-gold card p-4">
+                        <div class="card-icon mb-4"><i class="fa-regular fa-mobile"></i></div>
+                        <h3 class="card-title-sm mb-2">Mobile Solutions</h3>
+                        <p class="card-text-sm mb-0">Responsive experiences that deliver seamless performance across
+                            every device and screen size.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal reveal-delay-2">
+                    <div class="card-gold card p-4">
+                        <div class="card-icon mb-4"><i class="fa-solid fa-cloud"></i></div>
+                        <h3 class="card-title-sm mb-2">Cloud &amp; Backend</h3>
+                        <p class="card-text-sm mb-0">Robust infrastructure and backend systems built for reliability,
+                            speed, and enterprise-grade security.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 reveal reveal-delay-3">
+                    <div class="card-gold card p-4">
+                        <div class="card-icon mb-4"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        <h3 class="card-title-sm mb-2">SEO &amp; Analytics</h3>
+                        <p class="card-text-sm mb-0">Search-optimized solutions paired with deep analytics to keep you
+                            ahead of the competition.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ WHY CHOOSE US ════════ -->
+    <section class="py-5 position-relative section-num section-num-right" id="why" data-num="03">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 reveal">
+                    <div class="why-img-wrapper">
+                        <img src="assets/about-choose.png" alt="Our Process"
+                            onerror="this.style.background='linear-gradient(225deg,#1a1a1a,#2a2a2a)';this.style.height='600px';this.style.display='block';" />
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1 reveal reveal-delay-1">
+                    <p class="section-label mb-3">03 — Why Choose Us</p>
+                    <h2 class="section-title">Built for<br><em>Extraordinary</em><br>Results</h2>
+                    <div class="gold-line my-4"></div>
+                    <p class="section-text">With a team of expert developers, designers, and strategists, Ojass Tech
+                        offers tailor-made solutions that blend creativity with functionality.</p>
+
+                    <div class="d-flex flex-column gap-3 mt-4">
+                        <div class="d-flex gap-3 align-items-start">
+                            <div class="check-box"><i class="fa-solid fa-check text-warning"
+                                    style="font-size:0.6rem;"></i></div>
+                            <div>
+                                <div class="check-title">User-Centric Design Philosophy</div>
+                                <div class="section-text" style="font-size:0.85rem;">Every pixel designed with your
+                                    users' experience at the forefront.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 align-items-start">
+                            <div class="check-box"><i class="fa-solid fa-check text-warning"
+                                    style="font-size:0.6rem;"></i></div>
+                            <div>
+                                <div class="check-title">Collaborative &amp; Transparent Process</div>
+                                <div class="section-text" style="font-size:0.85rem;">You're a partner in the process,
+                                    not just a client.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 align-items-start">
+                            <div class="check-box"><i class="fa-solid fa-check text-warning"
+                                    style="font-size:0.6rem;"></i></div>
+                            <div>
+                                <div class="check-title">Result-Driven Approach</div>
+                                <div class="section-text" style="font-size:0.85rem;">Measurable outcomes that directly
+                                    impact your bottom line.</div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 align-items-start">
+                            <div class="check-box"><i class="fa-solid fa-check text-warning"
+                                    style="font-size:0.6rem;"></i></div>
+                            <div>
+                                <div class="check-title">High-Performance Applications</div>
+                                <div class="section-text" style="font-size:0.85rem;">Lightning-fast, robust systems
+                                    engineered to scale with your growth.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ CTA BANNER ════════ -->
+    <section class="cta-section py-5 border-gold-top border-gold-bottom" id="contact">
+        <div class="container position-relative py-5 text-center">
+            <p class="section-label d-flex justify-content-center mb-3 reveal">Let's Build Together</p>
+            <h2 class="cta-title reveal reveal-delay-1">Let's Build<br><em>Something</em><br>Extraordinary</h2>
+            <p class="section-text mx-auto mt-4 reveal reveal-delay-2" style="max-width:480px;">Partner with us and
+                transform your vision into a powerful digital reality that exceeds every expectation.</p>
+            <div class="d-flex flex-wrap gap-3 justify-content-center mt-5 reveal reveal-delay-3">
+                <a href="mailto:hello@ojasstech.com" class="btn-gold">Start a Project <i
+                        class="fa-solid fa-arrow-right-long"></i></a>
+                <a href="tel:+1234567890" class="btn-outline-gold">Call Us <i class="fa-solid fa-phone"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════ FOOTER ════════ -->
+    <footer id="ot-footer" class="d-flex flex-column min-vh-50 text-white mt-auto pt-5"
+        style="background: #000; transition: background 0.4s ease, color 0.4s ease;">
+        <div class="container text-center">
+
+            <!-- Logo -->
+            <div class="d-flex align-items-center justify-content-center mb-4">
+                <div class="ot-logo-box d-flex align-items-center justify-content-center rounded-pill"
+                    style="width: 260px; height: 60px; background: #000; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <img src="assets/ojasstechlogo.png" alt="OjassTech Logo" class="ot-footer-logo" />
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <ul class="nav justify-content-center gap-3 mb-3">
+                <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link"
+                        href="service.html">Service</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link"
+                        href="portfolio.html">Portfolio</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link"
+                        href="contact.html">Contact</a></li>
+            </ul>
+
+            <!-- Social Icons -->
+            <div class="d-flex justify-content-center gap-3 mb-4">
+                <a href="https://github.com/ojasstech" class="ot-social-link text-warning fs-4"><i
+                        class="bi bi-github"></i></a>
+                <a href="https://www.instagram.com/ojass.tech" class="ot-social-link text-warning fs-4"><i
+                        class="bi bi-instagram"></i></a>
+                <a href="https://in.pinterest.com/ojasstech/" class="ot-social-link text-warning fs-4"><i
+                        class="bi bi-pinterest"></i></a>
+            </div>
+
+            <!-- Divider -->
+            <div class="ot-footer-divider mx-auto mb-3"></div>
+
+            <!-- Copyright -->
+            <p class="small text-muted pb-4 mb-0">© 2026 ojass tech</p>
+
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+      <!-- nav script  -->
+  <script>
+    // Desktop toggle
+    document.getElementById("themeToggle").onclick = () => {
+      document.body.classList.toggle("light");
+    };
+
+    // Mobile toggle
+    document.getElementById("themeToggleMobile").onclick = () => {
+      document.body.classList.toggle("light");
+    };
+
+    // Mobile menu
+    document.getElementById("menuToggle").onclick = () => {
+      document.getElementById("mobileMenu").classList.toggle("show");
+    };
+  </script>
+
+    <script>
+        // Navbar scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    revealObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Smooth scroll for anchor links + close mobile nav
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    const navMenu = document.querySelector('#navMenu');
+                    if (navMenu.classList.contains('show')) {
+                        bootstrap.Collapse.getInstance(navMenu)?.hide();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
