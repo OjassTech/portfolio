@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ojasstech.com – Contact</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Lottie -->
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- YOUR MAIN STYLESHEET — this is what was missing, causing the navbar to break -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ================= PAGE-SPECIFIC ONLY ================= */
+    /* These CSS variables are only needed for contact page elements
+       (glass cards, form inputs) that don't exist in style.css         */
+
+    :root {
+      --gold: #D4A017;
+      --gold-light: #F0C040;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(212, 160, 23, 0.2);
+      --text: #E8E0D0;
+      --text-muted-contact: #8A8070;
+    }
+
+    body.light {
+      --glass-bg: rgba(0, 0, 0, 0.04);
+      --glass-border: rgba(180, 130, 10, 0.25);
+      --text: #1A1208;
+      --text-muted-contact: #6B5F40;
+    }
+
+    /* ── Background Scene ── */
+    .bg-scene {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg-scene::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 30%, rgba(212,160,23,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 60% at 80% 70%, rgba(212,160,23,0.05) 0%, transparent 55%);
+    }
+    body.light .bg-scene::before {
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 30%, rgba(212,160,23,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 60% at 80% 70%, rgba(212,160,23,0.08) 0%, transparent 55%);
+    }
+    .noise {
+      position: absolute;
+      inset: 0;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(212,160,23,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(212,160,23,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      animation: drift 14s ease-in-out infinite;
+    }
+    .orb-1 { width:400px; height:400px; background:rgba(212,160,23,0.08); top:-100px; left:-80px; }
+    .orb-2 { width:300px; height:300px; background:rgba(212,160,23,0.06); bottom:-60px; right:-60px; animation-delay:-7s; }
+    @keyframes drift {
+      0%,100% { transform:translate(0,0) scale(1); }
+      33%      { transform:translate(30px,-20px) scale(1.05); }
+      66%      { transform:translate(-20px,25px) scale(0.97); }
+    }
+
+    /* ── Page layout ── */
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* ── Glass card ── */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(30px) saturate(1.3);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.4s, background 0.4s;
+    }
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,0.08), transparent 60%);
+      transform: translateX(-100%);
+      transition: 1s;
+    }
+    .glass-card:hover::before { transform: translateX(100%); }
+    .glass-card:hover { border-color: rgba(212,160,23,0.4); }
+
+    /* ── Form inputs ── */
+    .glass-input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      color: var(--text);
+      margin-bottom: 16px;
+      outline: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.3s, box-shadow 0.3s, background 0.4s, color 0.4s;
+      appearance: none;
+    }
+    .glass-input::placeholder { color: var(--text-muted-contact); }
+    .glass-input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212,160,23,0.15);
+    }
+    .glass-input option { background: #1a1a10; color: #E8E0D0; }
+    body.light .glass-input option { background: #F5F0E8; color: #1A1208; }
+
+    /* ── Submit button ── */
+    .btn-gold {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--gold), #B8860B);
+      color: #0A0A0A;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(212,160,23,0.4);
+    }
+
+    /* ── Section heading ── */
+    .section-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .display-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      transition: color 0.4s;
+    }
+    .display-heading em { font-style: italic; color: var(--gold-light); }
+
+    /* ── Info card details ── */
+    .divider-gold {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 24px 0;
+    }
+    .glass-card h6 {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+    .glass-card p { color: var(--text); font-size: 0.9rem; margin: 0; transition: color 0.4s; }
+
+    /* ── Social buttons ── */
+    .social-row { display: flex; gap: 12px; }
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted-contact);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .social-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(212,160,23,0.08);
+      transform: translateY(-3px);
+    }
+    .social-btn svg { width: 16px; height: 16px; }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.2,0,0.2,1);
+    }
+    .reveal.active { opacity: 1; transform: none; }
+
+    @media (max-width: 991px) {
+      .glass-card { margin-bottom: 24px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── DESKTOP NAVBAR ── -->
+  <div class="navbar-wrap">
+    <div class="pill logo-pill">
+      <img src="assets/ojasstechlogo.png" class="logo-img" alt="OjassTech" />
+    </div>
+
+    <div class="pill nav-pill">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="service.html">Service</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a class="active" href="contact.html">Contact</a>
+    </div>
+
+    <div class="pill right-pill">
+      <div class="lottie-box">
+        <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay loop></dotlottie-wc>
+      </div>
+      <div class="theme-toggle" id="themeToggle">
+        <span>
+          <i class="bi bi-moon-stars"></i>
+          <i class="bi bi-brightness-high"></i>
+        </span>
+        <div class="toggle-ball"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MOBILE NAVBAR ── -->
+  <div class="mobile-navbar">
+    <div class="mobile-top">
+      <div class="mobile-logo">
+        <img src="assets/ojasstechlogo.png" class="logo-img-mob" alt="OjassTech" />
+      </div>
+
+      <button class="menu-btn" id="menuToggle">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="mobile-actions">
+        <div class="lottie-box-mob">
+          <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay loop></dotlottie-wc>
+        </div>
+        <div class="theme-toggle" id="themeToggleMobile">
+          <div class="toggle-ball"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="service.html">Service</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a class="active" href="contact.html">Contact</a>
+    </div>
+  </div>
+
+  <!-- ── BACKGROUND ── -->
+  <div class="bg-scene">
+    <div class="noise"></div>
+    <div class="grid-lines"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+
+  <!-- ── MAIN CONTENT ── -->
+  <div class="page-wrap">
+    <div class="container" style="padding-top:120px; padding-bottom:80px;">
+
+      <div class="mb-5 reveal">
+        <div class="section-eyebrow mb-3">Get in Touch</div>
+        <h1 class="display-heading">
+          Let's create something<br><em>extraordinary</em> together.
+        </h1>
+      </div>
+
+      <div class="row g-4">
+
+        <!-- Form -->
+        <div class="col-lg-7 reveal">
+          <div class="glass-card">
+            <form id="contactForm" action="https://formsubmit.co/ojasstech@gmail.com" method="POST">
+              <input type="text"  name="firstName" class="glass-input" placeholder="First Name"     required>
+              <input type="text"  name="lastName"  class="glass-input" placeholder="Last Name"      required>
+              <input type="email" name="email"     class="glass-input" placeholder="Email Address"  required>
+
+              <select name="service" class="glass-input" required>
+                <option value="">Select Service</option>
+                <option>Brand Identity</option>
+                <option>Web Development</option>
+                <option>UI/UX Design</option>
+              </select>
+
+              <textarea name="message" class="glass-input" rows="4" placeholder="Tell us about your project..." required></textarea>
+
+              <input type="hidden" name="_captcha"  value="false">
+              <input type="hidden" name="_template" value="table">
+
+              <button type="submit" class="btn-gold">Send Message</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Info -->
+        <div class="col-lg-5 reveal">
+          <div class="glass-card h-100">
+            <h6>Location</h6>
+            <p>Kolkata, India</p>
+            <div class="divider-gold"></div>
+
+            <h6>Email</h6>
+            <p>ojasstech@gmail.com</p>
+            <div class="divider-gold"></div>
+
+            <h6>Office Hours</h6>
+            <p>Mon – Fri, 9am – 6pm IST</p>
+            <div class="divider-gold"></div>
+
+            <h6 style="margin-bottom:14px;">Follow Along</h6>
+            <div class="social-row">
+              <!-- Pinterest -->
+              <a href="https://in.pinterest.com/ojasstech/" class="social-btn" title="Pinterest">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0"/>
+                  <path d="M7.452 13.18c-1.108-2.262.4-6.668 5.472-5.948c5.586.794 4.581 9.478-.077 9.138c-1.474-.107-2.031-1.328-2.177-2.576m0 0c-.11-.946.016-1.907.16-2.41c.244-.857.649-.74.353.393c-.144.552-.32 1.245-.513 2.017m0 0c-.514 2.06-1.15 4.685-1.63 6.708"/>
+                </svg>
+              </a>
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/ojass.tech" class="social-btn" title="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="0.7" fill="currentColor" stroke="none"/>
+                </svg>
+              </a>
+              <!-- GitHub -->
+              <a href="https://github.com/ojasstech" class="social-btn" title="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.54 2.87 8.39 6.84 9.75.5.09.66-.22.66-.48 0-.24-.01-1.03-.02-1.87-2.78.62-3.37-1.2-3.37-1.2-.46-1.18-1.12-1.49-1.12-1.49-.91-.64.07-.63.07-.63 1.01.07 1.55 1.05 1.55 1.05.9 1.57 2.36 1.12 2.94.86.09-.67.35-1.12.64-1.38-2.22-.26-4.56-1.14-4.56-5.05 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.3.1-2.72 0 0 .84-.27 2.75 1.05A9.3 9.3 0 0112 6.84c.85.01 1.7.12 2.5.36 1.9-1.32 2.74-1.05 2.74-1.05.55 1.42.2 2.46.1 2.72.64.72 1.03 1.64 1.03 2.76 0 3.92-2.35 4.79-4.59 5.04.36.31.69.92.69 1.86 0 1.34-.01 2.42-.01 2.75 0 .27.17.58.67.48A10.02 10.02 0 0022 12.26C22 6.58 17.52 2 12 2z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
+    <footer id="ot-footer" class="d-flex flex-column min-vh-50 text-white mt-auto pt-5"
+      style="background:#000; transition:background 0.4s ease, color 0.4s ease;">
+      <div class="container text-center">
+
+        <div class="d-flex align-items-center justify-content-center mb-4">
+          <div class="ot-logo-box d-flex align-items-center justify-content-center rounded-pill"
+            style="width:260px; height:60px; background:#000; transition:transform 0.3s ease, box-shadow 0.3s ease;">
+            <img src="assets/ojasstechlogo.png" alt="OjassTech Logo" class="ot-footer-logo" />
+          </div>
+        </div>
+
+        <ul class="nav justify-content-center gap-3 mb-3">
+          <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="service.html">Service</a></li>
+          <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="portfolio.html">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="d-flex justify-content-center gap-3 mb-4">
+          <a href="https://github.com/ojasstech"         class="ot-social-link text-warning fs-4"><i class="bi bi-github"></i></a>
+          <a href="https://www.instagram.com/ojass.tech" class="ot-social-link text-warning fs-4"><i class="bi bi-instagram"></i></a>
+          <a href="https://in.pinterest.com/ojasstech/"  class="ot-social-link text-warning fs-4"><i class="bi bi-pinterest"></i></a>
+        </div>
+
+        <div class="ot-footer-divider mx-auto mb-3"></div>
+        <p class="small text-muted pb-4 mb-0">© 2026 ojass tech</p>
+
+      </div>
+    </footer>
+
+  </div><!-- /page-wrap -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // ── Theme toggle (syncs both desktop + mobile) ──
+    function toggleTheme() {
+      document.body.classList.toggle("light");
+      localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
+    }
+    document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+    document.getElementById("themeToggleMobile").addEventListener("click", toggleTheme);
+
+    // Persist theme preference across pages
+    if (localStorage.getItem("theme") === "light") document.body.classList.add("light");
+
+    // ── Mobile menu ──
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      document.getElementById("mobileMenu").classList.toggle("show");
+    });
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("active"); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+    // ── Card tilt (desktop only) ──
+    if (window.matchMedia("(pointer:fine)").matches) {
+      document.querySelectorAll(".glass-card").forEach(card => {
+        card.addEventListener("mousemove", e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width  - 0.5;
+          const y = (e.clientY - r.top)  / r.height - 0.5;
+          card.style.transform = `perspective(900px) rotateY(${x*5}deg) rotateX(${-y*5}deg)`;
+        });
+        card.addEventListener("mouseleave", () => { card.style.transform = ""; });
+      });
+    }
+  </script>
+
+</body>
+</html>
