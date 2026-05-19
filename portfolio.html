@@ -1,655 +1,1644 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio</title>
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet"/> -->
-  
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ojasstech.com - portfolio</title>
+
+    <!-- Spline -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js"></script>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Lottie -->
+    <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
+    <!-- Font Awesome (arrow) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
 
 
-  <!-- Spline -->
-  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js"></script>
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-  <!-- Lottie -->
-  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
-  <!-- Font Awesome (arrow) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --gold: #ffc107;
+            --gold-dim: rgba(255, 193, 7, 0.6);
+            --black-card: rgba(15, 15, 20, 0.5);
+            --black-border: rgba(255, 193, 7, 0.12);
+        }
 
-  <link rel="stylesheet" href="style.css">
-  <style>
-    :root {
-      --gold: #F5C518;
-      --gold-dim: #c49a0e;
-      --gold-glow: rgba(245,197,24,0.25);
-      --black: #0a0a0a;
-      --black-soft: #141414;
-      --black-card: #1a1a1a;
-      --border-gold: rgba(245,197,24,0.35);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            background: #000000;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            position: relative;
+        }
 
-    body {
-      background-color: var(--black);
-      color: #e8e8e8;
-      font-family: 'Rajdhani', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
-    }
+        /* ---------- glow blobs ---------- */
+        .glow-blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle at 30% 30%, rgba(234, 238, 29, 0.25), transparent 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
 
-    /* === BACKGROUND GRID === */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(245,197,24,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(245,197,24,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-    }
+        .blob-1 {
+            top: 10vh;
+            left: -10vw;
+        }
 
-    /* === NOISE OVERLAY === */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.5;
-    }
+        .blob-2 {
+            bottom: 20vh;
+            right: -5vw;
+            background: radial-gradient(circle, rgba(57, 255, 20, 0.2), transparent 80%);
+        }
 
-    .page-wrapper {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-    }
+        .blob-3 {
+            top: 60vh;
+            left: 30vw;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #00ff8840, transparent);
+        }
 
-    /* === CORNER DECORATIONS === */
-    .corner { position: fixed; width: 80px; height: 80px; }
-    .corner--tl { top: 20px; left: 20px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
-    .corner--tr { top: 20px; right: 20px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
-    .corner--bl { bottom: 20px; left: 20px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
-    .corner--br { bottom: 20px; right: 20px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+        /* ---------- glassmorphism ---------- */
+        .glass-card {
+            background: rgba(15, 15, 20, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 238, 0, 0.15);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s ease, border-color 0.2s;
+        }
 
-    /* === HAZARD STRIPE BAND === */
-    .hazard-band {
-      width: 100%;
-      height: 12px;
-      background: repeating-linear-gradient(
-        -45deg,
-        var(--gold) 0px,
-        var(--gold) 14px,
-        var(--black) 14px,
-        var(--black) 28px
-      );
-      position: fixed;
-      top: 0; left: 0;
-      z-index: 10;
-      opacity: 0.85;
-    }
-    .hazard-band-bottom {
-      bottom: 0; top: auto;
-    }
+        .glass-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 25px rgba(224, 240, 3, 0.3);
+        }
 
-    /* === ANIMATED GEAR SVG === */
-    .gear-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-    .gear-outer { animation: spin 12s linear infinite; }
-    .gear-inner { animation: spin-rev 8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes spin-rev { to { transform: rotate(-360deg); } }
+        /* ---------- neon accents ---------- */
+        .neon-green {
+            color: var(--gold);
+        }
 
-    /* === HEADLINE === */
-    .headline {
-      font-family: 'Playfair Display', serif;
-      font-weight: 900;
-      font-size: clamp(2.4rem, 7vw, 5.5rem);
-      line-height: 1;
-      color: var(--gold);
-      text-shadow: 0 0 40px var(--gold-glow), 0 0 80px rgba(245,197,24,0.1);
-      letter-spacing: -1px;
-      text-align: center;
-    }
+        .neon-green-bg {
+            background: var(--gold);
+            color: black;
+            font-weight: 600;
+            border: none;
+            transition: all 0.2s;
+        }
 
-    .sub-headline {
-      font-family: 'Rajdhani', sans-serif;
-      font-size: clamp(1rem, 3vw, 1.5rem);
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: rgba(245,197,24,0.65);
-      text-align: center;
-      margin-top: 0.5rem;
-    }
+        .neon-green-bg:hover {
+            background: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--gold);
+        }
 
-    /* === DIVIDER === */
-    .gold-divider {
-      width: 120px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 1.8rem auto;
-    }
+        .btn-outline-neon {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            font-weight: 600;
+            transition: 0.2s;
+        }
 
-    /* === CARD === */
-    .construction-card {
-      background: var(--black-card);
-      border: 1px solid var(--border-gold);
-      border-radius: 0;
-      clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-      padding: 2.5rem 2rem;
-      max-width: 680px;
-      width: 100%;
-      box-shadow: 0 0 60px rgba(245,197,24,0.05), inset 0 1px 0 rgba(245,197,24,0.1);
-      position: relative;
-      transition: box-shadow 0.4s ease;
-    }
-    .construction-card:hover {
-      box-shadow: 0 0 80px rgba(245,197,24,0.12), inset 0 1px 0 rgba(245,197,24,0.15);
-    }
+        .btn-outline-neon:hover {
+            background: var(--gold);
+            color: black;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px var(--gold);
+        }
 
-    .desc-text {
-      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-      color: #aaa;
-      line-height: 1.75;
-      letter-spacing: 0.02em;
-      text-align: center;
-    }
-    .desc-text strong { color: var(--gold); }
+        /* ---------- timeline ---------- */
+        .timeline-item {
+            display: flex;
+            gap: 1.5rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            padding: 1.5rem;
+            border-radius: 28px;
+            border-left: 4px solid var(--gold);
+            margin-bottom: 1.5rem;
+            align-items: center;
+        }
 
-    /* === COUNTDOWN === */
-    .countdown-wrap { margin: 2rem 0 0; }
-    .countdown-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(245,197,24,0.5);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    .countdown-grid { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
-    .countdown-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.3rem;
-      min-width: 64px;
-    }
-    .countdown-num {
-      background: var(--black);
-      border: 1px solid var(--border-gold);
-      color: var(--gold);
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 5vw, 2.4rem);
-      font-weight: 700;
-      width: 70px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-      transition: background 0.3s, box-shadow 0.3s;
-    }
-    .countdown-num.pulse {
-      background: rgba(245,197,24,0.08);
-      box-shadow: 0 0 20px var(--gold-glow);
-    }
-    .countdown-unit {
-      font-size: 0.65rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: #666;
-    }
+        .timeline-logo {
+            width: 64px;
+            height: 64px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            flex-shrink: 0;
+        }
 
-    /* === PROGRESS BAR === */
-    .progress-section { margin-top: 2.2rem; }
-    .progress-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #666;
-      margin-bottom: 0.6rem;
-    }
-    .progress-label span:last-child { color: var(--gold); }
-    .progress {
-      height: 4px;
-      background: rgba(255,255,255,0.05);
-      border-radius: 0;
-      overflow: visible;
-    }
-    .progress-bar {
-      background: linear-gradient(90deg, var(--gold-dim), var(--gold));
-      position: relative;
-      border-radius: 0;
-      transition: width 2s cubic-bezier(.4,0,.2,1);
-      box-shadow: 0 0 12px var(--gold-glow);
-    }
-    .progress-bar::after {
-      content: '';
-      position: absolute;
-      right: -1px;
-      top: -3px;
-      width: 10px;
-      height: 10px;
-      background: var(--gold);
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-      animation: pulse-dot 1.6s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.4); }
-    }
+        /* ---------- stat boxes ---------- */
+        .stat-box {
+            background: rgba(20, 20, 25, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            padding: 1rem 0.5rem;
+            border: 1px solid rgba(184, 224, 2, 0.2);
+            transition: 0.2s;
+        }
 
-    /* === NOTIFY FORM === */
-    .notify-section { margin-top: 2.5rem; }
-    .notify-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(245,197,24,0.5);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-    .notify-form { display: flex; gap: 0; max-width: 400px; margin: 0 auto; }
-    .notify-input {
-      flex: 1;
-      background: var(--black);
-      border: 1px solid var(--border-gold);
-      border-right: none;
-      color: #e8e8e8;
-      padding: 0.7rem 1rem;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.95rem;
-      letter-spacing: 0.05em;
-      outline: none;
-      border-radius: 0;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-    .notify-input::placeholder { color: #555; }
-    .notify-input:focus {
-      border-color: var(--gold);
-      box-shadow: -4px 0 0 var(--gold);
-    }
-    .notify-btn {
-      background: var(--gold);
-      color: var(--black);
-      border: none;
-      padding: 0.7rem 1.4rem;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      border-radius: 0;
-      white-space: nowrap;
-    }
-    .notify-btn:hover { background: #ffd43b; }
-    .notify-btn:active { transform: scale(0.97); }
-    .notify-success {
-      text-align: center;
-      color: var(--gold);
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-top: 0.8rem;
-      min-height: 1.2em;
-    }
+        .stat-box:hover {
+            border-color: var(--gold);
+        }
 
-    /* === SOCIAL ICONS === */
-    .social-row {
-      display: flex;
-      justify-content: center;
-      gap: 1.2rem;
-      margin-top: 2rem;
-    }
-    .social-btn {
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--border-gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      text-decoration: none;
-      transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
-      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
-    }
-    .social-btn:hover {
-      color: var(--gold);
-      border-color: var(--gold);
-      box-shadow: 0 0 16px var(--gold-glow);
-    }
-    .social-btn svg { width: 16px; height: 16px; fill: currentColor; }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
 
-    /* === FLOATING PARTICLES === */
-    .particle {
-      position: fixed;
-      width: 3px;
-      height: 3px;
-      background: var(--gold);
-      border-radius: 50%;
-      pointer-events: none;
-      opacity: 0;
-      animation: float-up var(--dur, 8s) var(--delay, 0s) infinite linear;
-    }
-    @keyframes float-up {
-      0%   { transform: translateY(100vh) translateX(0); opacity: 0; }
-      10%  { opacity: 0.6; }
-      90%  { opacity: 0.3; }
-      100% { transform: translateY(-10vh) translateX(var(--drift, 30px)); opacity: 0; }
-    }
+        /* ---------- portfolio grid ---------- */
+        /* Override Bootstrap gutter and use our own gap */
+        .portfolio-grid {
+            --bs-gutter-x: 0;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
 
-    /* === RESPONSIVE TWEAKS === */
-    @media (max-width: 400px) {
-      .notify-form { flex-direction: column; }
-      .notify-input { border-right: 1px solid var(--border-gold); border-bottom: none; }
-      .notify-btn { padding: 0.7rem; }
-      .corner { width: 48px; height: 48px; }
-      .countdown-num { width: 58px; height: 58px; }
-    }
+        /* Make Bootstrap col sizing still work */
+        .portfolio-grid>.portfolio-item {
+            padding: 0 !important;
+        }
 
-    /* === PAGE LOAD ANIMATION === */
-    .fade-in { animation: fadeIn 1s ease forwards; opacity: 0; }
-    .fade-in-1 { animation-delay: 0.2s; }
-    .fade-in-2 { animation-delay: 0.5s; }
-    .fade-in-3 { animation-delay: 0.8s; }
-    @keyframes fadeIn { to { opacity: 1; } }
-  </style>
+        /* Recalculate widths to account for the gap */
+        .portfolio-grid>.col-12 {
+            width: 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        @media (min-width: 576px) {
+            .portfolio-grid>.col-sm-6 {
+                flex: 0 0 calc(50% - 10px);
+                max-width: calc(50% - 10px);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .portfolio-grid>.col-md-6 {
+                flex: 0 0 calc(50% - 10px);
+                max-width: calc(50% - 10px);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .portfolio-grid>.col-lg-4 {
+                flex: 0 0 calc(33.333% - 14px);
+                max-width: calc(33.333% - 14px);
+            }
+
+            .portfolio-grid>.col-lg-4.col-sm-6 {
+                flex: 0 0 calc(33.333% - 14px);
+                max-width: calc(33.333% - 14px);
+            }
+        }
+
+        .portfolio-item {
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .portfolio-item.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.92);
+        }
+
+        .port-card {
+            background: var(--black-card);
+            border: 1px solid var(--black-border);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.4s, border-color 0.3s, box-shadow 0.4s;
+            cursor: pointer;
+        }
+
+        .port-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 193, 7, 0.35);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 193, 7, 0.1);
+        }
+
+        .port-thumb {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .port-thumb-inner {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .port-card:hover .port-thumb-inner {
+            transform: scale(1.06);
+        }
+
+        .bg-01 {
+            background: linear-gradient(135deg, #1a1200 0%, #2d1f00 40%, #0a0a00 100%);
+        }
+
+        .bg-02 {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1500 50%, #111 100%);
+        }
+
+        .bg-03 {
+            background: linear-gradient(135deg, #111 0%, #1c1800 60%, #090900 100%);
+        }
+
+        .bg-04 {
+            background: linear-gradient(135deg, #0e0e0e 0%, #201800 50%, #111 100%);
+        }
+
+        .bg-05 {
+            background: linear-gradient(135deg, #100f00 0%, #1e1a00 50%, #0a0a0a 100%);
+        }
+
+        .bg-06 {
+            background: linear-gradient(135deg, #0a0a0a 0%, #231d00 50%, #111 100%);
+        }
+
+        .port-thumb-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* overlay */
+        .port-thumb-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.82);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+
+        .port-card:hover .port-thumb-overlay {
+            opacity: 1;
+        }
+
+        .overlay-icon {
+            width: 48px;
+            height: 48px;
+            border: 1.5px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            transform: scale(0.8);
+            transition: transform 0.35s 0.05s;
+        }
+
+        .port-card:hover .overlay-icon {
+            transform: scale(1);
+        }
+
+        .overlay-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.35s 0.1s, transform 0.35s 0.1s;
+        }
+
+        .port-card:hover .overlay-label {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* card body */
+        .port-body {
+            padding: 1.4rem 1.5rem 1.6rem;
+            border-top: 1px solid var(--black-border);
+        }
+
+        .port-cat {
+            font-size: 0.62rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+            margin-bottom: 0.4rem;
+        }
+
+        .port-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #e0e0e0;
+            line-height: 1.3;
+            transition: color 0.2s;
+        }
+
+        .port-card:hover .port-title {
+            color: var(--gold);
+        }
+
+        .port-desc {
+            font-size: 0.82rem;
+            color: #666;
+            line-height: 1.6;
+            margin-top: 0.5rem;
+        }
+
+        .port-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--black-border);
+        }
+
+        .port-tags {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .port-tag {
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #444;
+            border: 1px solid #222;
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .port-card:hover .port-tag {
+            border-color: rgba(255, 193, 7, 0.2);
+            color: #777;
+        }
+
+        .port-link {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+            text-decoration: none;
+            transition: all 0.25s;
+            flex-shrink: 0;
+        }
+
+        .port-card:hover .port-link {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* ---------- social icons ---------- */
+        .social-icon {
+            font-size: 2rem;
+            margin: 0 0.8rem;
+            color: #ccc;
+            transition: 0.2s;
+        }
+
+        .social-icon:hover {
+            color: var(--gold);
+            transform: scale(1.2);
+        }
+
+        /* ---------- contact info card ---------- */
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 193, 7, 0.08);
+        }
+
+        .contact-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 193, 7, 0.08);
+            border: 1px solid rgba(255, 193, 7, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* ---------- responsiveness ---------- */
+        @media (max-width: 768px) {
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+
+    <!-- hero style  -->
+    <style>
+        /* grain overlay (preserved from original aesthetic) */
+        .hero::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            background-size: 300px 300px;
+            opacity: 0.1;
+            mix-blend-mode: overlay;
+        }
+
+        /* main layout */
+        .hero {
+            position: relative;
+            z-index: 2;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        /* golden radial glow (subtle interactive enhancement) */
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            transform: translateY(-42%);
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(ellipse 70% 60% at 48% 58%,
+                    rgba(210, 160, 0, 0.28) 0%,
+                    rgba(160, 110, 0, 0.13) 42%,
+                    transparent 72%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+        }
+
+        /* name badge / tagline */
+        .name-badge {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            font-size: clamp(0.7rem, 2vw, 0.95rem);
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0.75rem;
+            opacity: 0;
+            animation: riseIn 0.6s 0.05s ease forwards;
+        }
+
+        .name-badge strong {
+            font-weight: 500;
+            color: rgba(255, 215, 100, 0.9);
+        }
+
+        /* wordmark (gold metallic) */
+        .wordmark {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: clamp(4rem, 19vw, 14rem);
+            letter-spacing: -0.02em;
+            line-height: 0.85;
+            text-transform: lowercase;
+            user-select: none;
+            background: linear-gradient(180deg,
+                    #1a1200 0%,
+                    #3a2800 6%,
+                    #7a5500 14%,
+                    #b88200 24%,
+                    #e0aa00 34%,
+                    #f5c800 44%,
+                    #ffd700 50%,
+                    #f5c400 56%,
+                    #dda000 66%,
+                    #a87000 76%,
+                    #6a4200 86%,
+                    #321e00 93%,
+                    #100a00 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: riseIn 0.8s 0.15s ease forwards;
+            margin-bottom: 0.5rem;
+        }
+
+        /* interactive subtitle */
+        .dynamic-sub {
+            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+            color: rgba(255, 245, 200, 0.7);
+            font-weight: 400;
+            letter-spacing: -0.2px;
+            border-left: 3px solid rgba(255, 200, 70, 0.7);
+            padding-left: 1rem;
+            margin: 1.2rem 0 1.5rem 0;
+            transition: all 0.2s;
+        }
+
+        /* Stats row - interactive counters */
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0 2rem 0;
+            opacity: 0;
+            animation: fadeUp 0.9s 0.35s forwards;
+        }
+
+        .stat-card {
+            background: rgba(15, 15, 15, 0.65);
+            backdrop-filter: blur(3px);
+            border-radius: 2rem;
+            padding: 1rem 1.6rem;
+            min-width: 130px;
+            text-align: center;
+            border: 1px solid rgba(210, 170, 40, 0.25);
+            transition: all 0.25s ease;
+            cursor: default;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(210, 170, 60, 0.7);
+            background: rgba(25, 22, 12, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', monospace;
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            color: #ffd966;
+            letter-spacing: 1px;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            color: rgba(255, 245, 210, 0.65);
+            margin-top: 0.2rem;
+        }
+
+        /* Bio card - interactive hover reveal */
+        .bio-section {
+            margin: 1.2rem 0 1.5rem 0;
+            max-width: 520px;
+        }
+
+        .bio-preview {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 2rem;
+            padding: 0.9rem 1.5rem;
+            border: 1px solid rgba(210, 170, 40, 0.3);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+        }
+
+        .bio-preview p {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #ddd8c8;
+            letter-spacing: -0.2px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bio-preview i {
+            color: #e5b83c;
+            transition: transform 0.25s;
+            font-size: 0.8rem;
+        }
+
+        .bio-preview:hover {
+            border-color: rgba(230, 190, 70, 0.9);
+            background: rgba(20, 17, 8, 0.85);
+        }
+
+        .bio-full {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease-out, padding 0.3s ease;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius: 1.5rem;
+            margin-top: 0.5rem;
+            border-left: 2px solid #ffd966;
+        }
+
+        .bio-full-inner {
+            padding: 0 1.2rem;
+            color: #e9e2cf;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .bio-full-inner i {
+            margin-right: 6px;
+            color: #f5bc3c;
+        }
+
+        .bio-section.active .bio-full {
+            max-height: 220px;
+            padding: 0.8rem 0 1rem 0;
+        }
+
+        /* tech stack chips with rotation effect */
+        .tech-stack {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            align-items: center;
+            opacity: 0;
+            animation: fadeUp 0.9s 0.55s forwards;
+        }
+
+        .tech-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #bdaa7a;
+            font-weight: 500;
+            text-transform: uppercase;
+            margin-right: 0.5rem;
+        }
+
+        .tech-chip {
+            background: rgba(20, 18, 12, 0.7);
+            backdrop-filter: blur(4px);
+            border: 0.5px solid rgba(200, 165, 60, 0.4);
+            border-radius: 40px;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #f5e5bf;
+            transition: all 0.2s ease;
+            cursor: default;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .tech-chip i {
+            font-size: 0.8rem;
+            color: #f0bc48;
+        }
+
+        .tech-chip:hover {
+            background: #2f2818;
+            transform: scale(1.02) translateY(-2px);
+            border-color: #ffcd6b;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* interactive CTA line */
+        .interactive-zone {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeUp 0.9s 0.75s forwards;
+        }
+
+        .glass-btn {
+            background: rgba(15, 15, 12, 0.7);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(210, 170, 50, 0.5);
+            padding: 0.6rem 1.4rem;
+            border-radius: 3rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #ffefcf;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .glass-btn i {
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+
+        .glass-btn:hover {
+            background: rgba(45, 38, 20, 0.9);
+            border-color: #f3cd6c;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .glass-btn:active {
+            transform: translateY(1px);
+        }
+
+        @keyframes riseIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* responsiveness */
+        @media (max-width: 576px) {
+            .stats-container {
+                gap: 1rem;
+            }
+
+            .stat-card {
+                min-width: 100px;
+                padding: 0.6rem 0.9rem;
+            }
+
+            .bio-section {
+                max-width: 100%;
+            }
+        }
+
+        /* tooltip simulation for buttons */
+        .alert-toast {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: #1e1b12e6;
+            backdrop-filter: blur(12px);
+            border-radius: 60px;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.8rem;
+            color: #ffeaac;
+            border-left: 3px solid #ffcd70;
+            font-weight: 500;
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            pointer-events: none;
+            white-space: nowrap;
+            font-family: monospace;
+        }
+
+        .alert-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+    </style>
 </head>
+
 <body>
 
-  <div class="navbar-wrap">
-    <div class="pill logo-pill">
-      <img src="assets/ojasstechlogo.png" class="logo-img" />
-    </div>
-
-    <div class="pill nav-pill">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="service.html">Service</a>
-      <a class="active" href="#">Portfolio</a>
-      <a href="contact.html">Contact</a>
-    </div>
-
-    <div class="pill right-pill">
-      <div class="lottie-box">
-        <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
-          loop></dotlottie-wc>
-      </div>
-
-      <div class="theme-toggle" id="themeToggle">
-        <span>
-          <i class="bi bi-moon-stars"></i>
-          <i class="bi bi-brightness-high"></i>
-        </span>
-        <div class="toggle-ball"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MOBILE NAVBAR (COPIED LAYOUT STYLE) -->
-  <div class="mobile-navbar">
-    <div class="mobile-top">
-      <div class="mobile-logo"><img src="assets/ojasstechlogo.png" class="logo-img-mob" /></div>
-
-      <button class="menu-btn" id="menuToggle">
-        <i class="bi bi-list"></i>
-      </button>
-
-      <div class="mobile-actions">
-        <div class="lottie-box-mob  ">
-          <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
-            loop></dotlottie-wc>
+    <!-- DESKTOP NAVBAR (UNCHANGED) -->
+    <div class="navbar-wrap">
+        <div class="pill logo-pill">
+            <img src="assets/ojasstechlogo.png" class="logo-img" />
         </div>
-        <div class="theme-toggle" id="themeToggleMobile">
-          <div class="toggle-ball"></div>
+
+        <div class="pill nav-pill">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html">Service</a>
+            <a class="active" href="#">Portfolio</a>
+            <a href="contact.html">Contact</a>
         </div>
-      </div>
-    </div>
 
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="service.html">Service</a>
-      <a class="active" href="#">Portfolio</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </div>
+        <div class="pill right-pill">
+            <div class="lottie-box">
+                <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
+                    loop></dotlottie-wc>
+            </div>
 
-  <!-- Hazard bands -->
-  <div class="hazard-band"></div>
-  <div class="hazard-band hazard-band-bottom"></div>
-
-  <!-- Corner ornaments -->
-  <div class="corner corner--tl"></div>
-  <div class="corner corner--tr"></div>
-  <div class="corner corner--bl"></div>
-  <div class="corner corner--br"></div>
-
-  <!-- Floating particles (generated by JS) -->
-  <div id="particles"></div>
-
-  <div class="page-wrapper">
-
-    <!-- Gear Icon -->
-    <div class="gear-wrap fade-in fade-in-1">
-      <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Outer gear -->
-        <g class="gear-outer">
-          <circle cx="40" cy="40" r="26" stroke="#F5C518" stroke-width="2" fill="none" opacity="0.6"/>
-          <circle cx="40" cy="40" r="20" stroke="#F5C518" stroke-width="1.5" fill="rgba(245,197,24,0.05)"/>
-          <!-- teeth -->
-          <rect x="37" y="6" width="6" height="10" rx="1" fill="#F5C518" transform="rotate(0 40 40)"/>
-          <rect x="37" y="6" width="6" height="10" rx="1" fill="#F5C518" transform="rotate(45 40 40)"/>
-          <rect x="37" y="6" width="6" height="10" rx="1" fill="#F5C518" transform="rotate(90 40 40)"/>
-          <rect x="37" y="6" width="6" height="10" rx="1" fill="#F5C518" transform="rotate(135 40 40)"/>
-          <rect x="37" y="6" width="6" height="10" rx="1" fill="#F5C518" transform="rotate(180 40 40)"/>
-          <rect x="37" y="6" width="6" height="10" rx="1" fill="#F5C518" transform="rotate(225 40 40)"/>
-          <rect x="37" y="6" width="6" height="10" rx="1" fill="#F5C518" transform="rotate(270 40 40)"/>
-          <rect x="37" y="6" width="6" height="10" rx="1" fill="#F5C518" transform="rotate(315 40 40)"/>
-        </g>
-        <!-- Inner gear -->
-        <g class="gear-inner">
-          <circle cx="40" cy="40" r="10" stroke="#F5C518" stroke-width="1.5" fill="rgba(245,197,24,0.08)"/>
-          <rect x="38.5" y="27" width="3" height="7" rx="0.5" fill="#F5C518" transform="rotate(0 40 40)" opacity="0.7"/>
-          <rect x="38.5" y="27" width="3" height="7" rx="0.5" fill="#F5C518" transform="rotate(60 40 40)" opacity="0.7"/>
-          <rect x="38.5" y="27" width="3" height="7" rx="0.5" fill="#F5C518" transform="rotate(120 40 40)" opacity="0.7"/>
-          <rect x="38.5" y="27" width="3" height="7" rx="0.5" fill="#F5C518" transform="rotate(180 40 40)" opacity="0.7"/>
-          <rect x="38.5" y="27" width="3" height="7" rx="0.5" fill="#F5C518" transform="rotate(240 40 40)" opacity="0.7"/>
-          <rect x="38.5" y="27" width="3" height="7" rx="0.5" fill="#F5C518" transform="rotate(300 40 40)" opacity="0.7"/>
-        </g>
-        <circle cx="40" cy="40" r="4" fill="#F5C518" opacity="0.9"/>
-      </svg>
-    </div>
-
-    <!-- Headline -->
-    <div class="fade-in fade-in-1">
-      <h1 class="headline">UNDER CONSTRUCTION</h1>
-      <p class="sub-headline">Something extraordinary is being built</p>
-    </div>
-
-    <div class="gold-divider fade-in fade-in-2"></div>
-
-    <!-- Main Card -->
-    <div class="construction-card fade-in fade-in-2">
-
-      <p class="desc-text">
-        We're <strong>forging something remarkable</strong> — our new experience is
-        currently under development. Every pixel, every interaction is being crafted
-        with precision. We'll be <strong>live very soon.</strong>
-      </p>
-
-      <!-- Countdown -->
-      <div class="countdown-wrap">
-        <p class="countdown-label">— Launching In —</p>
-        <div class="countdown-grid">
-          <div class="countdown-item">
-            <div class="countdown-num" id="cd-days">00</div>
-            <span class="countdown-unit">Days</span>
-          </div>
-          <div class="countdown-item">
-            <div class="countdown-num" id="cd-hours">00</div>
-            <span class="countdown-unit">Hours</span>
-          </div>
-          <div class="countdown-item">
-            <div class="countdown-num" id="cd-mins">00</div>
-            <span class="countdown-unit">Mins</span>
-          </div>
-          <div class="countdown-item">
-            <div class="countdown-num" id="cd-secs">00</div>
-            <span class="countdown-unit">Secs</span>
-          </div>
+            <div class="theme-toggle" id="themeToggle">
+                <span>
+                    <i class="bi bi-moon-stars"></i>
+                    <i class="bi bi-brightness-high"></i>
+                </span>
+                <div class="toggle-ball"></div>
+            </div>
         </div>
-      </div>
-
-      <!-- Progress -->
-      <div class="progress-section">
-        <div class="progress-label">
-          <span>Build Progress</span>
-          <span id="pct-label">0%</span>
-        </div>
-        <div class="progress" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100">
-          <div class="progress-bar" id="prog-bar" style="width: 0%"></div>
-        </div>
-      </div>
-
- 
-
-      <!-- Social -->
-      <div class="social-row">
-        <!-- Twitter/X -->
-        <a href="#" class="social-btn" aria-label="X / Twitter">
-          <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.732-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
-        <!-- Instagram -->
-        <a href="#" class="social-btn" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        </a>
-        <!-- LinkedIn -->
-        <a href="#" class="social-btn" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-      </div>
-
     </div>
 
-    <!-- Footer note -->
-    <p class="fade-in fade-in-3" style="margin-top:2rem; font-size:0.7rem; letter-spacing:0.2em; color:#444; text-transform:uppercase; text-align:center;">
-      &copy; 2025 &nbsp;·&nbsp; All Rights Reserved &nbsp;·&nbsp; Stay Tuned
-    </p>
+    <!-- MOBILE NAVBAR (COPIED LAYOUT STYLE) -->
+    <div class="mobile-navbar">
+        <div class="mobile-top">
+            <div class="mobile-logo"><img src="assets/ojasstechlogo.png" class="logo-img-mob" /></div>
 
-  </div>
+            <button class="menu-btn" id="menuToggle">
+                <i class="bi bi-list"></i>
+            </button>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // ====== COUNTDOWN ======
-    const launchDate = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000); // 14 days from now
+            <div class="mobile-actions">
+                <div class="lottie-box-mob  ">
+                    <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie"
+                        autoplay loop></dotlottie-wc>
+                </div>
+                <div class="theme-toggle" id="themeToggleMobile">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
 
-    function pad(n) { return String(n).padStart(2, '0'); }
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html">Service</a>
+            <a class="active" href="#">Portfolio</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
 
-    function updateCountdown() {
-      const now = new Date();
-      const diff = launchDate - now;
-      if (diff <= 0) {
-        document.getElementById('cd-days').textContent = '00';
-        document.getElementById('cd-hours').textContent = '00';
-        document.getElementById('cd-mins').textContent = '00';
-        document.getElementById('cd-secs').textContent = '00';
-        return;
-      }
-      const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+    <!-- background blobs -->
+    <div class="glow-blob blob-1"></div>
+    <div class="glow-blob blob-2"></div>
+    <div class="glow-blob blob-3"></div>
 
-      const secEl = document.getElementById('cd-secs');
-      secEl.textContent = pad(secs);
-      // pulse on second change
-      secEl.classList.remove('pulse');
-      void secEl.offsetWidth;
-      secEl.classList.add('pulse');
+    <main class="container mt-4" style="position: relative; z-index: 2;">
 
-      document.getElementById('cd-days').textContent  = pad(days);
-      document.getElementById('cd-hours').textContent = pad(hours);
-      document.getElementById('cd-mins').textContent  = pad(mins);
-    }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+        <!-- ═══════════════ HERO ═══════════════ -->
+        <section class="hero">
+            <div class="hero">
+                <div class="glow"></div>
+                <div class="hero-content">
+                    <div class="container-fluid px-4 px-md-5">
+                        <!-- top badge -->
+                        <p class="name-badge">
+                            <i class="fas fa-code me-1" style="font-size: 0.75rem;"></i>
+                            <strong>Ojass Tech</strong> • Creative Technologist
+                        </p>
+                        <!-- main gold title -->
+                        <div>
+                            <span class="wordmark">portfolio</span>
+                        </div>
 
-    // ====== PROGRESS BAR ANIMATE ======
-    const TARGET_PCT = 78;
-    setTimeout(() => {
-      const bar = document.getElementById('prog-bar');
-      const lbl = document.getElementById('pct-label');
-      bar.style.width = TARGET_PCT + '%';
-      let current = 0;
-      const step = () => {
-        if (current < TARGET_PCT) {
-          current++;
-          lbl.textContent = current + '%';
-          requestAnimationFrame(step);
-        }
-      };
-      requestAnimationFrame(step);
-    }, 1200);
+                        <!-- dynamic interactive subtitle: rotates on click -->
+                        <div class="dynamic-sub" id="dynamicSubtitle">
+                            <i class="fas fa-mouse-pointer me-1"></i>
+                            <span id="subtitleText">design meets code & gold</span>
+                        </div>
 
-    // ====== NOTIFY FORM ======
-    document.getElementById('notify-btn').addEventListener('click', () => {
-      const val = document.getElementById('email-input').value.trim();
-      const msg = document.getElementById('notify-msg');
-      if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-        msg.style.color = '#e05252';
-        msg.textContent = '— Please enter a valid email address —';
-        return;
-      }
-      msg.style.color = 'var(--gold)';
-      msg.textContent = '✦  You\'re on the list. We\'ll notify you!  ✦';
-      document.getElementById('email-input').value = '';
-    });
+                        <!-- Bio section: hover + click to expand -->
+                        <div class="bio-section" id="bioSection">
+                            <div class="bio-preview" id="bioToggle">
+                                <p>
+                                    <span><i class="fas fa-user-astronaut me-2"></i> Ojass Tech — full-stack creator &
+                                        design engineer</span>
+                                    <i class="fas fa-chevron-down" id="chevronIcon"></i>
+                                </p>
+                            </div>
+                            <div class="bio-full">
+                                <div class="bio-full-inner">
+                                    <i class="fas fa-bolt"></i> Architect of immersive digital experiences with 7+ years
+                                    bridging minimalist design and robust engineering. <br />
+                                    <i class="fas fa-crown mt-1 d-inline-block me-1"></i> Specialized in
+                                    high-performance web, motion-driven interfaces & creative coding. <br />
+                                    <i class="fas fa-globe"></i> Worked with agencies & startups across EU, NA and Asia.
+                                    Currently building tools that blend aesthetics with utility.
+                                </div>
+                            </div>
+                        </div>
 
-    document.getElementById('email-input').addEventListener('keydown', e => {
-      if (e.key === 'Enter') document.getElementById('notify-btn').click();
-    });
+                        <!-- tech stack with rotation (interactive hover + dynamic cycling) -->
+                        <div class="tech-stack">
+                            <span class="tech-label"><i class="fas fa-cog fa-spin me-1"></i> TOOLKIT</span>
+                            <div class="tech-chip"><i class="fab fa-react"></i> React</div>
+                            <div class="tech-chip"><i class="fab fa-js"></i> TypeScript</div>
+                            <div class="tech-chip"><i class="fab fa-node-js"></i> Node.js</div>
+                            <div class="tech-chip"><i class="fab fa-python"></i> Python</div>
+                            <div class="tech-chip"><i class="fas fa-database"></i> Three.js</div>
+                            <div class="tech-chip" id="rotatingTech"><i class="fas fa-sync-alt"></i> GSAP</div>
+                        </div>
 
-    // ====== FLOATING PARTICLES ======
-    const container = document.getElementById('particles');
-    for (let i = 0; i < 18; i++) {
-      const p = document.createElement('div');
-      p.className = 'particle';
-      p.style.setProperty('--dur', (7 + Math.random() * 8) + 's');
-      p.style.setProperty('--delay', (Math.random() * 10) + 's');
-      p.style.setProperty('--drift', ((Math.random() - 0.5) * 80) + 'px');
-      p.style.left = (Math.random() * 100) + 'vw';
-      p.style.width = p.style.height = (1 + Math.random() * 3) + 'px';
-      p.style.opacity = (0.2 + Math.random() * 0.5).toString();
-      container.appendChild(p);
-    }
-  </script>
+                        <!-- interactive buttons: message, resume, rotate subtitle -->
+                        <div class="interactive-zone">
+                            <div class="glass-btn" id="messageBtn">
+                                <i class="far fa-comment-dots"></i> Send a wave
+                            </div>
+                            <div class="glass-btn" id="rotateSubBtn">
+                                <i class="fas fa-sync-alt"></i> Rotate vibe
+                            </div>
+                            <div class="glass-btn" id="inspireBtn">
+                                <i class="fas fa-lightbulb"></i> Inspire me
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- floating toast message -->
+            <div id="toastMsg" class="alert-toast">✨ interactive feedback ✨</div>
+
+        </section>
+
+        <!-- ═══════════════ PORTFOLIO ═══════════════ -->
+        <section class="py-5">
+            <h2 class="display-5 fw-semibold mb-5" data-aos="zoom-in">our <span class="neon-green">// work</span></h2>
+
+            <div class="portfolio-grid" id="portfolioGrid">
+
+                <!-- ── Card 1 – Featured ──────────────────────────── -->
+                <div class="col-12 portfolio-item" data-category="branding">
+                    <div class="port-card">
+                        <div class="port-thumb">
+                            <div class="port-thumb-inner bg-01">
+                                <img src="assets/Drinks.png" alt="Milk Beverages">
+                            </div>
+                            <div class="port-thumb-overlay">
+                                <div class="overlay-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                </div>
+                                <span class="overlay-label">View Project</span>
+                            </div>
+                        </div>
+                        <div class="port-body">
+                            <p class="port-cat">Brand Identity</p>
+                            <h3 class="port-title">Whole Moon — Milk Beverage Website Design</h3>
+                            <p class="port-desc">A modern and engaging website UI designed for a plant-based milk
+                                beverage brand, focused on showcasing product flavors, healthy ingredients, and an
+                                enjoyable digital shopping experience.</p>
+                            <div class="port-footer">
+                                <div class="port-tags">
+                                    <span class="port-tag">UI/UX</span>
+                                    <span class="port-tag">Branding</span>
+                                    <span class="port-tag">Product Showcase</span>
+                                </div>
+                                <a href="#" class="port-link">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <polyline points="12 5 19 12 12 19" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Card 2 ──────────────────────────── -->
+                <div class="col-12 col-md-6 portfolio-item" data-category="web">
+                    <div class="port-card">
+                        <div class="port-thumb">
+                            <div class="port-thumb-inner bg-02">
+                                <img src="assets/Coffee.png" alt="Coffee Shop">
+                            </div>
+                            <div class="port-thumb-overlay">
+                                <div class="overlay-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                </div>
+                                <span class="overlay-label">View Project</span>
+                            </div>
+                        </div>
+                        <div class="port-body">
+                            <p class="port-cat">Web Design</p>
+                            <h3 class="port-title">Coffee House — Café Website UI Design</h3>
+                            <p class="port-desc">The design focuses on creating a warm digital atmosphere that reflects
+                                the cozy experience of a real café.</p>
+                            <div class="port-footer">
+                                <div class="port-tags">
+                                    <span class="port-tag">UX/UI</span>
+                                    <span class="port-tag">WebGL</span>
+                                    <span class="port-tag">Dark Themed Modern Layout</span>
+                                </div>
+                                <a href="#" class="port-link">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <polyline points="12 5 19 12 12 19" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Card 3 ──────────────────────────── -->
+                <div class="col-12 col-md-6 portfolio-item" data-category="motion">
+                    <div class="port-card">
+                        <div class="port-thumb">
+                            <div class="port-thumb-inner bg-03">
+                                <img src="assets/Restraurent.png" alt="restaurant webpage">
+                            </div>
+                            <div class="port-thumb-overlay">
+                                <div class="overlay-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                </div>
+                                <span class="overlay-label">View Project</span>
+                            </div>
+                        </div>
+                        <div class="port-body">
+                            <p class="port-cat">Landing Page</p>
+                            <h3 class="port-title">Restaurant Delight — Food Ordering Website UI Design</h3>
+                            <p class="port-desc">The interface highlights featured dishes, menu categories, and
+                                promotional food sections while maintaining a warm and inviting aesthetic suitable for
+                                restaurants.</p>
+                            <div class="port-footer">
+                                <div class="port-tags">
+                                    <span class="port-tag">Motion Aesthetics</span>
+                                    <span class="port-tag">Modern</span>
+                                    <span class="port-tag">Trendy</span>
+                                </div>
+                                <a href="#" class="port-link">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <polyline points="12 5 19 12 12 19" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Card 4 ──────────────────────────── -->
+                <div class="col-12 col-sm-6 col-lg-4 portfolio-item" data-category="print">
+                    <div class="port-card">
+                        <div class="port-thumb">
+                            <div class="port-thumb-inner bg-04">
+                                <img src="assets/Fashion.png" alt="Fashion Landing-page">
+                            </div>
+                            <div class="port-thumb-overlay">
+                                <div class="overlay-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                </div>
+                                <span class="overlay-label">View Project</span>
+                            </div>
+                        </div>
+                        <div class="port-body">
+                            <p class="port-cat">UI Design</p>
+                            <h3 class="port-title">Fashion Studio — Clothing Brand</h3>
+                            <p class="port-desc">The design emphasizes product collections, seasonal trends shopping
+                                experience.</p>
+                            <div class="port-footer">
+                                <div class="port-tags">
+                                    <span class="port-tag">Modern</span>
+                                    <span class="port-tag">UI</span>
+                                    <span class="port-tag">Fashion</span>
+                                </div>
+                                <a href="#" class="port-link">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <polyline points="12 5 19 12 12 19" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Card 5 ──────────────────────────── -->
+                <div class="col-12 col-sm-6 col-lg-4 portfolio-item" data-category="branding">
+                    <div class="port-card">
+                        <div class="port-thumb">
+                            <div class="port-thumb-inner bg-05">
+                                <img src="assets/dashboard4.png" alt="Dashboard">
+                            </div>
+                            <div class="port-thumb-overlay">
+                                <div class="overlay-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                </div>
+                                <span class="overlay-label">View Project</span>
+                            </div>
+                        </div>
+                        <div class="port-body">
+                            <p class="port-cat">DATA ANALYTICS</p>
+                            <h3 class="port-title">Data Insights — Data Management Solutions</h3>
+                            <p class="port-desc">Modern data analytics and management solutions designed to help
+                                businesses organize, analyze, and visualize large datasets for smarter decision-making.
+                            </p>
+                            <div class="port-footer">
+                                <div class="port-tags">
+                                    <span class="port-tag">Data Visualization</span>
+                                    <span class="port-tag">Power BI</span>
+                                    <span class="port-tag">Excel</span>
+                                </div>
+                                <a href="#" class="port-link">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <polyline points="12 5 19 12 12 19" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ── Card 6 ──────────────────────────── -->
+                <div class="col-12 col-lg-4 portfolio-item" data-category="web">
+                    <div class="port-card">
+                        <div class="port-thumb">
+                            <div class="port-thumb-inner bg-06">
+                                <img src="assets/socialmedia1.png" alt="social media post">
+                            </div>
+                            <div class="port-thumb-overlay">
+                                <div class="overlay-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                        <polyline points="15 3 21 3 21 9" />
+                                        <line x1="10" y1="14" x2="21" y2="3" />
+                                    </svg>
+                                </div>
+                                <span class="overlay-label">View Project</span>
+                            </div>
+                        </div>
+                        <div class="port-body">
+                            <p class="port-cat">GRAPHIC DESIGN</p>
+                            <h3 class="port-title">Social Media Design</h3>
+                            <p class="port-desc">Creative social media design solutions crafted to enhance brand
+                                visibility, engagement, and digital marketing presence across multiple platforms.</p>
+                            <div class="port-footer">
+                                <div class="port-tags">
+                                    <span class="port-tag">Adobe</span>
+                                    <span class="port-tag">Figma</span>
+                                    <span class="port-tag">Canva</span>
+                                </div>
+                                <a href="#" class="port-link">
+                                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2">
+                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                        <polyline points="12 5 19 12 12 19" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /portfolioGrid -->
+        </section>
+
+        <!-- ═══════════════ DELIVERY ROADMAP ═══════════════ -->
+        <section id="evolution" class="py-5">
+            <h2 class="display-5 fw-semibold mb-5" data-aos="fade-up">how we <span class="neon-green">deliver</span>
+            </h2>
+
+            <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-logo"><i class="fas fa-search"></i></div>
+                <div>
+                    <span class="badge bg-dark neon-green mb-2">Step 01</span>
+                    <h4>Discovery &amp; Brief</h4>
+                    <p class="mb-0 text-secondary">We start by understanding your business, goals, target audience, and
+                        the specific service you need — webpage, social media, graphic assets, data analysis, or
+                        management.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="80">
+                <div class="timeline-logo"><i class="fas fa-file-alt"></i></div>
+                <div>
+                    <span class="badge bg-dark neon-green mb-2">Step 02</span>
+                    <h4>Strategy &amp; Proposal</h4>
+                    <p class="mb-0 text-secondary">We map out a clear scope of work, timeline, and pricing. You know
+                        exactly what to expect before we begin — no surprises.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="140">
+                <div class="timeline-logo"><i class="fas fa-pen-ruler"></i></div>
+                <div>
+                    <span class="badge bg-dark neon-green mb-2">Step 03</span>
+                    <h4>Design &amp; Content Creation</h4>
+                    <p class="mb-0 text-secondary">Our team builds mockups, graphic assets, copy, and creative visuals
+                        tailored to your brand and target platform for maximum impact.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="timeline-logo"><i class="fas fa-code"></i></div>
+                <div>
+                    <span class="badge bg-dark neon-green mb-2">Step 04</span>
+                    <h4>Build &amp; Development</h4>
+                    <p class="mb-0 text-secondary">From full webpages and interactive dashboards to data pipelines and
+                        management systems — we build and configure everything to spec.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="260">
+                <div class="timeline-logo"><i class="fas fa-comments"></i></div>
+                <div>
+                    <span class="badge bg-dark neon-green mb-2">Step 05</span>
+                    <h4>Client Review &amp; Feedback</h4>
+                    <p class="mb-0 text-secondary">You review the work, share feedback, and we refine until it's exactly
+                        right. Your approval drives every revision — we iterate until you're proud of it.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="320">
+                <div class="timeline-logo"><i class="fas fa-rocket"></i></div>
+                <div>
+                    <span class="badge bg-dark neon-green mb-2">Step 06</span>
+                    <h4>Launch &amp; Go Live</h4>
+                    <p class="mb-0 text-secondary">We deploy, publish, or hand over the final deliverable — fully tested
+                        and ready to represent your business to the world.</p>
+                </div>
+            </div>
+            <div class="timeline-item" data-aos="fade-up" data-aos-delay="380">
+                <div class="timeline-logo"><i class="fas fa-headset"></i></div>
+                <div>
+                    <span class="badge bg-dark neon-green mb-2">Step 07</span>
+                    <h4>Ongoing Support &amp; Management</h4>
+                    <p class="mb-0 text-secondary">We stay by your side — managing social media, updating data,
+                        maintaining webpages, and continuously growing your digital presence worldwide.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════════ CONTACT ═══════════════ -->
+        <section id="contact" class="py-5">
+            <h2 class="display-5 fw-semibold mb-4" data-aos="fade-up">book a <span
+                    class="neon-green">consultation</span></h2>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="glass-card p-5 text-center h-100">
+                        <i class="fas fa-calendar-check fa-4x neon-green mb-3"></i>
+                        <h4>30‑min strategy call</h4>
+                        <p class="text-secondary">Let's discuss your project, goals, and how OjasStech can help. Zero
+                            obligations.</p>
+                        <!-- Clicking "Reserve time" opens the user's email client addressed to ojasstech@gmail.com -->
+                        <a href="mailto:ojasstech@gmail.com?subject=30-min%20Strategy%20Call%20Request&body=Hi%20OjasStech%2C%0A%0AI%27d%20like%20to%20book%20a%2030-minute%20strategy%20call%20to%20discuss%20my%20project.%0A%0AName%3A%20%0AProject%20details%3A%20%0APreferred%20time%3A%20%0A%0ALooking%20forward%20to%20connecting!"
+                            class="btn btn-outline-neon rounded-pill px-5 py-2 mt-2 d-inline-block text-decoration-none">
+                            <i class="fas fa-video me-2"></i>Reserve time
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="glass-card p-5 text-center h-100">
+                        <i class="fas fa-newspaper fa-4x neon-green mb-3"></i>
+                        <h4>Newsletter</h4>
+                        <p class="text-secondary">Get monthly insights on web design, social growth, data trends, and
+                            OjasStech updates.</p>
+                        <div class="input-group mt-3">
+                            <input type="email" class="form-control bg-dark text-white"
+                                style="border-color: rgba(255,193,7,0.3);" placeholder="your@email.com">
+                            <button class="btn neon-green-bg">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- footer section -->
+    <footer id="ot-footer" class="d-flex flex-column min-vh-50 text-white mt-auto pt-5"
+        style="background: #000; transition: background 0.4s ease, color 0.4s ease;">
+        <div class="container text-center">
+
+            <!-- Logo -->
+            <div class="d-flex align-items-center justify-content-center mb-4">
+                <div class="ot-logo-box d-flex align-items-center justify-content-center rounded-pill"
+                    style="width: 260px; height: 60px; background: #000; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <img src="assets/ojasstechlogo.png" alt="OjassTech Logo" class="ot-footer-logo" />
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <ul class="nav justify-content-center gap-3 mb-3">
+                <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link"
+                        href="service.html">Service</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link"
+                        href="portfolio.html">Portfolio</a>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link"
+                        href="contact.html">Contact</a></li>
+            </ul>
+
+            <!-- Social Icons -->
+            <div class="d-flex justify-content-center gap-3 mb-4">
+                <a href="https://github.com/ojasstech" class="ot-social-link text-warning fs-4"><i
+                        class="bi bi-github"></i></a>
+                <a href="https://www.instagram.com/ojass.tech" class="ot-social-link text-warning fs-4"><i
+                        class="bi bi-instagram"></i></a>
+                <a href="https://in.pinterest.com/ojasstech/" class="ot-social-link text-warning fs-4"><i
+                        class="bi bi-pinterest"></i></a>
+            </div>
+
+            <!-- Divider -->
+            <div class="ot-footer-divider mx-auto mb-3"></div>
+
+            <!-- Copyright -->
+            <p class="small text-muted pb-4 mb-0">© 2026 ojass tech</p>
+
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- nav script  -->
+    <script>
+        // Desktop toggle
+        document.getElementById("themeToggle").onclick = () => {
+            document.body.classList.toggle("light");
+        };
+
+        // Mobile toggle
+        document.getElementById("themeToggleMobile").onclick = () => {
+            document.body.classList.toggle("light");
+        };
+
+        // Mobile menu
+        document.getElementById("menuToggle").onclick = () => {
+            document.getElementById("mobileMenu").classList.toggle("show");
+        };
+    </script>
+
+    <!-- hero script -->
+    <script>
+        (function () {
+            const bioSection = document.getElementById('bioSection');
+            const bioToggle = document.getElementById('bioToggle');
+            const chevronIcon = document.getElementById('chevronIcon');
+
+            function toggleBio(expand) {
+                if (expand === undefined) {
+                    bioSection.classList.toggle('active');
+                } else if (expand) {
+                    bioSection.classList.add('active');
+                } else {
+                    bioSection.classList.remove('active');
+                }
+                // rotate chevron
+                if (bioSection.classList.contains('active')) {
+                    chevronIcon.style.transform = 'rotate(180deg)';
+                    chevronIcon.style.transition = 'transform 0.3s';
+                } else {
+                    chevronIcon.style.transform = 'rotate(0deg)';
+                }
+            }
+
+            bioToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleBio();
+            });
+
+            // optional: close if clicking outside? not needed, but nice for UX - we keep open/close toggle.
+
+            // ------------------------------
+            // 3) ROTATING SUBTITLE (interactive cycling)
+            // ------------------------------
+            const subtitleSpan = document.getElementById('subtitleText');
+            const subtitles = [
+                "design meets code & gold",
+                "interactive story architect",
+                "kinetic web experiences",
+                "minimalism × performance",
+                "digital alchemist",
+                "full-stack design engineer"
+            ];
+            let subIndex = 0;
+            function rotateSubtitle() {
+                subIndex = (subIndex + 1) % subtitles.length;
+                subtitleSpan.innerText = subtitles[subIndex];
+                showToast(`✨ vibe: ${subtitles[subIndex]}`, 1500);
+                // micro interaction: fade effect
+                subtitleSpan.parentElement.style.opacity = '0.7';
+                setTimeout(() => { if (subtitleSpan.parentElement) subtitleSpan.parentElement.style.opacity = '1'; }, 100);
+            }
+
+            // rotate Tech stack item (dynamic cycling)
+            const techStackItems = [
+                '<i class="fab fa-react"></i> React',
+                '<i class="fab fa-vuejs"></i> Vue',
+                '<i class="fab fa-angular"></i> Angular',
+                '<i class="fas fa-cube"></i> Three.js',
+                '<i class="fab fa-figma"></i> Figma',
+                '<i class="fas fa-mobile-alt"></i> Flutter',
+                '<i class="fas fa-brain"></i> AI Tools'
+            ];
+            let techIdx = 0;
+            const rotatingTechSpan = document.getElementById('rotatingTech');
+            function rotateTechStack() {
+                techIdx = (techIdx + 1) % techStackItems.length;
+                rotatingTechSpan.innerHTML = techStackItems[techIdx];
+                // add micro pop animation
+                rotatingTechSpan.style.transform = 'scale(1.05)';
+                setTimeout(() => { if (rotatingTechSpan) rotatingTechSpan.style.transform = ''; }, 150);
+            }
+            // rotate tech every 4 seconds as an additional interactive element
+            let techInterval = setInterval(rotateTechStack, 4200);
+
+            // ------------------------------
+            // 4) TOAST notification system (non intrusive)
+            // ------------------------------
+            const toastEl = document.getElementById('toastMsg');
+            let toastTimeout = null;
+            function showToast(message, duration = 1800) {
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastEl.innerText = message;
+                toastEl.classList.add('show');
+                toastTimeout = setTimeout(() => {
+                    toastEl.classList.remove('show');
+                }, duration);
+            }
+
+            // ------------------------------
+            // 5) BUTTON INTERACTIONS
+            // ------------------------------
+            const messageBtn = document.getElementById('messageBtn');
+            const rotateSubBtn = document.getElementById('rotateSubBtn');
+            const inspireBtn = document.getElementById('inspireBtn');
+
+            messageBtn.addEventListener('click', () => {
+                showToast("📬 Thanks! Ojass Tech will connect — creative sparks incoming", 2000);
+                // extra effect: change button icon temporary
+                const originalIcon = messageBtn.innerHTML;
+                messageBtn.innerHTML = '<i class="fas fa-check-circle"></i> Sent!';
+                setTimeout(() => {
+                    messageBtn.innerHTML = originalIcon;
+                }, 1200);
+            });
+
+            rotateSubBtn.addEventListener('click', () => {
+                rotateSubtitle();
+                // also trigger a small "wobble" on subtitle container
+                const subDiv = document.querySelector('.dynamic-sub');
+                subDiv.style.transform = 'translateX(3px)';
+                setTimeout(() => { if (subDiv) subDiv.style.transform = ''; }, 150);
+            });
+
+            // Inspire me: random quote + update something & change tech background vibe
+            const quotes = [
+                "✨ 'Simplicity is the ultimate sophistication.' — inspire your next build.",
+                "⚡ 'Make it work, make it right, make it fast.' — gold standard.",
+                "🎨 'Design is not just what it looks like, but how it performs.'",
+                "🔥 'Code is poetry, interface is soul.' — Ojass Tech's mantra.",
+                "🌌 'Creativity is intelligence having fun with constraints.'"
+            ];
+            inspireBtn.addEventListener('click', () => {
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                showToast(randomQuote, 2600);
+                // bonus: animate the wordmark for a flash effect
+                const word = document.querySelector('.wordmark');
+                word.style.textShadow = '0 0 6px rgba(255,215,0,0.5)';
+                setTimeout(() => { word.style.textShadow = ''; }, 400);
+                // Also change subtitle temporarily? just for fun
+                const oldSub = subtitleSpan.innerText;
+                subtitleSpan.innerText = "✨ " + randomQuote.substring(0, 38) + (randomQuote.length > 38 ? "…" : "");
+                setTimeout(() => {
+                    if (subtitleSpan.innerText !== oldSub) subtitleSpan.innerText = oldSub;
+                }, 2800);
+            });
+
+            // extra: hover effects on stat cards (already in css but also improve numeric coolness)
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    const numDiv = card.querySelector('.stat-number');
+                    if (numDiv) numDiv.style.textShadow = '0 0 4px #ffc857';
+                });
+                card.addEventListener('mouseleave', () => {
+                    const numDiv = card.querySelector('.stat-number');
+                    if (numDiv) numDiv.style.textShadow = 'none';
+                });
+            });
+
+            // ------------------------------
+            // 6) subtle dynamic "current time" or ambient update? keep fresh but no bloat
+            // Add ability to pause tech rotation if user clicks on rotateTech? but not required
+            rotatingTechSpan.addEventListener('click', () => {
+                rotateTechStack();
+                showToast('🔄 tech skill cycled', 1000);
+            });
+
+            // ------------------------------
+            // 7) BIO chevron rotate initial state check
+            if (bioSection.classList.contains('active')) {
+                chevronIcon.style.transform = 'rotate(180deg)';
+            } else {
+                chevronIcon.style.transform = 'rotate(0deg)';
+            }
+
+            // small delayed micro interaction: after load ensure the bio preview is not opened by default
+            // Also dynamic subtitle can have a default rotating call once? not needed, but provides first interaction.
+            setTimeout(() => {
+                // first rotate tech after load for dynamic feeling
+                if (!techIdx) rotateTechStack();
+            }, 800);
+
+            // Prevent memory leaks: no particles, no mouse glow, just interactive and robust.
+            // Add keyboard inspiration ? (optional but clean)
+            window.addEventListener('keydown', (e) => {
+                if (e.code === 'Space' && !e.target.matches('input, textarea, button')) {
+                    e.preventDefault();
+                    inspireBtn.click();
+                } else if (e.code === 'KeyR') {
+                    rotateSubtitle();
+                }
+            });
+
+            // extra tooltip for space key? small welcome
+            setTimeout(() => {
+                showToast("✨ interactive ready • click cards • space for inspiration", 2800);
+            }, 1200);
+        })();
+    </script>
+
+    <script>
+        AOS.init({ duration: 800, once: false, easing: 'ease-out-cubic' });
+    </script>
+
 </body>
 
 </html>
-
-
