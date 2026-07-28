@@ -1,1597 +1,839 @@
-/* ===== Body ===== */
-body {
-    min-height: 100vh;
-    font-family: 'Segoe UI', sans-serif;
-    background: radial-gradient(circle at top, #1a1a1a, #050505);
-    transition: 0.4s ease;
-    overflow-x: hidden;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-body.light {
-    background: radial-gradient(circle at top, #ffffff, #eaeaea);
-    color: #000;
-}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ojasstech.com</title>
+
+  <!-- Spline -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js"></script>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Lottie -->
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
+  <!-- Font Awesome (arrow) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- DESKTOP NAVBAR (UNCHANGED) -->
+  <div class="navbar-wrap">
+    <div class="pill logo-pill">
+      <img src="assets/ojasstechlogo.png" class="logo-img" />
+    </div>
+
+    <div class="pill nav-pill">
+      <a class="active" href="#">Home</a>
+      <a href="about.html">About</a>
+      <a href="service.html">Service</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="pill right-pill">
+      <div class="lottie-box">
+        <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
+          loop></dotlottie-wc>
+      </div>
+
+      <div class="theme-toggle" id="themeToggle">
+        <span>
+          <i class="bi bi-moon-stars"></i>
+          <i class="bi bi-brightness-high"></i>
+        </span>
+        <div class="toggle-ball"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOBILE NAVBAR (COPIED LAYOUT STYLE) -->
+  <div class="mobile-navbar">
+    <div class="mobile-top">
+      <div class="mobile-logo"><img src="assets/ojasstechlogo.png" class="logo-img-mob" /></div>
+
+      <button class="menu-btn" id="menuToggle">
+        <i class="bi bi-list"></i>
+      </button>
+
+      <div class="mobile-actions">
+        <div class="lottie-box-mob  ">
+          <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
+            loop></dotlottie-wc>
+        </div>
+        <div class="theme-toggle" id="themeToggleMobile">
+          <div class="toggle-ball"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a class="active" href="#">Home</a>
+      <a href="about.html">About</a>
+      <a href="service.html">Service</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
 
 
-/* navbar starts  */
-/* ===== Desktop Navbar ===== */
+  <!-- HERO SECTION -->
+  <section id="hero" class="hero d-flex align-items-center">
+    <div class="container">
 
-.navbar-wrap {
-    padding: 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
+      <div class="row align-items-center">
 
-.pill {
-    background: #000;
-    border-radius: 999px;
-    padding: 14px 28px;
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-}
+        <!-- LEFT -->
+        <div class="col-lg-6 text-start text-lg-start mb-5 mb-lg-0">
 
-body.light .pill {
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
+          <span class="pill-badge mb-4 d-inline-block">✨ Introducing</span>
 
-/* Logo */
-.logo-img,
-.logo-img-mob {
-    height: 50px;
-    width: auto;
-    transition: 0.3s;
-}
+          <h1 class="display-heading display-6 mb-4">
+            architecture<br>for Ambitions
+          </h1>
 
-.logo-img:hover {
-    transform: scale(1.08);
-}
+          <p class="lead lead-custom mb-5">
+            Complete web development, design, data, and cloud solutions built to help businesses launch, scale, and
+            innovate faster. From powerful applications to intelligent data systems, we create technology that drives
+            real growth.
+          </p>
 
-/* Nav Links */
-.nav-pill a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin: 0 12px;
-    transition: 0.3s;
-}
+          <div class="d-flex flex-wrap align-items-center justify-content-lg-start gap-3">
+            <button class="btn btn-get-started">Get Started</button>
+            <a href="#service" class="doc-link">
+              Explore Our Services <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
 
-.nav-pill a:hover,
-.nav-pill a.active {
-    color: orange;
-}
+        </div>
 
-/* Light mode nav links */
-body.light .nav-pill a {
-    color: #111;
-}
+        <!-- RIGHT -->
+        <div class="col-lg-6">
+          <div class="robot-wrapper">
+            <spline-viewer class="robot" url="https://prod.spline.design/wp-HumuRmpvWuUR3/scene.splinecode"
+              events-target="global">
+            </spline-viewer>
+          </div>
+        </div>
 
-body.light .nav-pill a:hover,
-body.light .nav-pill a.active {
-    color: #ff7b00;
-    /* or orange */
-}
+      </div>
 
-/* Right Section */
-.right-pill {
-    padding: 10px 18px;
-    gap: 12px;
-}
+    </div>
+  </section>
 
-/* Lottie */
-.lottie-box,
-.lottie-box-mob {
-    width: 70px;
-    height: 50px;
-}
 
-.lottie-box dotlottie-wc,
-.lottie-box-mob dotlottie-wc {
-    width: 100%;
-    height: 100%;
-}
+  <!-- service section -->
+  <section id="service" class="service container-fluid">
 
-/* ===== Theme Toggle ===== */
+    <!-- Header -->
+    <div class="container text-center mb-5">
+      <h1 class="fw-bold ">Our Expertise</h1>
+      <p class="service-desc">
+        We provide modern web development, creative design, data science, and cloud solutions to help businesses build
+        scalable digital products. Explore our services to see how our technology, design, and AI expertise can
+        transform your ideas into powerful solutions.
+      </p>
+    </div>
 
-.theme-toggle {
-    width: 70px;
-    height: 34px;
-    background: #000;
-    border-radius: 999px;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 8px;
-}
+    <!-- Back to Vertical -->
+    <div class="container text-start">
+      <h2>↓ Scroll to horizontal</h2>
+    </div>
 
-.theme-toggle span {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 8px;
-    font-size: 13px;
-    pointer-events: none;
-    color: #fff;
-}
+    <!-- Horizontal Scroll -->
+    <section class="horizontal-scroll">
+      <div class="horizontal-scroll-inner">
+        <div class="horizontal-scroll-content">
 
-.theme-toggle i {
-    z-index: 1;
-}
+          <!-- Card -->
+          <!-- (Button alignment kept EXACTLY same as your original) -->
 
-.toggle-ball {
-    width: 28px;
-    height: 28px;
-    background: orange;
-    border-radius: 50%;
-    position: absolute;
-    top: 3px;
-    left: 4px;
-    transition: 0.3s ease;
-    z-index: 2;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/fe/e6/46/fee646b98b192f913c0428bfec3a4e03.jpg"
+                  alt="Frontend Development" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">Frontend Development</h5>
+                <p>Fast, responsive frontend development that delivers smooth user experiences across all devices.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-/* Light Mode */
-body.light .theme-toggle {
-    background: #eaeaea;
-}
+          <!-- Copy Below Block As Needed -->
 
-body.light .theme-toggle span {
-    color: #000;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/f5/fd/17/f5fd170d9de639369a2025dcfd71eb2b.jpg"
+                  alt="Backened Development" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">Backend Development</h5>
+                <p>Secure and scalable backend systems, APIs, and databases for reliable web applications.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-body.light .toggle-ball {
-    left: 38px;
-    background: #ff7b00;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/b5/1f/24/b51f2407e47b3733812d8f94a9ffb1f0.jpg" alt="Branding" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">Brand & Identity Design</h5>
+                <p>Memorable brand identities, logos, and visual systems that build trust and recognition.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-/* ===== Mobile Navbar ===== */
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/2f/06/88/2f0688228b8776924df6f0bf3de934e8.jpg" alt="UI/UX" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">UI / UX Design</h5>
+                <p>Intuitive UI/UX design focused on usability, engagement, and conversions.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-.mobile-navbar {
-    display: none;
-    padding: 12px 18px;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 20px;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/9d/b9/c4/9db9c4c8d50ad42dd171da048598c7ea.jpg"
+                  alt="Creative Deisgn" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">Creative Design</h5>
+                <p>Eye-catching marketing creatives and campaign designs that attract and engage audiences.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-.mobile-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/c0/99/39/c0993973f033e41d751c9ece8b227691.jpg"
+                  alt="Visual & Motion" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">Visual & Motion</h5>
+                <p>Dynamic motion graphics and visual content that bring brands and products to life.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-.mobile-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/5f/ab/c5/5fabc51e2412b457d179c2a0fbcd0cef.jpg"
+                  alt="Data Analytics" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">Data Analytics</h5>
+                <p>Powerful data analytics and dashboards that turn data into actionable insights.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-.menu-btn {
-    background: none;
-    border: none;
-    color: orange;
-    font-size: 1.8rem;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/47/30/9d/47309db932faac67c9f839b8cd8beef9.jpg" alt="ML & AI" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">ML & AI</h5>
+                <p>Smart AI and machine learning solutions for automation and intelligent predictions.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-.mobile-menu {
-    display: none;
-    flex-direction: column;
-    margin-top: 10px;
-    text-align: center;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/ac/c2/ec/acc2ec291ddbae7434d417e3fd86c863.jpg"
+                  alt="Data Engineering" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">Data Engineering</h5>
+                <p>Reliable data pipelines and architecture for scalable analytics and AI systems.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-.mobile-menu a {
-    color: #fff;
-    text-decoration: none;
-    padding: 8px 0;
-    font-size: 1rem;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/85/8a/1c/858a1c21c73a1b4e8277f82871ac8ff0.jpg"
+                  alt="Applied Data Solutions" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">Applied Data Solutions</h5>
+                <p>Practical data-driven solutions that solve real business problems.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-.mobile-menu a:hover {
-    color: orange;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/bd/15/79/bd157917ed59af2049be192e113a93fd.jpg"
+                  alt="Cloud Architecture & Infrastructure" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">Cloud Architecture & Infrastructure</h5>
+                <p>Scalable and secure cloud infrastructure built for modern applications.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-.mobile-menu.show {
-    display: flex;
-}
+          <div class="card-wrapper">
+            <div class="gold-card">
+              <div class="card-image">
+                <img src="https://i.pinimg.com/736x/30/f4/4f/30f44f41324b7b32cde990c738725a27.jpg"
+                  alt="DevOps & Automation" />
+              </div>
+              <div class="card-content">
+                <h5 class="fw-bold">DevOps & Automation</h5>
+                <p>Efficient DevOps automation and CI/CD pipelines for faster and reliable deployments.</p>
+                <button class="see-more">See More</button>
+              </div>
+            </div>
+          </div>
 
-/* ===== Responsive Breakpoint ===== */
+        </div>
+      </div>
+    </section>
 
-@media (max-width: 991px) {
-    .navbar-wrap {
-        display: none;
+    <!-- Back to Vertical -->
+    <!-- <div class="container text-end">
+      <h2>Back to Vertical ↓</h2>
+    </div> -->
+
+  </section>
+
+
+  <!-- about section  -->
+  <section id="about-ojass">
+    <div class="container py-4">
+      <div class="row align-items-stretch g-5">
+
+        <!-- IMAGE -->
+        <div class="col-lg-6 d-flex">
+          <div class="img-border-wrap w-100">
+            <img src="assets/aboutus-home.jpg" alt="About Ojass Tech">
+          </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="col-lg-6 d-flex flex-column justify-content-center">
+
+          <h2 class="fw-bold fs-1 mb-4" style="color:#FFD700; letter-spacing:2px;">Who We Are</h2>
+
+          <p class="mb-3 about-muted">
+            At <span class="brand-highlight">Ojass Tech</span>, we design digital experiences where
+            creativity meets engineering. Our passion lies in building visually stunning
+            and high-performance websites that help brands stand out in the modern digital landscape.
+          </p>
+
+          <p class="mb-4 about-muted">
+            From strategy to execution, our team transforms ideas into elegant,
+            scalable and impactful digital products.
+          </p>
+
+          <div class="row g-3 mb-4">
+            <div class="col-sm-6">
+              <div class="feature-box p-4">
+                <div class="fs-4 mb-2">⚡</div>
+                <h6 class="fw-semibold mb-1 about-feature-title">Creative Design</h6>
+                <p class="small mb-0 about-feature-desc">Modern UI/UX with a luxury digital aesthetic.</p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="feature-box p-4">
+                <div class="fs-4 mb-2">🚀</div>
+                <h6 class="fw-semibold mb-1 about-feature-title">Powerful Development</h6>
+                <p class="small mb-0 about-feature-desc">High performance websites built for scale.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <a href="about.html" class="about-btn">Learn More</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- portfolio section -->
+  <section id="ot-portfolio" class="py-5">
+    <div class="container py-5">
+
+      <!-- HEADER -->
+      <div class="ot-section-header ot-reveal ot-d1">
+        <div>
+          <div class="ot-title-eyebrow">OjassTech</div>
+          <div class="ot-title-main">Selected<br><em>Work</em></div>
+        </div>
+        <div class="ot-header-right">
+          <p>Web design, development, UI/UX & data analytics — crafted to make an impact.</p>
+          <a href="#" class="ot-view-all-btn">
+            All Projects
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- ROW 1 -->
+      <div class="row g-4 mb-4">
+
+        <!-- Dashboard 1 -->
+        <div class="col-lg-6 ot-reveal ot-d2">
+          <div class="ot-p-card ot-dash-card ot-dash-card-lg">
+            <span class="ot-card-tag">Dashboard</span>
+            <img src="assets/dashboard 1.jpg" alt="Analytics Dashboard">
+            <div class="ot-card-info">
+              <h6>Analytics Dashboard</h6>
+              <small>UI · Data Visualization</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Web card 1 -->
+        <div class="col-lg-3 ot-reveal ot-d3">
+          <a href="https://ojasstech.github.io/uprintonline/">
+            <div class="ot-p-card ot-web-card">
+              <span class="ot-card-tag">Web</span>
+              <img src="assets/uprint.jpg" alt="Uprint Website">
+              <div class="ot-card-info">
+                <h6>Uprint Website</h6>
+                <small>Web Design</small>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Web card 2 -->
+        <div class="col-lg-3 ot-reveal ot-d4">
+          <a href="https://madhura-sarkar.github.io/baraf/">
+            <div class="ot-p-card ot-web-card">
+              <span class="ot-card-tag">Web</span>
+              <img src="assets/baraf.png" alt="BARAF Retro Bar">
+              <div class="ot-card-info">
+                <h6>Baraf Retro Bar & Restraurent</h6>
+                <small>Homepage Design</small>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- ROW 2 -->
+      <div class="row g-4">
+
+        <!-- Web card 3 -->
+        <div class="col-lg-3 ot-reveal ot-d2">
+          <a href="https://ojasstech.github.io/falcongarment/" target="_blank">
+            <div class="ot-p-card ot-web-card2">
+              <span class="ot-card-tag">Web</span>
+              <img src="assets/falcon.jpg" alt="Falcon Studio">
+              <div class="ot-card-info">
+                <h6>Falcon Studio</h6>
+                <small>Web Redesign</small>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Web card 4 -->
+        <div class="col-lg-3 ot-reveal ot-d3">
+          <a href="https://ojasstech.github.io/smartcare/" target="_blank">
+            <div class="ot-p-card ot-web-card2">
+              <span class="ot-card-tag">UX</span>
+              <img src="assets/smartcare.jpg" alt="Smartcare Polyclinic">
+              <div class="ot-card-info">
+                <h6>Smartcare Polyclinic</h6>
+                <small>UI/UX System</small>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- STAT GRID 2×2 -->
+        <div class="col-lg-2 col-md-6 ot-reveal ot-d4">
+          <div class="ot-stat-grid-wrap">
+            <div class="row g-2">
+              <div class="col-6">
+                <div class="ot-stat-card">
+                  <div class="ot-stat-number"><span class="ot-counter" data-target="5">0</span><sup>+</sup></div>
+                  <div class="ot-stat-label">Clients</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="ot-stat-card">
+                  <div class="ot-stat-number"><span class="ot-counter" data-target="7">0</span><sup>+</sup></div>
+                  <div class="ot-stat-label">Projects</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="ot-stat-card">
+                  <div class="ot-stat-number"><span class="ot-counter" data-target="1">0</span><sup>+</sup></div>
+                  <div class="ot-stat-label">Years</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="ot-stat-card">
+                  <div class="ot-stat-number"><span class="ot-counter" data-target="95">0</span><sup>%</sup></div>
+                  <div class="ot-stat-label">Satisfaction</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard 2 -->
+        <div class="col-lg-4 col-md-6 ot-reveal ot-d5">
+          <div class="ot-p-card ot-dash-card ot-dash-card-sm">
+            <span class="ot-card-tag">Dashboard</span>
+            <img src="assets/dashboard 2.jpg" alt="Admin Dashboard">
+            <div class="ot-card-info">
+              <h6>Admin Dashboard</h6>
+              <small>Design System</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- team section -->
+  <section id="ot-team" class="py-5">
+    <div class="container">
+
+      <!-- Title -->
+      <div class="row">
+        <div class="col-12 text-center ot-team-title">
+          <small>NICE TO MEET</small>
+          <h1>OUR TEAM</h1>
+        </div>
+      </div>
+
+      <!-- Cards — staggered on desktop, stacked on mobile via CSS -->
+      <div class="ot-cards-wrapper">
+
+        <div class="ot-team-card ot-card-1">
+          <img src="https://i.pinimg.com/736x/e3/a6/f5/e3a6f5e869b3142d532f1bb4394dfa37.jpg" alt="Team Member 1" />
+          <div class="ot-team-overlay">
+            <h5>Rohan Roy Karmakar</h5>
+            <!-- <h6>Full Stack Developer</h6> -->
+          </div>
+        </div>
+
+        <div class="ot-team-card ot-card-2">
+          <img src="https://i.pinimg.com/736x/e6/00/6d/e6006da0bc649869bf40bfb905b9883f.jpg" alt="Team Member 2" />
+          <div class="ot-team-overlay">
+            <h5>Sayak Mondal</h5>
+            <!-- <h6>Data Scientist</h6> -->
+          </div>
+        </div>
+
+        <div class="ot-team-card ot-card-3">
+          <img src="https://i.pinimg.com/1200x/9f/0a/ba/9f0ababbc2673d8c20bb06755ae03d43.jpg" alt="Team Member 3" />
+          <div class="ot-team-overlay">
+            <h5>Madhura Sarkar</h5>
+            <!-- <h6>Designer</h6> -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CTA Button -->
+      <div class="row">
+        <div class="col-12 text-center">
+          <button class="ot-btn-gold">MEET OUR TEAM</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- contact section -->
+  <section id="ot-contact" class="min-vh-100 d-flex align-items-center py-5">
+    <div class="container py-4">
+      <div class="row align-items-center g-5">
+
+        <!-- LEFT TEXT -->
+        <div class="col-12 col-md-6 text-center text-md-start">
+          <h2 class="fw-bold lh-sm ot-contact-heading" style="font-size: clamp(2rem, 5vw, 3.4rem);">
+            Let’s Build Something Amazing Together
+          </h2>
+
+          <p class="mt-3 ot-contact-sub">
+            Have an idea or a project in mind? Get in touch with us to discuss your web development, design, data, or
+            cloud solution needs. Let’s turn your vision into a powerful digital experience.
+          </p>
+        </div>
+
+        <!-- RIGHT CARD -->
+        <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+
+          <div class="ot-flip-container w-100" style="max-width:460px;" onclick="this.classList.toggle('ot-active')">
+
+            <div class="ot-flip-card">
+
+              <!-- FRONT -->
+              <div class="ot-flip-side ot-front d-flex align-items-center justify-content-center">
+
+                <div class="text-center text-dark rounded-4 px-4 py-4"
+                  style="backdrop-filter: blur(6px); background: rgba(255,255,255,0.55); width:80%;">
+
+                  <h3 class="fw-bold ot-card-title">Contact Us</h3>
+
+                  <p class="fw-semibold mt-4 mb-1">
+                    <a href="mailto:ojasstech@gmail.com">ojasstech@gmail.com</a>
+                  </p>
+
+                  <p class="mb-0 small">Serving businesses worldwide</p>
+
+                  <p class="mt-3 mb-0 text-black-50"
+                    style="font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;">
+                    Hover or tap to message →
+                  </p>
+
+                </div>
+              </div>
+
+              <!-- BACK -->
+              <div class="ot-flip-side ot-back d-flex align-items-center justify-content-center">
+
+                <form action="https://formsubmit.co/ojasstech@gmail.com" method="POST"
+                  class="w-100 d-flex justify-content-center">
+
+                  <div class="rounded-4 px-4 py-4 w-100"
+                    style="max-width:380px; backdrop-filter: blur(6px); background: rgba(255,255,255,0.6);">
+
+                    <h3 class="fw-bold text-dark text-center ot-card-title mb-4">Contact Us</h3>
+
+                    <div class="mb-3">
+                      <input type="text" name="name" class="ot-field" placeholder="Your Full Name" required>
+                    </div>
+
+                    <div class="mb-3">
+                      <input type="email" name="email" class="ot-field" placeholder="Your Email" required>
+                    </div>
+
+                    <div class="mb-3">
+                      <textarea name="message" class="ot-field" rows="3" placeholder="Your Message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn w-100 fw-semibold rounded-3"
+                      style="background:#f5c400;color:#000;border:2px solid #f5c400;"
+                      onmouseover="this.style.cssText='background:transparent;color:#111;border:2px solid #111;width:100%;font-weight:600;border-radius:6px;'"
+                      onmouseout="this.style.cssText='background:#f5c400;color:#000;border:2px solid #f5c400;width:100%;font-weight:600;border-radius:6px;'">
+                      Send Message
+                    </button>
+
+                  </div>
+
+                </form>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- footer section -->
+  <footer id="ot-footer" class="d-flex flex-column min-vh-50 text-white mt-auto pt-5"
+    style="background: #000; transition: background 0.4s ease, color 0.4s ease;">
+    <div class="container text-center">
+
+      <!-- Logo -->
+      <div class="d-flex align-items-center justify-content-center mb-4">
+        <div class="ot-logo-box d-flex align-items-center justify-content-center rounded-pill"
+          style="width: 260px; height: 60px; background: #000; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <img src="assets/ojasstechlogo.png" alt="OjassTech Logo" class="ot-footer-logo" />
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <ul class="nav justify-content-center gap-3 mb-3">
+        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="service.html">Service</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="portfolio.html">Portfolio</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- Social Icons -->
+      <div class="d-flex justify-content-center gap-3 mb-4">
+        <a href="https://github.com/ojasstech" class="ot-social-link text-warning fs-4"><i class="bi bi-github"></i></a>
+        <a href="https://www.instagram.com/ojass.tech" class="ot-social-link text-warning fs-4"><i class="bi bi-instagram"></i></a>
+        <a href="https://in.pinterest.com/ojasstech/" class="ot-social-link text-warning fs-4"><i class="bi bi-pinterest"></i></a>
+      </div>
+
+      <!-- Divider -->
+      <div class="ot-footer-divider mx-auto mb-3"></div>
+
+      <!-- Copyright -->
+      <p class="small text-muted pb-4 mb-0">© 2026 ojass tech</p>
+
+    </div>
+  </footer>
+
+  <!-- nav script  -->
+  <script>
+    // Desktop toggle
+    document.getElementById("themeToggle").onclick = () => {
+      document.body.classList.toggle("light");
+    };
+
+    // Mobile toggle
+    document.getElementById("themeToggleMobile").onclick = () => {
+      document.body.classList.toggle("light");
+    };
+
+    // Mobile menu
+    document.getElementById("menuToggle").onclick = () => {
+      document.getElementById("mobileMenu").classList.toggle("show");
+    };
+  </script>
+
+  <!-- service script  -->
+  <script>
+    const stickySections = document.querySelectorAll('.horizontal-scroll-inner');
+
+    function setScrollHeight() {
+      stickySections.forEach(section => {
+        const scrollContent = section.querySelector('.horizontal-scroll-content');
+        const maxScroll = scrollContent.scrollWidth - section.offsetWidth;
+        section.parentElement.style.height = `calc(100vh + ${maxScroll}px)`;
+      });
     }
 
-    .mobile-navbar {
-        display: block;
-    }
-}
-
-/* navbar ends  */
-
-
-
-
-
-/* hero starts */
-/* body {
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at 70% 30%, #1e1e1e 0%, #000 70%);
-      color: #fff;
-      min-height: 100vh;
-    } */
-
-#hero {
-    background: radial-gradient(circle at top, #1a1a1a, #050505);
-}
-
-.hero {
-    max-width: 1700px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-    color: #fff;
-}
-
-.display-heading {
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    line-height: 1.2;
-}
-
-.lead-custom {
-    color: #cbd5e0;
-    max-width: 500px;
-}
-
-.pill-badge {
-    padding: 0.35rem 1.2rem;
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    position: relative;
-    display: inline-block;
-    backdrop-filter: blur(5px);
-    color: #d4d0ff;
-}
-
-.pill-badge::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    padding: 1px;
-    border-radius: 100px;
-    background: linear-gradient(145deg, #b3d81a, #16250c, #606d5a);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-}
-
-.btn-get-started {
-    background: #fff;
-    color: #000;
-    border-radius: 40px;
-    padding: 0.75rem 2rem;
-    font-weight: 700;
-    border: none;
-    transition: 0.2s;
-}
-
-.btn-get-started:hover {
-    background: #f0eaff;
-    transform: translateY(-2px);
-}
-
-.doc-link {
-    color: #fff;
-    font-weight: 600;
-    text-decoration: none;
-    transition: 0.2s;
-}
-
-.doc-link i {
-    color: #FFA600;
-    margin-left: 8px;
-    transition: 0.2s;
-}
-
-.doc-link:hover {
-    color: #FFA600;
-}
-
-.doc-link:hover i {
-    transform: translateX(5px);
-}
-
-/* Robot box – unchanged */
-.robot-wrapper {
-    position: relative;
-    height: 513px;
-    width: 100%;
-}
-
-spline-viewer.robot {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-/* Responsive adjustments only where necessary */
-@media (max-width: 767.98px) {
-    .display-heading {
-        font-size: 2.5rem;
-    }
-
-    .robot-wrapper {
-        height: 380px;
-        margin-top: 2rem;
-    }
-
-    spline-viewer.robot {
-        transform: scale(1.1);
-    }
-}
-
-@media (max-width: 480px) {
-    .robot-wrapper {
-        height: 300px;
-    }
-}
-
-/* ===============================
-   LIGHT MODE SUPPORT
-=================================*/
-body.light #hero {
-    background: radial-gradient(circle at top, #ffffff, #eaeaea);
-}
-
-body.light .hero {
-    color: #000;
-}
-
-body.light {
-    background: radial-gradient(circle at 70% 30%, #ffffff 0%, #f1f1f1 70%);
-    color: #000;
-}
-
-body.light .lead-custom {
-    color: #555;
-}
-
-body.light .display-heading {
-    color: #000;
-}
-
-body.light .pill-badge {
-    color: #333;
-}
-
-body.light .doc-link {
-    color: #000;
-}
-
-body.light .doc-link:hover {
-    color: #FFA600;
-}
-
-body.light .btn-get-started {
-    background: #000;
-    color: #fff;
-}
-
-body.light .btn-get-started:hover {
-    background: #222;
-}
-
-
-
-
-
-/* about section  */
-#about-ojass {
-    background: #000;
-    font-family: 'Poppins', sans-serif;
-    color: #fff;
-    overflow: hidden;
-    position: relative;
-    padding: 80px 0;
-    transition: background 0.4s ease, color 0.4s ease;
-}
-
-/* Glow orb */
-#about-ojass::before {
-    content: "";
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, #FFD70018, transparent 70%);
-    top: -150px;
-    left: -150px;
-    pointer-events: none;
-    animation: aboutFloat 8s ease-in-out infinite;
-    transition: background 0.4s ease;
-}
-
-@keyframes aboutFloat {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(40px);
-    }
-}
-
-@keyframes aboutBorderMove {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 300% 50%;
-    }
-}
-
-/* ── Animated image border ── */
-#about-ojass .img-border-wrap {
-    position: relative;
-    border-radius: 20px;
-    padding: 2px;
-    overflow: hidden;
-    min-height: 380px;
-    background: linear-gradient(45deg, #FFD700, transparent 50%, #FFD700);
-    background-size: 300% 300%;
-    animation: aboutBorderMove 4s linear infinite;
-    transition: background 0.4s ease;
-}
-
-#about-ojass .img-border-wrap img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 18px;
-    transition: transform .5s ease;
-}
-
-#about-ojass .img-border-wrap:hover img {
-    transform: scale(1.05);
-}
-
-/* ── Feature boxes ── */
-#about-ojass .feature-box {
-    background: rgba(255, 215, 0, 0.05);
-    border: 1px solid rgba(255, 215, 0, 0.2);
-    border-radius: 16px;
-    transition: transform .4s ease, box-shadow .4s ease,
-        background 0.4s ease, border-color 0.4s ease;
-}
-
-#about-ojass .feature-box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
-}
-
-/* ── Text ── */
-#about-ojass .about-muted {
-    color: #aaa;
-    line-height: 1.8;
-    transition: color 0.4s ease;
-}
-
-#about-ojass .about-muted .brand-highlight {
-    color: #FFD700;
-    transition: color 0.4s ease;
-}
-
-#about-ojass .about-feature-title {
-    color: #FFD700;
-    transition: color 0.4s ease;
-}
-
-#about-ojass .about-feature-desc {
-    color: #6c757d;
-    transition: color 0.4s ease;
-}
-
-/* ── Button ── */
-#about-ojass .about-btn {
-    display: inline-block;
-    padding: 11px 28px;
-    background: #FFD700;
-    color: #000;
-    border-radius: 30px;
-    font-weight: 600;
-    text-decoration: none;
-    border: 1px solid #FFD700;
-    transition: background .3s, color .3s, border-color .3s;
-}
-
-#about-ojass .about-btn:hover {
-    background: transparent;
-    color: #FFD700;
-}
-
-
-/* =====================================================
-       LIGHT MODE — body.light (matches your main CSS pattern)
-       ===================================================== */
-
-body.light #about-ojass {
-    background: radial-gradient(circle at top, #ffffff, #eaeaea);
-    color: #111;
-}
-
-body.light #about-ojass::before {
-    background: radial-gradient(circle, rgba(184, 134, 11, 0.1), transparent 70%);
-}
-
-body.light #about-ojass .img-border-wrap {
-    background: linear-gradient(45deg, #b8860b, transparent 50%, #b8860b);
-    background-size: 300% 300%;
-}
-
-body.light #about-ojass .feature-box {
-    background: rgba(184, 134, 11, 0.06);
-    border-color: rgba(184, 134, 11, 0.25);
-}
-
-body.light #about-ojass .feature-box:hover {
-    box-shadow: 0 0 25px rgba(184, 134, 11, 0.25);
-}
-
-body.light #about-ojass .about-muted {
-    color: #444;
-}
-
-body.light #about-ojass .about-muted .brand-highlight {
-    color: #b8860b;
-}
-
-body.light #about-ojass .about-feature-title {
-    color: #b8860b;
-}
-
-body.light #about-ojass .about-feature-desc {
-    color: #666;
-}
-
-body.light #about-ojass h2 {
-    color: #b8860b !important;
-}
-
-body.light #about-ojass .about-btn {
-    background: #b8860b;
-    color: #fff;
-    border-color: #b8860b;
-}
-
-body.light #about-ojass .about-btn:hover {
-    background: transparent;
-    color: #b8860b;
-}
-
-
-
-
-
-/* ================= SERVICE SECTION ================= */
-.service {
-    color: #FFA600;
-    background: radial-gradient(circle at top, #1a1a1a, #050505);
-    transition: 0.3s ease;
-}
-
-/* Service light mode */
-body.light .service {
-    background: radial-gradient(circle at top, #ffffff, #eaeaea);
-    color: #000;
-}
-
-.service {
-    padding: 80px 0 10px 0;
-}
-
-/* ================= HORIZONTAL SCROLL ================= */
-/* .horizontal-scroll {
-    height: 300vh;
-} */
-
-.horizontal-scroll-inner {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow: hidden;
-}
-
-.horizontal-scroll-content {
-    position: absolute;
-    display: flex;
-    gap: 1.5rem;
-    padding: 2rem;
-    width: max-content;
-    will-change: transform;
-}
-
-/* ================= CARD ================= */
-.card-wrapper {
-    width: 260px;
-    height: 380px;
-    flex: none;
-    perspective: 1000px;
-}
-
-.gold-card {
-    height: 100%;
-    border-radius: 15px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: transform .5s ease, box-shadow .5s ease;
-    border: 1px solid rgba(255, 166, 0, 0.25);
-}
-
-.gold-card:hover {
-    transform: rotateY(15deg) rotateX(5deg);
-    box-shadow: 0 20px 40px rgba(245, 197, 66, .5);
-}
-
-/* ================= IMAGE AREA ================= */
-.card-image {
-    width: 100%;
-    height: 130px;
-    /* image strip height — adjust as needed */
-    flex-shrink: 0;
-    overflow: hidden;
-    background: #1a1a1a;
-    /* fallback if image is missing */
-}
-
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    transition: transform 0.4s ease;
-}
-
-.gold-card:hover .card-image img {
-    transform: scale(1.06);
-}
-
-/* ================= CARD CONTENT ================= */
-.card-content {
-    background: rgba(0, 0, 0, .85);
-    color: #F5C542;
-    flex: 1;
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-body.light-mode .card-content {
-    background: #111;
-    color: #FFA600;
-}
-
-/* ================= BUTTON ================= */
-.see-more {
-    background: transparent;
-    border: 1px solid #FFA600;
-    color: #FFA600;
-    padding: 6px 16px;
-    border-radius: 20px;
-    transition: .3s ease;
-    align-self: flex-start;
-    margin-top: 0.75rem;
-}
-
-.see-more:hover {
-    background: #FFA600;
-    color: black;
-}
-
-/* ================= RESPONSIVE ================= */
-@media(max-width:768px) {
-    .card-wrapper {
-        width: 220px;
-        height: 330px;
-    }
-}
-
-@media(max-width:480px) {
-    .card-wrapper {
-        width: 190px;
-        height: 330px;
-    }
-}
-
-
-
-
-
-/* ================= portfolio SECTION ================= */
-body.light #ot-portfolio {
-    --ot-accent: #FFA600;
-    --ot-accent-glow: rgba(255, 166, 0, 0.15);
-    --ot-card-bg: rgba(0, 0, 0, 0.04);
-    --ot-card-border: rgba(0, 0, 0, 0.08);
-    --ot-text-dim: rgba(0, 0, 0, 0.45);
-
-    background: #fff;
-    background-image:
-        radial-gradient(ellipse 80% 40% at 50% -10%, rgba(255, 166, 0, 0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 50% at 100% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 60%);
-    color: #111;
-}
-
-/* Tone down grain in light mode */
-body.light #ot-portfolio::before {
-    opacity: 0.15;
-}
-
-/* ── TITLE ── */
-body.light #ot-portfolio .ot-title-main {
-    color: #111;
-}
-
-body.light #ot-portfolio .ot-title-main em {
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.18);
-}
-
-/* ── DESCRIPTION & BUTTON ── */
-body.light #ot-portfolio .ot-header-right p {
-    color: #555;
-}
-
-body.light #ot-portfolio .ot-view-all-btn {
-    color: #111;
-    border-color: rgba(0, 0, 0, 0.18);
-}
-
-body.light #ot-portfolio .ot-view-all-btn:hover {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.35);
-    color: #111;
-}
-
-body.light #ot-portfolio .ot-view-all-btn svg path {
-    stroke: #111;
-}
-
-/* ── CARDS ── */
-body.light #ot-portfolio .ot-p-card {
-    background: #fff;
-    border-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-}
-
-body.light #ot-portfolio .ot-p-card:hover {
-    box-shadow: 0 32px 70px rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(255, 166, 0, 0.25);
-    border-color: rgba(255, 166, 0, 0.3);
-}
-
-/* ── CARD INFO OVERLAY ── */
-body.light #ot-portfolio .ot-card-info {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
-}
-
-body.light #ot-portfolio .ot-card-info h6 {
-    color: #fff;
-}
-
-/* ── CARD TAG ── */
-body.light #ot-portfolio .ot-card-tag {
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(0, 0, 0, 0.55);
-    border-color: rgba(255, 255, 255, 0.15);
-}
-
-/* ── DASHBOARD CARD ── */
-body.light #ot-portfolio .ot-dash-card {
-    background: #f5f5f5;
-}
-
-/* ── STAT CARDS ── */
-body.light #ot-portfolio .ot-stat-card {
-    background: #fff;
-    border-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    color: #111;
-}
-
-body.light #ot-portfolio .ot-stat-card:hover {
-    border-color: rgba(255, 166, 0, 0.35);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 166, 0, 0.15);
-}
-
-body.light #ot-portfolio .ot-stat-card::after {
-    background: radial-gradient(circle at 50% 120%, rgba(255, 166, 0, 0.15) 0%, transparent 65%);
-}
-
-body.light #ot-portfolio .ot-stat-number {
-    color: #111;
-}
-
-body.light #ot-portfolio .ot-stat-number sup {
-    color: #FFA600;
-}
-
-body.light #ot-portfolio .ot-stat-label {
-    color: rgba(0, 0, 0, 0.4);
-}
-
-#ot-portfolio {
-    --ot-accent: #f0b64a;
-    --ot-accent-glow: rgba(200, 240, 74, 0.18);
-    --ot-card-bg: rgba(255, 255, 255, 0.03);
-    --ot-card-border: rgba(255, 255, 255, 0.07);
-    --ot-text-dim: rgba(255, 255, 255, 0.38);
-
-    position: relative;
-    z-index: 1;
-    background: #080808;
-    background-image:
-        radial-gradient(ellipse 80% 40% at 50% -10%, rgba(200, 240, 74, 0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 50% at 100% 80%, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
-    color: #fff;
-    font-family: 'Epilogue', sans-serif;
-    overflow-x: hidden;
-}
-
-/* Grain overlay — scoped to this section only */
-#ot-portfolio::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-}
-
-#ot-portfolio>.container {
-    position: relative;
-    z-index: 1;
-}
-
-/* ── SECTION HEADER ── */
-#ot-portfolio .ot-section-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 56px;
-    gap: 24px;
-}
-
-#ot-portfolio .ot-title-eyebrow {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: var(--ot-accent);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#ot-portfolio .ot-title-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 28px;
-    height: 1px;
-    background: var(--ot-accent);
-}
-
-#ot-portfolio .ot-title-main {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(4rem, 9vw, 8rem);
-    line-height: 0.9;
-    letter-spacing: 1px;
-}
-
-#ot-portfolio .ot-title-main em {
-    font-style: normal;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22);
-}
-
-#ot-portfolio .ot-header-right {
-    max-width: 260px;
-    text-align: right;
-}
-
-#ot-portfolio .ot-header-right p {
-    font-size: 0.82rem;
-    color: var(--ot-text-dim);
-    line-height: 1.75;
-    margin-bottom: 16px;
-}
-
-#ot-portfolio .ot-view-all-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #fff;
-    text-decoration: none;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    padding: 10px 22px;
-    border-radius: 50px;
-    transition: 0.3s ease;
-}
-
-#ot-portfolio .ot-view-all-btn:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(255, 255, 255, 0.28);
-    color: #fff;
-    gap: 14px;
-}
-
-/* ── CARD BASE ── */
-#ot-portfolio .ot-p-card {
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--ot-card-bg);
-    border: 1px solid var(--ot-card-border);
-    position: relative;
-    transition: transform 0.45s cubic-bezier(0.23, 1, 0.32, 1),
-        box-shadow 0.45s cubic-bezier(0.23, 1, 0.32, 1),
-        border-color 0.3s ease;
-}
-
-#ot-portfolio .ot-p-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 32px 70px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(200, 240, 74, 0.12);
-    border-color: rgba(200, 240, 74, 0.15);
-}
-
-#ot-portfolio .ot-p-card img {
-    width: 100%;
-    display: block;
-    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-#ot-portfolio .ot-p-card:hover img {
-    transform: scale(1.06);
-}
-
-/* ── OVERLAY INFO ── */
-#ot-portfolio .ot-card-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 20px 22px 22px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, transparent 100%);
-    transform: translateY(8px);
-    opacity: 0;
-    transition: 0.4s ease;
-}
-
-#ot-portfolio .ot-p-card:hover .ot-card-info {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#ot-portfolio .ot-card-info h6 {
-    font-weight: 700;
-    font-size: 0.88rem;
-    margin-bottom: 3px;
-}
-
-#ot-portfolio .ot-card-info small {
-    font-size: 0.68rem;
-    color: var(--ot-accent);
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-}
-
-#ot-portfolio .ot-card-tag {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 4px 10px;
-    border-radius: 20px;
-    z-index: 2;
-}
-
-/* ── DASHBOARD CARD ── */
-#ot-portfolio .ot-dash-card {
-    background: #0d0d0d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#ot-portfolio .ot-dash-card-lg {
-    height: 380px;
-}
-
-#ot-portfolio .ot-dash-card-sm {
-    height: 280px;
-}
-
-#ot-portfolio .ot-dash-card-sm img {
-    object-fit: contain !important;
-    object-position: center !important;
-}
-
-#ot-portfolio .ot-dash-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-}
-
-/* Disable zoom on dash cards */
-#ot-portfolio .ot-dash-card:hover img {
-    transform: none;
-}
-
-/* ── WEBSITE SCROLL PREVIEW ── */
-#ot-portfolio .ot-web-card {
-    height: 380px;
-    overflow: hidden;
-}
-
-#ot-portfolio .ot-web-card2 {
-    height: 280px;
-    overflow: hidden;
-}
-
-#ot-portfolio .ot-web-card img,
-#ot-portfolio .ot-web-card2 img {
-    width: 100%;
-    height: auto;
-    transform: translateY(0);
-    transition: transform 9s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-}
-
-#ot-portfolio .ot-web-card:hover img {
-    transform: translateY(calc(-100% + 380px)) !important;
-}
-
-#ot-portfolio .ot-web-card2:hover img {
-    transform: translateY(calc(-100% + 380px)) !important;
-}
-
-/* ── STAT CARDS ── */
-#ot-portfolio .ot-stat-card {
-    height: 140px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    border-radius: 14px;
-    background: var(--ot-card-bg);
-    border: 1px solid var(--ot-card-border);
-    transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    cursor: default;
-    position: relative;
-    overflow: hidden;
-}
-
-#ot-portfolio .ot-stat-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 120%, var(--ot-accent-glow) 0%, transparent 65%);
-    opacity: 0;
-    transition: 0.4s ease;
-}
-
-#ot-portfolio .ot-stat-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(200, 240, 74, 0.2);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(200, 240, 74, 0.08);
-}
-
-#ot-portfolio .ot-stat-card:hover::after {
-    opacity: 1;
-}
-
-#ot-portfolio .ot-stat-number {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2.6rem;
-    line-height: 1;
-    position: relative;
-    z-index: 1;
-}
-
-#ot-portfolio .ot-stat-number sup {
-    font-size: 1.1rem;
-    color: var(--ot-accent);
-    vertical-align: super;
-}
-
-#ot-portfolio .ot-stat-label {
-    font-size: 0.6rem;
-    color: var(--ot-text-dim);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    position: relative;
-    z-index: 1;
-}
-
-/* Stat 2×2 grid wrapper */
-#ot-portfolio .ot-stat-grid-wrap {
-    height: 280px;
-    display: flex;
-    align-items: stretch;
-}
-
-#ot-portfolio .ot-stat-grid-wrap .row {
-    flex: 1;
-    align-content: stretch;
-}
-
-#ot-portfolio .ot-stat-grid-wrap .col-6 {
-    display: flex;
-}
-
-#ot-portfolio .ot-stat-grid-wrap .ot-stat-card {
-    flex: 1;
-    height: auto;
-    min-height: 0;
-}
-
-/* ── SCROLL REVEAL ── */
-#ot-portfolio .ot-reveal {
-    opacity: 0;
-    transform: translateY(36px);
-    transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-#ot-portfolio .ot-reveal.ot-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#ot-portfolio .ot-d1 {
-    transition-delay: 0.00s;
-}
-
-#ot-portfolio .ot-d2 {
-    transition-delay: 0.08s;
-}
-
-#ot-portfolio .ot-d3 {
-    transition-delay: 0.16s;
-}
-
-#ot-portfolio .ot-d4 {
-    transition-delay: 0.24s;
-}
-
-#ot-portfolio .ot-d5 {
-    transition-delay: 0.32s;
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 991px) {
-    #ot-portfolio .ot-section-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #ot-portfolio .ot-header-right {
-        text-align: left;
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-
-    #ot-portfolio .ot-dash-card-lg,
-    #ot-portfolio .ot-dash-card-sm,
-    #ot-portfolio .ot-web-card {
-        height: 240px;
-    }
-
-    #ot-portfolio .ot-web-card:hover img {
-        transform: translateY(calc(-100% + 240px)) !important;
-    }
-
-    #ot-portfolio .ot-stat-grid-wrap {
-        height: auto;
-    }
-}
-
-
-
-
-/* team section  */
-#ot-team {
-    --ot-gold: #f5c542;
-    --ot-gold-glow: rgba(245, 197, 66, 0.45);
-    background: radial-gradient(circle at top, #1a1a1a, #050505);
-    color: var(--ot-gold);
-    transition: background 0.4s ease, color 0.4s ease;
-}
-
-/* ── Light mode — must override background AND color ── */
-body.light #ot-team {
-    --ot-gold: #FFA600;
-    --ot-gold-glow: rgba(255, 166, 0, 0.35);
-    background: radial-gradient(circle at top, #ffffff, #eaeaea);
-    color: #111;
-}
-
-/* ── Cards Wrapper — staggered absolute layout (desktop only) ── */
-#ot-team .ot-cards-wrapper {
-    position: relative;
-    height: 420px;
-    margin: 80px auto 60px;
-}
-
-/* ── Individual Card ── */
-#ot-team .ot-team-card {
-    position: absolute;
-    width: 280px;
-    height: 360px;
-    border-radius: 18px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-    box-shadow: 0 20px 40px rgba(245, 197, 66, 0.2);
-}
-
-#ot-team .ot-team-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(30%);
-    transition: filter 0.4s ease;
-}
-
-#ot-team .ot-team-card:hover {
-    transform: translateY(-18px) scale(1.06);
-    box-shadow: 0 30px 80px var(--ot-gold-glow);
-    z-index: 10;
-}
-
-#ot-team .ot-team-card:hover img {
-    filter: grayscale(0%);
-}
-
-/* ── Hover Overlay ── */
-#ot-team .ot-team-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-}
-
-#ot-team .ot-team-card:hover .ot-team-overlay {
-    opacity: 1;
-}
-
-#ot-team .ot-team-overlay h5 {
-    color: var(--ot-gold);
-    font-size: 1rem;
-}
-
-/* ── Staggered positions ── */
-#ot-team .ot-card-1 {
-    left: 5%;
-    top: 60px;
-    z-index: 1;
-}
-
-#ot-team .ot-card-2 {
-    left: 38%;
-    top: 10px;
-    z-index: 2;
-}
-
-#ot-team .ot-card-3 {
-    left: 71%;
-    top: 60px;
-    z-index: 1;
-}
-
-/* ── Gold Button ── */
-#ot-team .ot-btn-gold {
-    border: 2px solid var(--ot-gold);
-    color: var(--ot-gold);
-    background: transparent;
-    padding: 12px 32px;
-    border-radius: 999px;
-    font-weight: 500;
-    transition: 0.3s ease;
-    cursor: pointer;
-}
-
-#ot-team .ot-btn-gold:hover {
-    background: var(--ot-gold);
-    color: #000;
-    box-shadow: 0 0 25px var(--ot-gold-glow);
-}
-
-/* ── Responsive ── */
-@media (max-width: 991px) {
-    #ot-team .ot-cards-wrapper {
-        height: auto;
-        margin-top: 40px;
-    }
-
-    #ot-team .ot-team-card {
-        position: static;
-        width: 100%;
-        max-width: 340px;
-        height: 300px;
-        margin: 0 auto 24px;
-    }
-}
-
-@media (max-width: 575px) {
-    #ot-team .ot-team-card {
-        height: 260px;
-        max-width: 100%;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-    #ot-team .ot-cards-wrapper {
-        height: 380px;
-    }
-
-    #ot-team .ot-team-card {
-        width: 260px;
-        height: 320px;
-    }
-
-    #ot-team .ot-card-1 {
-        left: 4%;
-        top: 60px;
-    }
-
-    #ot-team .ot-card-2 {
-        left: 37%;
-        top: 10px;
-    }
-
-    #ot-team .ot-card-3 {
-        left: 70%;
-        top: 60px;
-    }
-}
-
-@media (min-width: 1400px) {
-    #ot-team .ot-cards-wrapper {
-        height: 460px;
-    }
-
-    #ot-team .ot-team-card {
-        width: 320px;
-        height: 400px;
-    }
-
-    #ot-team .ot-card-1 {
-        left: 5%;
-        top: 70px;
-    }
-
-    #ot-team .ot-card-2 {
-        left: 37%;
-        top: 0;
-    }
-
-    #ot-team .ot-card-3 {
-        left: 69%;
-        top: 70px;
-    }
-}
-
-
-
-
-
-/* contact section */
-#ot-contact {
-    background: radial-gradient(circle at top, #1a1a1a, #050505);
-}
-
-body.light #ot-contact {
-    background: radial-gradient(circle at top, #ffffff, #eaeaea);
-}
-
-/* 3D flip — no Bootstrap equivalent */
-#ot-contact .ot-flip-container {
-    perspective: 1000px;
-    height: 440px;
-    cursor: pointer;
-}
-
-#ot-contact .ot-flip-card {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 1s ease-in-out;
-    transform-style: preserve-3d;
-}
-
-#ot-contact .ot-flip-container:hover .ot-flip-card,
-#ot-contact .ot-flip-container.ot-active .ot-flip-card {
-    transform: rotateY(180deg);
-}
-
-#ot-contact .ot-flip-side {
-    position: absolute;
-    inset: 0;
-    backface-visibility: hidden;
-    border-radius: 20px;
-    overflow: hidden;
-    border: 2px solid #f5c400;
-    background-size: cover;
-    background-position: center;
-}
-
-#ot-contact .ot-front {
-    background-image: url('assets/contactfront.jpg');
-}
-
-#ot-contact .ot-back {
-    background-image: url('assets/contactback.jpg');
-    transform: rotateY(180deg);
-}
-
-/* Heading underline bar */
-#ot-contact .ot-card-title::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 3px;
-    background: #111;
-    border-radius: 2px;
-    margin: 8px auto 0;
-}
-
-/* Underline-only input */
-#ot-contact .ot-field {
-    display: block;
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #111;
-    border-radius: 0;
-    color: #111;
-    padding: 8px 2px;
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.3s;
-}
-
-#ot-contact .ot-field::placeholder {
-    color: rgba(0, 0, 0, 0.45);
-}
-
-#ot-contact .ot-field:focus {
-    border-color: #FFA600;
-}
-
-/* Light mode */
-#ot-contact .ot-contact-heading {
-    color: #FFA600;
-}
-
-#ot-contact .ot-contact-sub {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-body.light #ot-contact .ot-contact-sub {
-    color: rgba(0, 0, 0, 0.5);
-}
-
-@media (max-width: 767px) {
-    #ot-contact .ot-flip-container {
-        height: 400px;
-    }
-}
-
-
-
-
-
-/* footer section  */
-/* Gradient divider — no Bootstrap utility for this */
-#ot-footer .ot-footer-divider {
-    height: 2px;
-    max-width: 900px;
-    background: linear-gradient(to right, transparent, #ffc107, transparent);
-}
-
-/* Nav link hover lift — Bootstrap handles color, not translateY */
-#ot-footer .ot-nav-link:hover {
-    transform: translateY(-2px);
-    color: #ffc107 !important;
-}
-
-/* Social icon hover scale */
-#ot-footer .ot-social-link:hover {
-    transform: scale(1.2);
-    color: #fff !important;
-}
-
-/* Logo box hover glow */
-#ot-footer .ot-logo-box:hover {
-    box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
-}
-
-/* Logo image glow */
-#ot-footer .ot-footer-logo {
-    max-width: 60%;
-    max-height: 60%;
-    object-fit: contain;
-    filter: drop-shadow(0 0 6px rgba(255, 193, 7, 0.4));
-    transition: transform 0.3s ease;
-}
-
-#ot-footer .ot-logo-box:hover .ot-footer-logo {
-    transform: scale(1.05);
-}
-
-/* ── Light mode ── */
-body.light #ot-footer {
-    background: #f1f1f1 !important;
-    color: #111 !important;
-}
-
-body.light #ot-footer .ot-nav-link {
-    color: #111 !important;
-}
-
-body.light #ot-footer .ot-nav-link:hover {
-    color: #ff7b00 !important;
-}
-
-body.light #ot-footer .ot-social-link {
-    color: #ff7b00 !important;
-}
-
-body.light #ot-footer .ot-social-link:hover {
-    color: #111 !important;
-}
-
-body.light #ot-footer .ot-logo-box {
-    background: #ddd !important;
-}
-
-body.light #ot-footer .text-muted {
-    color: #666 !important;
-}
+    setScrollHeight();
+    window.addEventListener('resize', setScrollHeight);
+
+    window.addEventListener('scroll', () => {
+      stickySections.forEach(section => {
+        const scrollContent = section.querySelector('.horizontal-scroll-content');
+        const sectionTop = section.parentElement.offsetTop;
+        const sectionHeight = section.parentElement.offsetHeight;
+        const maxScroll = scrollContent.scrollWidth - section.offsetWidth;
+
+        const progress = Math.min(
+          Math.max((window.scrollY - sectionTop) / (sectionHeight - window.innerHeight), 0),
+          1
+        );
+
+        scrollContent.style.transform = `translateX(-${maxScroll * progress}px)`;
+      });
+    });
+  </script>
+  <!-- <script>
+
+    /* ================= HORIZONTAL SCROLL ================= */
+    const stickySections = document.querySelectorAll('.horizontal-scroll-inner');
+
+    window.addEventListener('scroll', () => {
+      stickySections.forEach(section => {
+        const scrollContent = section.querySelector('.horizontal-scroll-content');
+        const sectionTop = section.parentElement.offsetTop;
+        const sectionHeight = section.parentElement.offsetHeight;
+        const viewportWidth = section.offsetWidth;
+
+        const scrollY = window.scrollY;
+        const progress = Math.min(
+          Math.max((scrollY - sectionTop) / (sectionHeight - window.innerHeight), 0),
+          1
+        );
+
+        const maxScroll = scrollContent.scrollWidth - viewportWidth;
+        scrollContent.style.transform = `translateX(-${maxScroll * progress}px)`;
+      });
+    });
+  </script> -->
+
+  <!-- portfolio script  -->
+  <script>
+    (function () {
+      const root = document.querySelector('#ot-portfolio');
+      if (!root) return;
+
+      /* ── Scroll Reveal ── */
+      const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('ot-visible');
+            revealObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      root.querySelectorAll('.ot-reveal').forEach(el => revealObs.observe(el));
+
+      /* ── Count-up ── */
+      const counterObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          const target = +el.dataset.target;
+          const duration = 1600;
+          const steps = 60;
+          let step = 0;
+
+          const tick = () => {
+            step++;
+            const eased = 1 - Math.pow(1 - step / steps, 3);
+            el.textContent = Math.round(eased * target);
+            if (step < steps) setTimeout(tick, duration / steps);
+            else el.textContent = target;
+          };
+          tick();
+          counterObs.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+
+      root.querySelectorAll('.ot-counter').forEach(c => counterObs.observe(c));
+    })();
+  </script>
+
+</body>
+
+</html>
