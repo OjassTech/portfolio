@@ -18,6 +18,255 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <link rel="stylesheet" href="style.css">
+
+
+
+  <style>
+    :root {
+      --gold: #F5C518;
+      --gold-light: #FFD700;
+      --gold-dim: #C9A227;
+      --gold-muted: rgba(245, 197, 24, 0.12);
+      --black: #0A0A0A;
+      --black-mid: #111111;
+      --black-card: #141414;
+      --black-border: rgba(245, 197, 24, 0.25);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      background-color: var(--black);
+      font-family: 'Raleway', sans-serif;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+    /* ── Hero Header ── */
+    .services-header {
+      text-align: center;
+      padding: 80px 20px 50px;
+      position: relative;
+    }
+    .services-header::before {
+      content: 'SERVICES';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cinzel', serif;
+      font-size: clamp(60px, 14vw, 160px);
+      font-weight: 900;
+      color: rgba(245, 197, 24, 0.04);
+      white-space: nowrap;
+      letter-spacing: 0.15em;
+      pointer-events: none;
+      user-select: none;
+    }
+    .services-header .label {
+      display: inline-block;
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold-dim);
+      padding: 6px 18px;
+      margin-bottom: 22px;
+    }
+    .services-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(26px, 5vw, 52px);
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .services-header h2 span { color: var(--gold); }
+    .services-header p {
+      max-width: 560px;
+      margin: 0 auto;
+      font-size: 14px;
+      color: #888;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 28px auto 0;
+    }
+    .gold-divider span {
+      display: block;
+      height: 1px;
+      width: 60px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim));
+    }
+    .gold-divider span:last-child {
+      background: linear-gradient(90deg, var(--gold-dim), transparent);
+    }
+    .gold-divider i { color: var(--gold); font-size: 10px; }
+
+    /* ── Section wrapper ── */
+    .services-section {
+      padding: 20px 0 80px;
+    }
+
+    /* ── Cards ── */
+    .service-card {
+      background: var(--black-card);
+      border: 1px solid var(--black-border);
+      /* Increased padding and height to make them much larger rectangles */
+      padding: 45px 50px 40px; 
+      min-height: 320px;
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Corner accent */
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 32px 32px 0;
+      border-color: transparent var(--gold) transparent transparent;
+      transition: border-width 0.35s ease;
+    }
+    /* Bottom-left glow sweep */
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, rgba(245,197,24,0.15) 0%, transparent 70%);
+      transition: opacity 0.35s ease;
+      opacity: 0;
+    }
+
+    .service-card:hover {
+      border-color: var(--gold-dim);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(245,197,24,0.08);
+    }
+    .service-card:hover::before { border-width: 0 48px 48px 0; }
+    .service-card:hover::after { opacity: 1; }
+
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--gold-muted);
+      border: 1px solid rgba(245,197,24,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: background 0.35s ease;
+    }
+    .service-card:hover .service-icon {
+      background: rgba(245,197,24,0.22);
+    }
+    .service-icon i {
+      font-size: 26px;
+      color: var(--gold);
+    }
+
+
+    .card-number {
+      position: absolute;
+      top: 32px;
+      right: 48px;
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      color: rgba(245,197,24,0.3);
+      letter-spacing: 0.1em;
+    }
+
+    .service-card h5 {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 14px;
+      letter-spacing: 0.03em;
+      line-height: 1.35;
+      transition: color 0.3s ease;
+    }
+    .service-card:hover h5 { color: var(--gold-light); }
+
+    .service-card p {
+      font-size: 15px;
+      color: #888;
+      line-height: 1.7;
+      flex-grow: 1;
+      margin-bottom: 20px;
+    }
+
+    .card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .service-card:hover .card-cta {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .card-cta i { font-size: 11px; }
+
+    /* Column gutter */
+    .row.g-card { --bs-gutter-x: 1px; --bs-gutter-y: 1px; }
+
+    
+    .btn-gold {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Raleway', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 10px 28px;
+      border-radius: 0;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn-gold:hover { background: var(--gold); color: var(--black); }
+
+    /* ── Reveal Animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive tweaks ── */
+    @media (max-width: 767px) {
+      .services-header { padding: 60px 16px 36px; }
+      .service-card { padding: 36px 30px 32px; min-height: 260px; }
+    }
+
+  </style>
 </head>
 
 <body>
@@ -128,208 +377,159 @@
 
 
   <!-- service section -->
-  <section id="service" class="service container-fluid">
+  
+<section class="services-section">
+  <!-- Changed to container-fluid with a wider max-width to allow the rectangular cards to grow larger -->
+  <div class="container-fluid px-4 px-xl-5" style="max-width: 1600px;">
 
     <!-- Header -->
-    <div class="container text-center mb-5">
-      <h1 class="fw-bold ">Our Expertise</h1>
-      <p class="service-desc">
-        We provide modern web development, creative design, data science, and cloud solutions to help businesses build
-        scalable digital products. Explore our services to see how our technology, design, and AI expertise can
-        transform your ideas into powerful solutions.
-      </p>
+    <div class="services-header reveal">
+      <div class="label">Ojass Tech</div>
+      <h2>What We <span>Deliver</span></h2>
+      <p>End-to-end digital solutions engineered for performance, precision, and measurable growth.</p>
+      <div class="gold-divider">
+        <span></span>
+        <i class="fas fa-diamond"></i>
+        <span></span>
+      </div>
     </div>
 
-    <!-- Back to Vertical -->
-    <div class="container text-start">
-      <h2>↓ Scroll to horizontal</h2>
-    </div>
+    <!-- Cards Grid -->
+    <div class="row g-card">
 
-    <!-- Horizontal Scroll -->
-    <section class="horizontal-scroll">
-      <div class="horizontal-scroll-inner">
-        <div class="horizontal-scroll-content">
-
-          <!-- Card -->
-          <!-- (Button alignment kept EXACTLY same as your original) -->
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/fe/e6/46/fee646b98b192f913c0428bfec3a4e03.jpg"
-                  alt="Frontend Development" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">Frontend Development</h5>
-                <p>Fast, responsive frontend development that delivers smooth user experiences across all devices.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Copy Below Block As Needed -->
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/f5/fd/17/f5fd170d9de639369a2025dcfd71eb2b.jpg"
-                  alt="Backened Development" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">Backend Development</h5>
-                <p>Secure and scalable backend systems, APIs, and databases for reliable web applications.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/b5/1f/24/b51f2407e47b3733812d8f94a9ffb1f0.jpg" alt="Branding" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">Brand & Identity Design</h5>
-                <p>Memorable brand identities, logos, and visual systems that build trust and recognition.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/2f/06/88/2f0688228b8776924df6f0bf3de934e8.jpg" alt="UI/UX" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">UI / UX Design</h5>
-                <p>Intuitive UI/UX design focused on usability, engagement, and conversions.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/9d/b9/c4/9db9c4c8d50ad42dd171da048598c7ea.jpg"
-                  alt="Creative Deisgn" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">Creative Design</h5>
-                <p>Eye-catching marketing creatives and campaign designs that attract and engage audiences.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/c0/99/39/c0993973f033e41d751c9ece8b227691.jpg"
-                  alt="Visual & Motion" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">Visual & Motion</h5>
-                <p>Dynamic motion graphics and visual content that bring brands and products to life.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/5f/ab/c5/5fabc51e2412b457d179c2a0fbcd0cef.jpg"
-                  alt="Data Analytics" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">Data Analytics</h5>
-                <p>Powerful data analytics and dashboards that turn data into actionable insights.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/47/30/9d/47309db932faac67c9f839b8cd8beef9.jpg" alt="ML & AI" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">ML & AI</h5>
-                <p>Smart AI and machine learning solutions for automation and intelligent predictions.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/ac/c2/ec/acc2ec291ddbae7434d417e3fd86c863.jpg"
-                  alt="Data Engineering" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">Data Engineering</h5>
-                <p>Reliable data pipelines and architecture for scalable analytics and AI systems.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/85/8a/1c/858a1c21c73a1b4e8277f82871ac8ff0.jpg"
-                  alt="Applied Data Solutions" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">Applied Data Solutions</h5>
-                <p>Practical data-driven solutions that solve real business problems.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/bd/15/79/bd157917ed59af2049be192e113a93fd.jpg"
-                  alt="Cloud Architecture & Infrastructure" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">Cloud Architecture & Infrastructure</h5>
-                <p>Scalable and secure cloud infrastructure built for modern applications.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-wrapper">
-            <div class="gold-card">
-              <div class="card-image">
-                <img src="https://i.pinimg.com/736x/30/f4/4f/30f44f41324b7b32cde990c738725a27.jpg"
-                  alt="DevOps & Automation" />
-              </div>
-              <div class="card-content">
-                <h5 class="fw-bold">DevOps & Automation</h5>
-                <p>Efficient DevOps automation and CI/CD pipelines for faster and reliable deployments.</p>
-                <button class="see-more">See More</button>
-              </div>
-            </div>
-          </div>
-
+      <!-- Card 1 -->
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.05s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalAffiliate">
+          <div class="card-number">01</div>
+          <div class="service-icon"><i class="fas fa-link"></i></div>
+          <h5>Frontend Development</h5>
+          <p>Fast, responsive frontend development that delivers smooth user experiences across all devices.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
         </div>
       </div>
-    </section>
 
-    <!-- Back to Vertical -->
-    <!-- <div class="container text-end">
-      <h2>Back to Vertical ↓</h2>
-    </div> -->
+      <!-- Card 2 -->
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.1s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalEmail">
+          <div class="card-number">02</div>
+          <div class="service-icon"><i class="fas fa-envelope-open-text"></i></div>
+          <h5>Backend Development</h5>
+          <p>Secure and scalable backend systems, APIs, and databases for reliable web applications.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
 
-  </section>
+      <!-- Card 3 -->
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.15s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalDisplay">
+          <div class="card-number">03</div>
+          <div class="service-icon"><i class="fas fa-display"></i></div>
+          <h5>Brand & Identity Design</h5>
+          <p>Memorable brand identities, logos, and visual systems that build trust and recognition.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.2s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalNative">
+          <div class="card-number">04</div>
+          <div class="service-icon"><i class="fas fa-layer-group"></i></div>
+          <h5>UI / UX Design</h5>
+          <p>Intuitive UI/UX design focused on usability, engagement, and conversions.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.25s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalSMM">
+          <div class="card-number">05</div>
+          <div class="service-icon"><i class="fas fa-hashtag"></i></div>
+          <h5>Creative Design</h5>
+          <p>Eye-catching marketing creatives and campaign designs that attract and engage audiences.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.3s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalContent">
+          <div class="card-number">06</div>
+          <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
+          <h5>Visual & Motion</h5>
+          <p>Dynamic motion graphics and visual content that bring brands and products to life.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <!-- Card 7 -->
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.35s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalHTML">
+          <div class="card-number">07</div>
+          <div class="service-icon"><i class="fas fa-code"></i></div>
+          <h5>Data Analytics</h5>
+          <p>Powerful data analytics and dashboards that turn data into actionable insights.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <!-- Card 8 -->
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.4s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalSEO">
+          <div class="card-number">08</div>
+          <div class="service-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+          <h5>ML & AI</h5>
+          <p>Smart AI and machine learning solutions for automation and intelligent predictions.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <!-- Card 9 -->
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.45s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalLead">
+          <div class="card-number">09</div>
+          <div class="service-icon"><i class="fas fa-funnel-dollar"></i></div>
+          <h5>Data Engineering</h5>
+          <p>Reliable data pipelines and architecture for scalable analytics and AI systems.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.45s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalLead">
+          <div class="card-number">10</div>
+          <div class="service-icon"><i class="fas fa-funnel-dollar"></i></div>
+          <h5>Applied Data Solutions</h5>
+          <p>Practical data-driven solutions that solve real business problems.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.45s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalLead">
+          <div class="card-number">11</div>
+          <div class="service-icon"><i class="fas fa-funnel-dollar"></i></div>
+          <h5>Cloud Architecture & Infrastructure</h5>
+          <p>Scalable and secure cloud infrastructure built for modern applications.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.45s">
+        <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalLead">
+          <div class="card-number">12</div>
+          <div class="service-icon"><i class="fas fa-funnel-dollar"></i></div>
+          <h5>DevOps & Automation</h5>
+          <p>Efficient DevOps automation and CI/CD pipelines for faster and reliable deployments.</p>
+          <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+</section>
+
 
 
   <!-- about section  -->
@@ -736,59 +936,21 @@
   </script>
 
   <!-- service script  -->
-  <script>
-    const stickySections = document.querySelectorAll('.horizontal-scroll-inner');
-
-    function setScrollHeight() {
-      stickySections.forEach(section => {
-        const scrollContent = section.querySelector('.horizontal-scroll-content');
-        const maxScroll = scrollContent.scrollWidth - section.offsetWidth;
-        section.parentElement.style.height = `calc(100vh + ${maxScroll}px)`;
-      });
-    }
-
-    setScrollHeight();
-    window.addEventListener('resize', setScrollHeight);
-
-    window.addEventListener('scroll', () => {
-      stickySections.forEach(section => {
-        const scrollContent = section.querySelector('.horizontal-scroll-content');
-        const sectionTop = section.parentElement.offsetTop;
-        const sectionHeight = section.parentElement.offsetHeight;
-        const maxScroll = scrollContent.scrollWidth - section.offsetWidth;
-
-        const progress = Math.min(
-          Math.max((window.scrollY - sectionTop) / (sectionHeight - window.innerHeight), 0),
-          1
-        );
-
-        scrollContent.style.transform = `translateX(-${maxScroll * progress}px)`;
-      });
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
-  </script>
-  <!-- <script>
-
-    /* ================= HORIZONTAL SCROLL ================= */
-    const stickySections = document.querySelectorAll('.horizontal-scroll-inner');
-
-    window.addEventListener('scroll', () => {
-      stickySections.forEach(section => {
-        const scrollContent = section.querySelector('.horizontal-scroll-content');
-        const sectionTop = section.parentElement.offsetTop;
-        const sectionHeight = section.parentElement.offsetHeight;
-        const viewportWidth = section.offsetWidth;
-
-        const scrollY = window.scrollY;
-        const progress = Math.min(
-          Math.max((scrollY - sectionTop) / (sectionHeight - window.innerHeight), 0),
-          1
-        );
-
-        const maxScroll = scrollContent.scrollWidth - viewportWidth;
-        scrollContent.style.transform = `translateX(-${maxScroll * progress}px)`;
-      });
-    });
-  </script> -->
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+  
 
   <!-- portfolio script  -->
   <script>
