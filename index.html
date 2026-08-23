@@ -4,125 +4,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Ojass Tech offers complete web development, UI/UX design, data engineering, and cloud solutions. We build scalable technology to help your business innovate.">
   <title>ojasstech.com</title>
 
-  <!-- Preconnect to critical origins -->
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://lottie.host" crossorigin>
-
-  <!-- Preload the logo — above-the-fold LCP candidate -->
-  <link rel="preload" href="assets/ojasstechlogo.png" as="image">
-
-  <!-- Google Fonts with display=swap to prevent render-blocking -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Bebas+Neue&family=Raleway:wght@400;600&family=Poppins:wght@400;600&family=Epilogue:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Critical CSS: Bootstrap + Bootstrap Icons -->
+  <!-- Spline -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js"></script>
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Font Awesome: async-loaded (non-render-blocking) -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+  <!-- Lottie -->
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js" type="module"></script>
+  <!-- Font Awesome (arrow) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <link rel="stylesheet" href="style.css">
-
-  <!-- Inline critical CSS for above-the-fold paint — avoids FOUC on hero -->
-  <style>
-    body { background: radial-gradient(circle at top, #1a1a1a, #050505); }
-    .navbar-wrap, .mobile-navbar { opacity: 1; }
-    /* Robot placeholder skeleton shown before Spline loads */
-    .robot-placeholder {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: radial-gradient(circle at center, rgba(255,215,0,0.04), transparent 70%);
-      border-radius: 12px;
-    }
-    .robot-placeholder svg {
-      opacity: 0.18;
-      width: 120px;
-      height: 120px;
-    }
-    /* Lottie placeholder: a simple pulsing dot shown before Lottie JS loads */
-    .lottie-placeholder {
-      width: 70px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lottie-placeholder::after {
-      content: '';
-      width: 10px;
-      height: 10px;
-      background: #FFA600;
-      border-radius: 50%;
-      animation: lottiePulse 1.2s ease-in-out infinite;
-    }
-    @keyframes lottiePulse {
-      0%, 100% { opacity: 0.3; transform: scale(0.8); }
-      50%       { opacity: 1;   transform: scale(1.2); }
-    }
-    .lottie-loaded .lottie-placeholder { display: none; }
-  </style>
 </head>
 
 <body>
 
-  <!-- DESKTOP NAVBAR -->
+  <!-- DESKTOP NAVBAR (UNCHANGED) -->
   <div class="navbar-wrap">
     <div class="pill logo-pill">
-      <img src="assets/ojasstechlogo.png" alt="Ojass Tech Logo" class="logo-img" width="120" height="50" fetchpriority="high" />
+      <img src="assets/ojasstechlogo.png" class="logo-img" />
     </div>
 
     <div class="pill nav-pill">
       <a class="active" href="#">Home</a>
-      <a href="/about">About</a>
-      <a href="/service">Service</a>
-      <a href="/portfolio">Portfolio</a>
-      <a href="/contact">Contact</a>
+      <a href="about.html">About</a>
+      <a href="service.html">Service</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
     </div>
 
     <div class="pill right-pill">
-      <!-- Lottie placeholder shown until JS loads the real animation -->
-      <div class="lottie-box" id="lottieDesktop">
-        <div class="lottie-placeholder"></div>
+      <div class="lottie-box">
+        <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
+          loop></dotlottie-wc>
       </div>
 
-      <div class="theme-toggle" id="themeToggle" role="button" aria-label="Toggle light/dark mode">
+      <div class="theme-toggle" id="themeToggle">
         <span>
-          <i class="bi bi-moon-stars" aria-hidden="true"></i>
-          <i class="bi bi-brightness-high" aria-hidden="true"></i>
+          <i class="bi bi-moon-stars"></i>
+          <i class="bi bi-brightness-high"></i>
         </span>
         <div class="toggle-ball"></div>
       </div>
     </div>
   </div>
 
-  <!-- MOBILE NAVBAR -->
+  <!-- MOBILE NAVBAR (COPIED LAYOUT STYLE) -->
   <div class="mobile-navbar">
     <div class="mobile-top">
-      <div class="mobile-logo">
-        <img src="assets/ojasstechlogo.png" alt="Ojass Tech Logo" class="logo-img-mob" width="100" height="40" />
-      </div>
+      <div class="mobile-logo"><img src="assets/ojasstechlogo.png" class="logo-img-mob" /></div>
 
-      <button class="menu-btn" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenu">
-        <i class="bi bi-list" aria-hidden="true"></i>
+      <button class="menu-btn" id="menuToggle">
+        <i class="bi bi-list"></i>
       </button>
 
       <div class="mobile-actions">
-        <!-- Mobile Lottie placeholder -->
-        <div class="lottie-box-mob" id="lottieMobile">
-          <div class="lottie-placeholder"></div>
+        <div class="lottie-box-mob  ">
+          <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
+            loop></dotlottie-wc>
         </div>
-        <div class="theme-toggle" id="themeToggleMobile" role="button" aria-label="Toggle light/dark mode">
+        <div class="theme-toggle" id="themeToggleMobile">
           <div class="toggle-ball"></div>
         </div>
       </div>
@@ -130,10 +74,10 @@
 
     <div class="mobile-menu" id="mobileMenu">
       <a class="active" href="#">Home</a>
-      <a href="/about">About</a>
-      <a href="/service">Service</a>
-      <a href="/portfolio">Portfolio</a>
-      <a href="/contact">Contact</a>
+      <a href="about.html">About</a>
+      <a href="service.html">Service</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="contact.html">Contact</a>
     </div>
   </div>
 
@@ -160,30 +104,21 @@
           </p>
 
           <div class="d-flex flex-wrap align-items-center justify-content-lg-start gap-3">
-            <a href="/contact" class="btn btn-get-started">Get Started</a>
+            <button class="btn btn-get-started"><a href="contact.html" style="text-decoration: none; color: #000;">Get
+                Started</a></button>
             <a href="#service" class="doc-link">
-              Explore Our Services <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              Explore Our Services <i class="fas fa-arrow-right"></i>
             </a>
           </div>
 
         </div>
 
-        <!-- RIGHT — Spline lazy-loaded via IntersectionObserver -->
+        <!-- RIGHT -->
         <div class="col-lg-6">
-          <div class="robot-wrapper" id="splineContainer">
-            <!-- Static placeholder shown immediately — replace with a real screenshot
-                 of your Spline robot saved as assets/robot-placeholder.webp for best results -->
-            <div class="robot-placeholder" id="splinePlaceholder" aria-hidden="true">
-              <!-- Generic 3D cube SVG as skeleton — replace with your robot screenshot -->
-              <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="50,10 90,32 90,68 50,90 10,68 10,32" stroke="#FFD700" stroke-width="1.5" fill="none"/>
-                <line x1="50" y1="10" x2="50" y2="90" stroke="#FFD700" stroke-width="0.8" stroke-dasharray="4,3"/>
-                <line x1="10" y1="32" x2="90" y2="68" stroke="#FFD700" stroke-width="0.8" stroke-dasharray="4,3"/>
-                <line x1="90" y1="32" x2="10" y2="68" stroke="#FFD700" stroke-width="0.8" stroke-dasharray="4,3"/>
-                <circle cx="50" cy="50" r="6" fill="#FFD700" opacity="0.5"/>
-              </svg>
-            </div>
-            <!-- spline-viewer injected here by JS after scroll -->
+          <div class="robot-wrapper">
+            <spline-viewer class="robot" url="https://prod.spline.design/wp-HumuRmpvWuUR3/scene.splinecode"
+              events-target="global">
+            </spline-viewer>
           </div>
         </div>
 
@@ -193,186 +128,202 @@
   </section>
 
 
-  <!-- SERVICE SECTION -->
-  <section class="services-section" id="service">
+  <!-- service section -->
+
+  <section class="services-section">
+    <!-- Changed to container-fluid with a wider max-width to allow the rectangular cards to grow larger -->
     <div class="container-fluid px-4 px-xl-5" style="max-width: 1600px;">
 
+      <!-- Header -->
       <div class="services-header reveal">
+        <!-- <div class="label">Ojass Tech</div> -->
         <h2>What We <span>Deliver</span></h2>
         <p>End-to-end digital solutions engineered for performance, precision, and measurable growth.</p>
         <div class="gold-divider">
           <span></span>
-          <i class="fas fa-diamond" aria-hidden="true"></i>
+          <i class="fas fa-diamond"></i>
           <span></span>
         </div>
       </div>
 
+      <!-- Cards Grid -->
       <div class="row g-card">
 
+        <!-- Card 1 -->
         <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.05s">
-          <div class="service-card">
-            <a href="/service" aria-label="Frontend Development service">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalAffiliate">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">01</div>
-              <div class="service-icon"><i class="fa-brands fa-html5" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fa-brands fa-html5"></i></div>
               <h5>Frontend Development</h5>
               <p>Fast, responsive frontend development that delivers smooth user experiences across all devices.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
+        <!-- Card 2 -->
         <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.1s">
-          <div class="service-card">
-            <a href="/service" aria-label="Backend Development service">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalEmail">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">02</div>
-              <div class="service-icon"><i class="fa-brands fa-react" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fa-brands fa-react"></i></div>
               <h5>Backend Development</h5>
               <p>Secure and scalable backend systems, APIs, and databases for reliable web applications.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
+        <!-- Card 3 -->
         <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.15s">
-          <div class="service-card">
-            <a href="/service" aria-label="Brand & Identity Design service">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalDisplay">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">03</div>
-              <div class="service-icon"><i class="fa-regular fa-font-awesome" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fa-regular fa-font-awesome"></i></div>
               <h5>Brand & Identity Design</h5>
               <p>Memorable brand identities, logos, and visual systems that build trust and recognition.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
+        <!-- Card 4 -->
         <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.2s">
-          <div class="service-card">
-            <a href="/service" aria-label="UI/UX Design service">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalNative">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">04</div>
-              <div class="service-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fas fa-layer-group"></i></div>
               <h5>UI / UX Design</h5>
               <p>Intuitive UI/UX design focused on usability, engagement, and conversions.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
+        <!-- Card 5 -->
         <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.25s">
-          <div class="service-card">
-            <a href="/service" aria-label="Creative Design service">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalSMM">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">05</div>
-              <div class="service-icon"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fa-solid fa-pen-ruler"></i></div>
               <h5>Creative Design</h5>
               <p>Eye-catching marketing creatives and campaign designs that attract and engage audiences.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
+        <!-- Card 6 -->
         <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.3s">
-          <div class="service-card">
-            <a href="/service" aria-label="Visual & Motion service">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalContent">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">06</div>
-              <div class="service-icon"><i class="fas fa-pen-nib" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
               <h5>Visual & Motion</h5>
               <p>Dynamic motion graphics and visual content that bring brands and products to life.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
+        <!-- Card 7 -->
         <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.35s">
-          <div class="service-card">
-            <a href="/service" aria-label="Data Analytics service">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalHTML">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">07</div>
-              <div class="service-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fas fa-code"></i></div>
               <h5>Data Analytics</h5>
               <p>Powerful data analytics and dashboards that turn data into actionable insights.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
+        <!-- Card 8 -->
         <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.4s">
-          <div class="service-card">
-            <a href="/service" aria-label="ML & AI service">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalSEO">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">08</div>
-              <div class="service-icon"><i class="fa-solid fa-robot" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fa-solid fa-robot"></i></div>
               <h5>ML & AI</h5>
               <p>Smart AI and machine learning solutions for automation and intelligent predictions.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
+        <!-- Card 9 -->
         <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.45s">
-          <div class="service-card">
-            <a href="/service" aria-label="Data Engineering service">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalLead">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">09</div>
-              <div class="service-icon"><i class="fa-solid fa-database" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fa-solid fa-database"></i></div>
               <h5>Data Engineering</h5>
               <p>Reliable data pipelines and architecture for scalable analytics and AI systems.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.5s">
-          <div class="service-card">
-            <a href="/service" aria-label="Applied Data Solutions service">
+        <!-- Card 10 -->
+        <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.45s">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalLead">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">10</div>
-              <div class="service-icon"><i class="fa-solid fa-cloud" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fa-solid fa-cloud"></i></div>
               <h5>Applied Data Solutions</h5>
               <p>Practical data-driven solutions that solve real business problems.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.55s">
-          <div class="service-card">
-            <a href="/service" aria-label="Cloud Architecture & Infrastructure service">
+        <!-- Card 11 -->
+        <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.45s">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalLead">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">11</div>
-              <div class="service-icon"><i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
               <h5>Cloud Architecture & Infrastructure</h5>
               <p>Scalable and secure cloud infrastructure built for modern applications.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.6s">
-          <div class="service-card">
-            <a href="/service" aria-label="DevOps & Automation service">
+        <!-- Card 12 -->
+        <div class="col-12 col-md-6 col-lg-4 reveal" style="transition-delay:0.45s">
+          <div class="service-card" data-bs-toggle="modal" data-bs-target="#modalLead">
+            <a href="service.html" style="text-decoration: none;">
               <div class="card-number">12</div>
-              <div class="service-icon"><i class="fa-brands fa-aws" aria-hidden="true"></i></div>
+              <div class="service-icon"><i class="fa-brands fa-aws"></i></div>
               <h5>DevOps & Automation</h5>
               <p>Efficient DevOps automation and CI/CD pipelines for faster and reliable deployments.</p>
-              <div class="card-cta">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></div>
+              <div class="card-cta">Explore <i class="fas fa-arrow-right"></i></div>
             </a>
           </div>
         </div>
 
-      </div>
-    </div>
+      </div><!-- /row -->
+    </div><!-- /container -->
   </section>
 
 
-  <!-- ABOUT SECTION -->
+
+  <!-- about section  -->
   <section id="about-ojass">
     <div class="container py-4">
       <div class="row align-items-stretch g-5">
 
+        <!-- IMAGE -->
         <div class="col-lg-6 d-flex">
           <div class="img-border-wrap w-100">
-            <!-- Use WebP with JPEG fallback. Convert aboutus-home.jpg → aboutus-home.webp via Squoosh -->
-            <picture>
-              <source srcset="assets/aboutus-home.jpg" type="image/webp">
-              <img src="assets/aboutus-home.jpg" alt="About Ojass Tech" loading="lazy" decoding="async" width="600" height="400">
-            </picture>
+            <img src="assets/aboutus-home.jpg" alt="About Ojass Tech">
           </div>
         </div>
 
+        <!-- CONTENT -->
         <div class="col-lg-6 d-flex flex-column justify-content-center">
 
           <h2 class="fw-bold fs-1 mb-4" style="color:#FFD700; letter-spacing:2px;">Who We Are</h2>
@@ -406,7 +357,7 @@
           </div>
 
           <div>
-            <a href="/about" class="about-btn" aria-label="Learn more about Ojass Tech">Learn More</a>
+            <a href="about.html" class="about-btn">Learn More</a>
           </div>
 
         </div>
@@ -415,10 +366,11 @@
   </section>
 
 
-  <!-- PORTFOLIO SECTION -->
+  <!-- portfolio section -->
   <section id="ot-portfolio" class="py-5">
     <div class="container py-5">
 
+      <!-- HEADER -->
       <div class="ot-section-header ot-reveal ot-d1">
         <div>
           <div class="ot-title-eyebrow">OjassTech</div>
@@ -426,25 +378,24 @@
         </div>
         <div class="ot-header-right">
           <p>Web design, development, UI/UX & data analytics — crafted to make an impact.</p>
-          <a href="/portfolio" class="ot-view-all-btn">
+          <a href="#" class="ot-view-all-btn">
             All Projects
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-              <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
           </a>
         </div>
       </div>
 
+      <!-- ROW 1 -->
       <div class="row g-4 mb-4">
 
+        <!-- Dashboard 1 -->
         <div class="col-lg-6 ot-reveal ot-d2">
           <div class="ot-p-card ot-dash-card ot-dash-card-lg">
             <span class="ot-card-tag">Dashboard</span>
-            <!-- WebP versions: convert with Squoosh → assets/dashboard1.webp -->
-            <picture>
-              <source srcset="assets/dashboard1.jpg" type="image/webp">
-              <img src="assets/dashboard 1.jpg" alt="Analytics Dashboard" loading="lazy" decoding="async" width="600" height="380">
-            </picture>
+            <img src="assets/dashboard 1.jpg" alt="Analytics Dashboard">
             <div class="ot-card-info">
               <h6>Analytics Dashboard</h6>
               <small>UI · Data Visualization</small>
@@ -452,14 +403,12 @@
           </div>
         </div>
 
+        <!-- Web card 1 -->
         <div class="col-lg-3 ot-reveal ot-d3">
-          <a href="https://ojasstech.github.io/uprintonline/" target="_blank" rel="noopener noreferrer">
+          <a href="https://ojasstech.github.io/uprintonline/">
             <div class="ot-p-card ot-web-card">
               <span class="ot-card-tag">Web</span>
-              <picture>
-                <source srcset="assets/uprint.jpg" type="image/webp">
-                <img src="assets/uprint.jpg" alt="Uprint Website" loading="lazy" decoding="async" width="300" height="380">
-              </picture>
+              <img src="assets/uprint.jpg" alt="Uprint Website">
               <div class="ot-card-info">
                 <h6>Uprint Website</h6>
                 <small>Web Design</small>
@@ -468,16 +417,14 @@
           </a>
         </div>
 
+        <!-- Web card 2 -->
         <div class="col-lg-3 ot-reveal ot-d4">
-          <a href="https://madhura-sarkar.github.io/baraf/" target="_blank" rel="noopener noreferrer">
+          <a href="https://madhura-sarkar.github.io/baraf/">
             <div class="ot-p-card ot-web-card">
               <span class="ot-card-tag">Web</span>
-              <picture>
-                <source srcset="assets/baraf.png" type="image/webp">
-                <img src="assets/baraf.png" alt="BARAF Retro Bar" loading="lazy" decoding="async" width="300" height="380">
-              </picture>
+              <img src="assets/baraf.png" alt="BARAF Retro Bar">
               <div class="ot-card-info">
-                <h6>Baraf Retro Bar & Restaurant</h6>
+                <h6>Baraf Retro Bar & Restraurent</h6>
                 <small>Homepage Design</small>
               </div>
             </div>
@@ -486,16 +433,15 @@
 
       </div>
 
+      <!-- ROW 2 -->
       <div class="row g-4">
 
+        <!-- Web card 3 -->
         <div class="col-lg-3 ot-reveal ot-d2">
-          <a href="https://ojasstech.github.io/falcongarment/" target="_blank" rel="noopener noreferrer">
+          <a href="https://ojasstech.github.io/falcongarment/" target="_blank">
             <div class="ot-p-card ot-web-card2">
               <span class="ot-card-tag">Web</span>
-              <picture>
-                <source srcset="assets/falcon.jpg" type="image/webp">
-                <img src="assets/falcon.jpg" alt="Falcon Studio" loading="lazy" decoding="async" width="300" height="280">
-              </picture>
+              <img src="assets/falcon.jpg" alt="Falcon Studio">
               <div class="ot-card-info">
                 <h6>Falcon Studio</h6>
                 <small>Web Redesign</small>
@@ -504,14 +450,12 @@
           </a>
         </div>
 
+        <!-- Web card 4 -->
         <div class="col-lg-3 ot-reveal ot-d3">
-          <a href="https://ojasstech.github.io/smartcare/" target="_blank" rel="noopener noreferrer">
+          <a href="https://ojasstech.github.io/smartcare/" target="_blank">
             <div class="ot-p-card ot-web-card2">
               <span class="ot-card-tag">UX</span>
-              <picture>
-                <source srcset="assets/smartcare.jpg" type="image/webp">
-                <img src="assets/smartcare.jpg" alt="Smartcare Polyclinic" loading="lazy" decoding="async" width="300" height="280">
-              </picture>
+              <img src="assets/smartcare.jpg" alt="Smartcare Polyclinic">
               <div class="ot-card-info">
                 <h6>Smartcare Polyclinic</h6>
                 <small>UI/UX System</small>
@@ -520,6 +464,7 @@
           </a>
         </div>
 
+        <!-- STAT GRID 2×2 -->
         <div class="col-lg-2 col-md-6 ot-reveal ot-d4">
           <div class="ot-stat-grid-wrap">
             <div class="row g-2">
@@ -551,13 +496,11 @@
           </div>
         </div>
 
+        <!-- Dashboard 2 -->
         <div class="col-lg-4 col-md-6 ot-reveal ot-d5">
           <div class="ot-p-card ot-dash-card ot-dash-card-sm">
             <span class="ot-card-tag">Dashboard</span>
-            <picture>
-              <source srcset="assets/dashboard2.jpg" type="image/webp">
-              <img src="assets/dashboard 2.jpg" alt="Admin Dashboard" loading="lazy" decoding="async" width="400" height="280">
-            </picture>
+            <img src="assets/dashboard 2.jpg" alt="Admin Dashboard">
             <div class="ot-card-info">
               <h6>Admin Dashboard</h6>
               <small>Design System</small>
@@ -571,92 +514,138 @@
   </section>
 
 
-  <!-- TEAM SECTION -->
+  <!-- team section -->
   <section id="ot-team" class="py-5">
     <div class="container">
 
+      <!-- Title -->
       <div class="row">
         <div class="col-12 text-center ot-team-title">
+          <!-- <small>NICE TO MEET</small> -->
           <h1>OUR TEAM</h1>
         </div>
       </div>
 
+      <!-- Cards — staggered on desktop, stacked on mobile via CSS -->
       <div class="ot-cards-wrapper">
 
         <div class="ot-team-card ot-card-1">
-          <img src="https://i.pinimg.com/736x/e3/a6/f5/e3a6f5e869b3142d532f1bb4394dfa37.jpg" alt="Rohan Roy Karmakar" loading="lazy" decoding="async" width="280" height="360" />
-          <div class="ot-team-overlay"><h5>Rohan Roy Karmakar</h5></div>
+          <img src="https://i.pinimg.com/736x/e3/a6/f5/e3a6f5e869b3142d532f1bb4394dfa37.jpg" alt="Team Member 1" />
+          <div class="ot-team-overlay">
+            <h5>Rohan Roy Karmakar</h5>
+            <!-- <h6>Full Stack Developer</h6> -->
+          </div>
         </div>
 
         <div class="ot-team-card ot-card-2">
-          <img src="https://i.pinimg.com/736x/e6/00/6d/e6006da0bc649869bf40bfb905b9883f.jpg" alt="Sayak Mondal" loading="lazy" decoding="async" width="280" height="360" />
-          <div class="ot-team-overlay"><h5>Sayak Mondal</h5></div>
+          <img src="https://i.pinimg.com/736x/e6/00/6d/e6006da0bc649869bf40bfb905b9883f.jpg" alt="Team Member 2" />
+          <div class="ot-team-overlay">
+            <h5>Sayak Mondal</h5>
+            <!-- <h6>Data Scientist</h6> -->
+          </div>
         </div>
 
         <div class="ot-team-card ot-card-3">
-          <img src="https://i.pinimg.com/1200x/9f/0a/ba/9f0ababbc2673d8c20bb06755ae03d43.jpg" alt="Madhura Sarkar" loading="lazy" decoding="async" width="280" height="360" />
-          <div class="ot-team-overlay"><h5>Madhura Sarkar</h5></div>
+          <img src="https://i.pinimg.com/1200x/9f/0a/ba/9f0ababbc2673d8c20bb06755ae03d43.jpg" alt="Team Member 3" />
+          <div class="ot-team-overlay">
+            <h5>Madhura Sarkar</h5>
+            <!-- <h6>Designer</h6> -->
+          </div>
         </div>
 
       </div>
+
+      <!-- CTA Button -->
+      <!-- <div class="row">
+        <div class="col-12 text-center">
+          <button class="ot-btn-gold">MEET OUR TEAM</button>
+        </div>
+      </div> -->
 
     </div>
   </section>
 
 
-  <!-- CONTACT SECTION -->
+  <!-- contact section -->
   <section id="ot-contact" class="min-vh-100 d-flex align-items-center py-5">
     <div class="container py-4">
       <div class="row align-items-center g-5">
 
+        <!-- LEFT TEXT -->
         <div class="col-12 col-md-6 text-center text-md-start">
           <h2 class="fw-bold lh-sm ot-contact-heading" style="font-size: clamp(2rem, 5vw, 3.4rem);">
-            Let's Build Something Amazing Together
+            Let’s Build Something Amazing Together
           </h2>
+
           <p class="mt-3 ot-contact-sub">
             Have an idea or a project in mind? Get in touch with us to discuss your web development, design, data, or
-            cloud solution needs. Let's turn your vision into a powerful digital experience.
+            cloud solution needs. Let’s turn your vision into a powerful digital experience.
           </p>
         </div>
 
+        <!-- RIGHT CARD -->
         <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+
           <div class="ot-flip-container w-100" style="max-width:460px;" onclick="this.classList.toggle('ot-active')">
+
             <div class="ot-flip-card">
 
+              <!-- FRONT -->
               <div class="ot-flip-side ot-front d-flex align-items-center justify-content-center">
+
                 <div class="text-center text-dark rounded-4 px-4 py-4"
                   style="backdrop-filter: blur(6px); background: rgba(255,255,255,0.55); width:80%;">
+
                   <h3 class="fw-bold ot-card-title">Contact Us</h3>
+
                   <p class="fw-semibold mt-4 mb-1">
                     <a href="mailto:ojasstech@gmail.com">ojasstech@gmail.com</a>
                   </p>
+
                   <p class="mb-0 small">Serving businesses worldwide</p>
-                  <p class="mt-3 mb-0 text-black-50" style="font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;">
+
+                  <p class="mt-3 mb-0 text-black-50"
+                    style="font-size:0.7rem;letter-spacing:1px;text-transform:uppercase;">
                     Hover or tap to message →
                   </p>
+
                 </div>
               </div>
 
+              <!-- BACK -->
               <div class="ot-flip-side ot-back d-flex align-items-center justify-content-center">
+
                 <form action="https://formsubmit.co/ojasstech@gmail.com" method="POST"
                   class="w-100 d-flex justify-content-center">
+
                   <div class="rounded-4 px-4 py-4 w-100"
                     style="max-width:380px; backdrop-filter: blur(6px); background: rgba(255,255,255,0.6);">
+
                     <h3 class="fw-bold text-dark text-center ot-card-title mb-4">Contact Us</h3>
+
                     <div class="mb-3">
-                      <input type="text" name="name" class="ot-field" placeholder="Your Full Name" required autocomplete="name">
+                      <input type="text" name="name" class="ot-field" placeholder="Your Full Name" required>
                     </div>
+
                     <div class="mb-3">
-                      <input type="email" name="email" class="ot-field" placeholder="Your Email" required autocomplete="email">
+                      <input type="email" name="email" class="ot-field" placeholder="Your Email" required>
                     </div>
+
                     <div class="mb-3">
                       <textarea name="message" class="ot-field" rows="3" placeholder="Your Message" required></textarea>
                     </div>
-                    <button type="submit" class="btn w-100 fw-semibold rounded-3 ot-submit-btn">
+
+                    <button type="submit" class="btn w-100 fw-semibold rounded-3"
+                      style="background:#f5c400;color:#000;border:2px solid #f5c400;"
+                      onmouseover="this.style.cssText='background:transparent;color:#111;border:2px solid #111;width:100%;font-weight:600;border-radius:6px;'"
+                      onmouseout="this.style.cssText='background:#f5c400;color:#000;border:2px solid #f5c400;width:100%;font-weight:600;border-radius:6px;'">
                       Send Message
                     </button>
+
                   </div>
+
                 </form>
+
               </div>
 
             </div>
@@ -668,182 +657,115 @@
   </section>
 
 
-  <!-- FOOTER -->
-  <footer id="ot-footer" class="d-flex flex-column min-vh-50 text-white mt-auto pt-5" style="background: #000;">
+  <!-- footer section -->
+  <footer id="ot-footer" class="d-flex flex-column min-vh-50 text-white mt-auto pt-5"
+    style="background: #000; transition: background 0.4s ease, color 0.4s ease;">
     <div class="container text-center">
 
+      <!-- Logo -->
       <div class="d-flex align-items-center justify-content-center mb-4">
         <div class="ot-logo-box d-flex align-items-center justify-content-center rounded-pill"
-          style="width: 260px; height: 60px; background: #000;">
-          <img src="assets/ojasstechlogo.png" alt="OjassTech Logo" class="ot-footer-logo" loading="lazy" decoding="async" width="156" height="36" />
+          style="width: 260px; height: 60px; background: #000; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+          <img src="assets/ojasstechlogo.png" alt="OjassTech Logo" class="ot-footer-logo" />
         </div>
       </div>
 
+      <!-- Navigation -->
       <ul class="nav justify-content-center gap-3 mb-3">
-        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="/about">About</a></li>
-        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="/service">Service</a></li>
-        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="/portfolio">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="service.html">Service</a></li>
+        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="portfolio.html">Portfolio</a>
+        </li>
+        <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="contact.html">Contact</a></li>
       </ul>
 
+      <!-- Social Icons -->
       <div class="d-flex justify-content-center gap-3 mb-4">
-        <a href="https://github.com/ojasstech" class="ot-social-link text-warning fs-4" aria-label="Ojass Tech on GitHub" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i></a>
-        <a href="https://www.instagram.com/ojass.tech" class="ot-social-link text-warning fs-4" aria-label="Ojass Tech on Instagram" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram" aria-hidden="true"></i></a>
-        <a href="https://in.pinterest.com/ojasstech/" class="ot-social-link text-warning fs-4" aria-label="Ojass Tech on Pinterest" target="_blank" rel="noopener noreferrer"><i class="bi bi-pinterest" aria-hidden="true"></i></a>
+        <a href="https://github.com/ojasstech" class="ot-social-link text-warning fs-4"><i class="bi bi-github"></i></a>
+        <a href="https://www.instagram.com/ojass.tech" class="ot-social-link text-warning fs-4"><i
+            class="bi bi-instagram"></i></a>
+        <a href="https://in.pinterest.com/ojasstech/" class="ot-social-link text-warning fs-4"><i
+            class="bi bi-pinterest"></i></a>
       </div>
 
+      <!-- Divider -->
       <div class="ot-footer-divider mx-auto mb-3"></div>
+
+      <!-- Copyright -->
       <p class="small text-muted pb-4 mb-0">© 2026 ojass tech</p>
 
     </div>
   </footer>
 
+  <!-- nav script  -->
+  <script>
+    // Desktop toggle
+    document.getElementById("themeToggle").onclick = () => {
+      document.body.classList.toggle("light");
+    };
 
-  <!-- ═══════════════════════════════════════════════════
-       SCRIPTS — all deferred / lazy to protect TBT & TTI
-       ═══════════════════════════════════════════════════ -->
+    // Mobile toggle
+    document.getElementById("themeToggleMobile").onclick = () => {
+      document.body.classList.toggle("light");
+    };
 
-  <!-- Bootstrap JS — defer so it never blocks parsing -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" defer></script>
+    // Mobile menu
+    document.getElementById("menuToggle").onclick = () => {
+      document.getElementById("mobileMenu").classList.toggle("show");
+    };
+  </script>
 
+  <!-- service script  -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+
+
+  <!-- portfolio script  -->
   <script>
     (function () {
-      'use strict';
+      const root = document.querySelector('#ot-portfolio');
+      if (!root) return;
 
-      /* ──────────────────────────────────────────────────
-         1. SPLINE — inject script + viewer only when the
-            robot container enters the viewport (200px early)
-         ────────────────────────────────────────────────── */
-      var splineLoaded = false;
-      var splineContainer = document.getElementById('splineContainer');
-      var splinePlaceholder = document.getElementById('splinePlaceholder');
-
-      var splineObs = new IntersectionObserver(function (entries) {
-        if (entries[0].isIntersecting && !splineLoaded) {
-          splineLoaded = true;
-          splineObs.disconnect();
-
-          // Dynamically inject the Spline viewer script
-          var s = document.createElement('script');
-          s.type = 'module';
-          s.src = 'https://unpkg.com/@splinetool/viewer@1.12.58/build/spline-viewer.js';
-          s.onload = function () {
-            // Create and insert the viewer element
-            var viewer = document.createElement('spline-viewer');
-            viewer.setAttribute('url', 'https://prod.spline.design/wp-HumuRmpvWuUR3/scene.splinecode');
-            viewer.setAttribute('events-target', 'global');
-            viewer.className = 'robot';
-            viewer.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;';
-            // Fade placeholder out, viewer in
-            if (splinePlaceholder) {
-              splinePlaceholder.style.transition = 'opacity 0.5s';
-              splinePlaceholder.style.opacity = '0';
-              setTimeout(function () { splinePlaceholder.remove(); }, 500);
-            }
-            splineContainer.appendChild(viewer);
-          };
-          document.head.appendChild(s);
-        }
-      }, { rootMargin: '200px 0px' }); // Start loading 200px before hero is visible
-
-      if (splineContainer) splineObs.observe(splineContainer);
-
-      /* ──────────────────────────────────────────────────
-         2. LOTTIE — inject after page load event so it
-            never competes with critical rendering
-         ────────────────────────────────────────────────── */
-      function injectLottie() {
-        var s = document.createElement('script');
-        s.type = 'module';
-        s.src = 'https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.11/dist/dotlottie-wc.js';
-        s.onload = function () {
-          // Replace desktop placeholder with real dotlottie-wc
-          var desktopBox = document.getElementById('lottieDesktop');
-          if (desktopBox) {
-            var wc1 = document.createElement('dotlottie-wc');
-            wc1.setAttribute('src', 'https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie');
-            wc1.setAttribute('autoplay', '');
-            wc1.setAttribute('loop', '');
-            wc1.style.cssText = 'width:70px;height:50px;';
-            desktopBox.innerHTML = '';
-            desktopBox.appendChild(wc1);
-          }
-          // Replace mobile placeholder with real dotlottie-wc
-          var mobileBox = document.getElementById('lottieMobile');
-          if (mobileBox) {
-            var wc2 = document.createElement('dotlottie-wc');
-            wc2.setAttribute('src', 'https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie');
-            wc2.setAttribute('autoplay', '');
-            wc2.setAttribute('loop', '');
-            wc2.style.cssText = 'width:70px;height:50px;';
-            mobileBox.innerHTML = '';
-            mobileBox.appendChild(wc2);
-          }
-        };
-        document.head.appendChild(s);
-      }
-
-      // Wait until page has fully loaded before starting Lottie download
-      if (document.readyState === 'complete') {
-        // Already loaded (e.g. fast cache hit)
-        setTimeout(injectLottie, 300);
-      } else {
-        window.addEventListener('load', function () {
-          setTimeout(injectLottie, 300);
-        });
-      }
-
-      /* ──────────────────────────────────────────────────
-         3. THEME TOGGLE
-         ────────────────────────────────────────────────── */
-      function toggleTheme() {
-        document.body.classList.toggle('light');
-      }
-      document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-      document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
-
-      /* ──────────────────────────────────────────────────
-         4. MOBILE MENU
-         ────────────────────────────────────────────────── */
-      var menuToggle = document.getElementById('menuToggle');
-      var mobileMenu = document.getElementById('mobileMenu');
-      menuToggle.addEventListener('click', function () {
-        var isOpen = mobileMenu.classList.toggle('show');
-        menuToggle.setAttribute('aria-expanded', isOpen);
-      });
-
-      /* ──────────────────────────────────────────────────
-         5. UNIFIED SCROLL REVEAL (services + portfolio)
-         ────────────────────────────────────────────────── */
-      var revealObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
+      /* ── Scroll Reveal ── */
+      const revealObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
           if (e.isIntersecting) {
-            e.target.classList.add('visible', 'ot-visible');
+            e.target.classList.add('ot-visible');
             revealObs.unobserve(e.target);
           }
         });
       }, { threshold: 0.1 });
 
-      document.querySelectorAll('.reveal, .ot-reveal').forEach(function (el) {
-        revealObs.observe(el);
-      });
+      root.querySelectorAll('.ot-reveal').forEach(el => revealObs.observe(el));
 
-      /* ──────────────────────────────────────────────────
-         6. COUNT-UP ANIMATION
-         ────────────────────────────────────────────────── */
-      var counterObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
+      /* ── Count-up ── */
+      const counterObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
           if (!e.isIntersecting) return;
-          var el = e.target;
-          var target = +el.dataset.target;
-          var steps = 60;
-          var step = 0;
-          var tick = function () {
+          const el = e.target;
+          const target = +el.dataset.target;
+          const duration = 1600;
+          const steps = 60;
+          let step = 0;
+
+          const tick = () => {
             step++;
-            var eased = 1 - Math.pow(1 - step / steps, 3);
+            const eased = 1 - Math.pow(1 - step / steps, 3);
             el.textContent = Math.round(eased * target);
-            if (step < steps) setTimeout(tick, 1600 / steps);
+            if (step < steps) setTimeout(tick, duration / steps);
             else el.textContent = target;
           };
           tick();
@@ -851,12 +773,10 @@
         });
       }, { threshold: 0.5 });
 
-      document.querySelectorAll('.ot-counter').forEach(function (c) {
-        counterObs.observe(c);
-      });
-
+      root.querySelectorAll('.ot-counter').forEach(c => counterObs.observe(c));
     })();
   </script>
 
 </body>
+
 </html>
