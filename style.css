@@ -314,11 +314,8 @@ body.light .toggle-ball {
 }
 
 /* Robot box – unchanged */
-.robot-wrapper {
-    position: relative;
-    height: 513px;
-    width: 100%;
-}
+
+
 
 spline-viewer.robot {
     position: absolute;
@@ -327,6 +324,28 @@ spline-viewer.robot {
     height: 100%;
     display: block;
 }
+
+
+
+.robot-wrapper {
+  position:relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.robot-wrapper spline-viewer {
+  width: 100%;
+  height: calc(100% + 70px); /* Pushes the bottom logo out of the visible container */
+} 
+
+
+
+
+
+
+
+
 
 /* Responsive adjustments only where necessary */
 @media (max-width: 767.98px) {
