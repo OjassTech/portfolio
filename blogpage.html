@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Source Library — Ojass Tech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js" type="module"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:       #080808;
+      --surface:     #111111;
+      --card:        #161616;
+      --card-hover:  #1c1c1c;
+      --border:      #262626;
+      --gold:        #C9A84C;
+      --gold-light:  #E2C47A;
+      --gold-dim:    #8A6E2F;
+      --gold-glow:   rgba(201,168,76,0.12);
+      --gold-tint:   rgba(201,168,76,0.06);
+      --text-primary: #F0E6CA;
+      --text-muted:  #7A7060;
+      --text-sub:    #4A4440;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    .navbar {
+        background: rgba(10, 10, 10, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        transition: padding 0.3s, box-shadow 0.3s;
+    }
+
+    .navbar.scrolled {
+        padding-top: 0.7rem !important;
+        padding-bottom: 0.7rem !important;
+        box-shadow: 0 4px 40px rgba(212, 160, 23, 0.08);
+    }
+
+    .navbar-brand {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--gold) !important;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+
+    .navbar-brand span {
+        color: var(--white);
+    }
+
+    .nav-link {
+        color: rgba(245, 240, 232, 0.75) !important;
+        font-size: 0.78rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        font-weight: 500;
+        position: relative;
+        transition: color 0.2s;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        right: 50%;
+        height: 1px;
+        background: var(--gold);
+        transition: left 0.3s, right 0.3s;
+    }
+
+    .nav-link:hover {
+        color: var(--gold) !important;
+    }
+
+    .nav-link:hover::after {
+        left: 1.1rem;
+        right: 1.1rem;
+    }
+
+    .navbar-toggler {
+        border-color: var(--border);
+    }
+
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23D4A017' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .btn-nav {
+        border: 1px solid var(--gold) !important;
+        color: var(--gold) !important;
+        font-size: 0.78rem !important;
+        letter-spacing: 2px;
+        transition: background 0.25s, color 0.25s;
+        border-radius: 0 !important;
+    }
+
+    .btn-nav:hover {
+        background: var(--gold) !important;
+        color: var(--black) !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 140px 48px 80px;
+      max-width: 1120px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 80px; left: -120px;
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+      margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 28px; height: 1px;
+      background: var(--gold);
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 700;
+      line-height: 1.07;
+      letter-spacing: -0.035em;
+      color: var(--text-primary);
+      max-width: 680px;
+      margin-bottom: 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+    .hero-stats {
+      display: flex; gap: 48px;
+    }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: var(--gold);
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+      margin: 0 48px;
+    }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 40px 48px 32px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .filter-label {
+      font-size: 12px;
+      color: var(--text-sub);
+      font-family: 'JetBrains Mono', monospace;
+      margin-right: 8px;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 16px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--gold-dim);
+      color: var(--gold-light);
+      background: var(--gold-tint);
+    }
+
+    /* ── GRID ── */
+    .grid-section {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 48px 100px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.22s, background 0.22s, transform 0.22s;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .card:hover {
+      border-color: var(--gold-dim);
+      background: var(--card-hover);
+      transform: translateY(-3px);
+    }
+    .card:hover .card-glow {
+      opacity: 1;
+    }
+    .card-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, var(--gold-glow), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      border-radius: 8px;
+    }
+
+    /* preview window */
+    .card-preview {
+      height: 180px;
+      background: #0c0c0c;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+    /* animated previews per category */
+    .preview-anim { width: 100%; height: 100%; position: relative; }
+
+    /* Particle ring */
+    .ring-preview {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ring {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--gold-dim);
+      box-shadow: 0 0 16px var(--gold-dim), inset 0 0 16px rgba(201,168,76,0.05);
+      animation: spin 6s linear infinite;
+      position: relative;
+    }
+    .ring::before {
+      content: '';
+      position: absolute;
+      top: -6px; left: 50%; transform: translateX(-50%);
+      width: 10px; height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--gold);
+    }
+    .ring-inner {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(201,168,76,0.4);
+      position: absolute;
+      animation: spin 3s linear infinite reverse;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Glitch text */
+    .glitch-preview {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .glitch-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      position: relative;
+      letter-spacing: 0.06em;
+      animation: glitch 3s infinite;
+    }
+    .glitch-text::before, .glitch-text::after {
+      content: attr(data-text);
+      position: absolute; top: 0; left: 0;
+      width: 100%;
+    }
+    .glitch-text::before {
+      color: #ff4444;
+      clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+      animation: glitch-r 3s infinite;
+      left: 2px;
+    }
+    .glitch-text::after {
+      color: #4444ff;
+      clip-path: polygon(0 55%, 100% 55%, 100% 70%, 0 70%);
+      animation: glitch-b 3s infinite;
+      left: -2px;
+    }
+    @keyframes glitch {
+      0%,90%,100% { transform: none; }
+      91% { transform: skewX(-2deg); }
+      93% { transform: skewX(2deg); }
+      95% { transform: none; }
+    }
+    @keyframes glitch-r {
+      0%,88%,100% { opacity: 0; transform: none; }
+      89% { opacity: 1; transform: translateX(-3px); }
+      91% { opacity: 0; }
+    }
+    @keyframes glitch-b {
+      0%,92%,100% { opacity: 0; transform: none; }
+      93% { opacity: 1; transform: translateX(3px); }
+      95% { opacity: 0; }
+    }
+
+    /* Neon bars */
+    .bars-preview {
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 10px; padding: 24px;
+    }
+    .bar {
+      width: 18px;
+      border-radius: 3px 3px 0 0;
+      background: linear-gradient(180deg, var(--gold), var(--gold-dim));
+      box-shadow: 0 0 10px rgba(201,168,76,0.4);
+    }
+    .bar:nth-child(1) { height: 60px; animation: pulse-bar 2s 0.0s ease-in-out infinite alternate; }
+    .bar:nth-child(2) { height: 100px; animation: pulse-bar 2s 0.2s ease-in-out infinite alternate; }
+    .bar:nth-child(3) { height: 75px; animation: pulse-bar 2s 0.4s ease-in-out infinite alternate; }
+    .bar:nth-child(4) { height: 120px; animation: pulse-bar 2s 0.6s ease-in-out infinite alternate; }
+    .bar:nth-child(5) { height: 55px; animation: pulse-bar 2s 0.8s ease-in-out infinite alternate; }
+    .bar:nth-child(6) { height: 90px; animation: pulse-bar 2s 1.0s ease-in-out infinite alternate; }
+    @keyframes pulse-bar {
+      from { opacity: 0.5; filter: brightness(0.7); }
+      to   { opacity: 1.0; filter: brightness(1.2); }
+    }
+
+    /* Cursor / typewriter */
+    .cursor-preview {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 20px 24px; gap: 8px;
+    }
+    .code-line {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #4A6650;
+    }
+    .code-line.active { color: #8FBC8F; }
+    .code-line .kw { color: #C6B46A; }
+    .code-line .fn { color: #7DAECC; }
+    .code-line .str { color: #9D7A5A; }
+    .cursor { display: inline-block; width: 7px; height: 14px; background: var(--gold); vertical-align: middle; animation: blink 1s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    /* Particles / starfield */
+    .star-preview canvas { display: block; width: 100%; height: 100%; }
+
+    /* Morphing blob */
+    .blob-preview {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .blob {
+      width: 100px; height: 100px;
+      background: radial-gradient(circle at 40% 40%, var(--gold-light), var(--gold-dim));
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      animation: morph 6s ease-in-out infinite;
+      box-shadow: 0 0 32px rgba(201,168,76,0.25);
+    }
+    @keyframes morph {
+      0%,100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+      50% { border-radius: 50% 60% 30% 60% / 40% 30% 60% 50%; }
+      75% { border-radius: 40% 60% 60% 30% / 70% 40% 50% 40%; }
+    }
+
+    /* Wave / sine */
+    .wave-preview {
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+
+    /* ── CARD BODY ── */
+    .card-body {
+      padding: 20px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-tags {
+      display: flex; gap: 8px; flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      background: var(--gold-tint);
+      border: 1px solid rgba(201,168,76,0.15);
+      color: var(--gold-dim);
+      letter-spacing: 0.04em;
+    }
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+      font-weight: 300;
+    }
+    .card-footer {
+      padding: 14px 22px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+    .card-meta {
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .meta-size {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+    .meta-format {
+      font-size: 11px;
+      color: var(--text-sub);
+    }
+
+    /* ── DOWNLOAD BUTTON ── */
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: #0a0a0a;
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 5px;
+      transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
+      border: none;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+    }
+    .btn-download:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(201,168,76,0.28);
+    }
+    .btn-download:active { transform: translateY(0); }
+    .btn-download svg { flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+      .footer-brand {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--gold);
+        letter-spacing: 2px;
+    }
+
+    .footer-brand span {
+        color: var(--white);
+    }
+
+    .footer-tagline {
+        font-size: 0.75rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: rgba(245, 240, 232, 0.35);
+    }
+
+    .footer-heading {
+        font-size: 0.72rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 600;
+    }
+
+    .footer-link {
+        display: block;
+        color: rgba(245, 240, 232, 0.5);
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 0.3rem 0;
+        transition: color 0.2s;
+        font-weight: 300;
+    }
+
+    .footer-link:hover {
+        color: var(--gold);
+    }
+
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--border);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: rgba(245, 240, 232, 0.5);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .social-icon:hover {
+        border-color: var(--gold);
+        color: var(--black);
+        background: var(--gold);
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+        transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+        transition-delay: 0.25s;
+    }
+
+    .reveal-delay-3 {
+        transition-delay: 0.4s;
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes scrollPulse {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.3;
+        }
+    }
+
+    @keyframes ticker {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+        .hero-badge {
+            display: none;
+        }
+
+        .who-img-wrapper img {
+            height: 300px;
+        }
+
+        .why-img-wrapper img {
+            height: 300px;
+        }
+
+        .img-border-accent {
+            display: none;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-title {
+            font-size: 3rem;
+        }
+    }
+
+    /* ── SCROLL TO TOP ── */
+    .scroll-top {
+      position: fixed;
+      bottom: 32px; right: 32px;
+      width: 40px; height: 40px;
+      background: var(--gold);
+      color: #0a0a0a;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .scroll-top.visible { opacity: 1; pointer-events: all; }
+
+    /* ── RESPONSIVE ── */
+    /* @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 110px 20px 60px; }
+      .hero-stats { gap: 28px; }
+      .filter-bar { padding: 28px 20px 20px; }
+      .grid-section { padding: 0 20px 60px; }
+      .section-divider { margin: 0 20px; }
+      footer { padding: 24px 20px; flex-direction: column; gap: 12px; text-align: center; }
+    } */
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+ <div class="navbar-wrap">
+        <div class="pill logo-pill">
+            <img src="assets/ojasstechlogo.png" alt="Ojass Tech Logo" class="logo-img" />
+        </div>
+
+        <div class="pill nav-pill">
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/service">Service</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/contact">Contact</a>
+        </div>
+
+        <div class="pill right-pill">
+            <div class="lottie-box">
+                <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie" autoplay
+                    loop></dotlottie-wc>
+            </div>
+
+            <div class="theme-toggle" id="themeToggle">
+                <span>
+                    <i class="bi bi-moon-stars"></i>
+                    <i class="bi bi-brightness-high"></i>
+                </span>
+                <div class="toggle-ball"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOBILE NAVBAR (COPIED LAYOUT STYLE) -->
+    <div class="mobile-navbar">
+        <div class="mobile-top">
+            <div class="mobile-logo"><img src="assets/ojasstechlogo.png" alt="Ojass Tech Logo" class="logo-img-mob" /></div>
+
+            <button class="menu-btn" id="menuToggle">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <div class="mobile-actions">
+                <div class="lottie-box-mob  ">
+                    <dotlottie-wc src="https://lottie.host/79f30cfb-bf27-48cc-8a07-85f405bd5cda/XPbWEwe9zy.lottie"
+                        autoplay loop></dotlottie-wc>
+                </div>
+                <div class="theme-toggle" id="themeToggleMobile">
+                    <div class="toggle-ball"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="/">Home</a>
+            <a class="active" href="#">About</a>
+            <a href="/service">Service</a>
+            <a href="/portfolio">Portfolio</a>
+            <a href="/contact">Contact</a>
+        </div>
+    </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">source library</div>
+    <h1>Code you can<br/><em>build on.</em></h1>
+    <p class="hero-desc">
+      Handcrafted animation blocks, interactive components, and UI experiments — each packaged as a ready-to-use zip. Download, unzip, ship.
+    </p>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">24</span>
+        <span class="stat-label">Free packs</span>
+      </div>
+      <div>
+        <span class="stat-num">6</span>
+        <span class="stat-label">Categories</span>
+      </div>
+      <div>
+        <span class="stat-num">HTML / JS / CSS</span>
+        <span class="stat-label">Pure vanilla</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FILTER -->
+  <div class="filter-bar">
+    <span class="filter-label">filter /</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="animation">Animation</button>
+    <button class="filter-btn" data-filter="ui">UI Components</button>
+    <button class="filter-btn" data-filter="canvas">Canvas</button>
+    <button class="filter-btn" data-filter="text">Text Effects</button>
+    <button class="filter-btn" data-filter="3d">3D / WebGL</button>
+  </div>
+
+  <!-- GRID -->
+  <section class="grid-section">
+    <div class="grid" id="grid">
+
+      <!-- CARD 1 -->
+      <div class="card" data-category="animation">
+        <div class="card-glow"></div>
+        <div class="card-preview ring-preview">
+          <div class="preview-anim" style="display:flex;align-items:center;justify-content:center;">
+            <div class="ring">
+              <div class="ring-inner"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">CSS</span>
+            <span class="tag">animation</span>
+          </div>
+          <div class="card-title">Orbit Ring Loader</div>
+          <p class="card-desc">Multi-ring CSS spinner with glow shadow and configurable orbit speed. Drop-in loading indicator with zero JS dependency.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-size">4.2 KB</span>
+            <span class="meta-format">HTML + CSS</span>
+          </div>
+          <a class="btn-download" href="https://drive.google.com/uc?export=download&id=1HI38DGYx9koj8GVZsFr_yzUlLuuwGcbc" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="card" data-category="text">
+        <div class="card-glow"></div>
+        <div class="card-preview glitch-preview">
+          <div class="preview-anim" style="display:flex;align-items:center;justify-content:center;">
+            <div class="glitch-text" data-text="GLITCH">GLITCH</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">CSS</span>
+            <span class="tag">text effect</span>
+          </div>
+          <div class="card-title">Glitch Text Effect</div>
+          <p class="card-desc">Chromatic aberration glitch animation using CSS clip-path and pseudo-elements. Randomised timing with no JavaScript required.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-size">2.8 KB</span>
+            <span class="meta-format">HTML + CSS</span>
+          </div>
+          <a class="btn-download" href="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_2" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="card" data-category="canvas">
+        <div class="card-glow"></div>
+        <div class="card-preview">
+          <canvas id="starCanvas" style="width:100%;height:100%;"></canvas>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">Canvas</span>
+            <span class="tag">JS</span>
+          </div>
+          <div class="card-title">Particle Starfield</div>
+          <p class="card-desc">Mouse-reactive particle system on HTML Canvas. Configurable particle count, connection lines, speed, and color themes.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-size">7.1 KB</span>
+            <span class="meta-format">HTML + JS</span>
+          </div>
+          <a class="btn-download" href="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_3" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="card" data-category="animation">
+        <div class="card-glow"></div>
+        <div class="card-preview bars-preview">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">CSS</span>
+            <span class="tag">animation</span>
+          </div>
+          <div class="card-title">Neon Equaliser Bars</div>
+          <p class="card-desc">Animated equaliser visualiser built entirely in CSS. Each bar pulses independently with customisable glow and timing offsets.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-size">3.4 KB</span>
+            <span class="meta-format">HTML + CSS</span>
+          </div>
+          <a class="btn-download" href="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_4" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="card" data-category="ui">
+        <div class="card-glow"></div>
+        <div class="card-preview cursor-preview">
+          <div class="code-line"><span class="kw">const</span> animate = <span class="fn">gsap</span><span class="str">.to</span>(</div>
+          <div class="code-line active">  el, &#123; x: 200, <span class="kw">ease</span>:</div>
+          <div class="code-line"><span class="str">&nbsp;&nbsp;"elastic.out"</span> &#125;<span class="cursor"></span></div>
+          <div class="code-line" style="margin-top:6px;"><span class="kw">return</span> <span class="fn">animate</span>.play()</div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">JS</span>
+            <span class="tag">UI</span>
+          </div>
+          <div class="card-title">Typewriter Code Block</div>
+          <p class="card-desc">Animated typewriter that loops through code snippets with syntax highlighting. Built in vanilla JS, no library required.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-size">5.9 KB</span>
+            <span class="meta-format">HTML + JS + CSS</span>
+          </div>
+          <a class="btn-download" href="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_5" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+      <!-- CARD 6 -->
+      <div class="card" data-category="animation">
+        <div class="card-glow"></div>
+        <div class="card-preview blob-preview">
+          <div class="preview-anim" style="display:flex;align-items:center;justify-content:center;">
+            <div class="blob"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag">CSS</span>
+            <span class="tag">animation</span>
+          </div>
+          <div class="card-title">Morphing Blob Shape</div>
+          <p class="card-desc">Organic blob shape that continuously morphs using CSS border-radius keyframes. Ideal for hero backgrounds and loader accents.</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <span class="meta-size">1.8 KB</span>
+            <span class="meta-format">CSS only</span>
+          </div>
+          <a class="btn-download" href="https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_6" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download
+          </a>
+        </div>
+      </div>
+
+    </div><!-- /.grid -->
+  </section>
+
+  <!-- FOOTER -->
+       <footer id="ot-footer" class="d-flex flex-column min-vh-50 text-white mt-auto pt-5"
+            style="background: #000; transition: background 0.4s ease, color 0.4s ease;">
+            <div class="container text-center">
+
+                <!-- Logo -->
+                <div class="d-flex align-items-center justify-content-center mb-4">
+                    <div class="ot-logo-box d-flex align-items-center justify-content-center rounded-pill"
+                        style="width: 260px; height: 60px; background: #000; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <img src="assets/ojasstechlogo.png" alt="OjassTech Logo" class="ot-footer-logo" />
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <ul class="nav justify-content-center gap-3 mb-3">
+                    <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link"
+                            href="/about">About</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link"
+                            href="/service">Service</a></li>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link"
+                            href="/portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link text-white fw-medium ot-nav-link"
+                            href="/contact">Contact</a></li>
+                </ul>
+
+                <!-- Social Icons -->
+                <div class="d-flex justify-content-center gap-3 mb-4">
+                    <a href="https://github.com/ojasstech" class="ot-social-link text-warning fs-4"><i
+                            class="bi bi-github"></i></a>
+                    <a href="https://www.instagram.com/ojass.tech" class="ot-social-link text-warning fs-4"><i
+                            class="bi bi-instagram"></i></a>
+                    <a href="https://in.pinterest.com/ojasstech/" class="ot-social-link text-warning fs-4"><i
+                            class="bi bi-pinterest"></i></a>
+                </div>
+
+                <!-- Divider -->
+                <div class="ot-footer-divider mx-auto mb-3"></div>
+
+                <!-- Copyright -->
+                <p class="small text-muted pb-4 mb-0">© 2026 ojass tech</p>
+
+            </div>
+        </footer>
+
+  <!-- SCROLL TOP -->
+  <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    /* ── Canvas Starfield ── */
+    (function() {
+      const canvas = document.getElementById('starCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H, stars = [];
+
+      function resize() {
+        const rect = canvas.parentElement.getBoundingClientRect();
+        W = canvas.width  = rect.width;
+        H = canvas.height = rect.height;
+      }
+
+      function mkStar() {
+        return {
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 1.4 + 0.3,
+          dx: (Math.random() - 0.5) * 0.3,
+          dy: (Math.random() - 0.5) * 0.3,
+          a: Math.random()
+        };
+      }
+
+      function init() {
+        resize();
+        stars = Array.from({length: 60}, mkStar);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (const s of stars) {
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(201,168,76,${s.a * 0.8})`;
+          ctx.fill();
+          s.x += s.dx; s.y += s.dy;
+          if (s.x < 0 || s.x > W) s.dx *= -1;
+          if (s.y < 0 || s.y > H) s.dy *= -1;
+          s.a = 0.4 + 0.6 * Math.abs(Math.sin(Date.now() / 1200 + s.r * 10));
+        }
+        // connect close stars
+        for (let i = 0; i < stars.length; i++) {
+          for (let j = i + 1; j < stars.length; j++) {
+            const dx = stars[i].x - stars[j].x;
+            const dy = stars[i].y - stars[j].y;
+            const d = Math.sqrt(dx*dx + dy*dy);
+            if (d < 55) {
+              ctx.beginPath();
+              ctx.moveTo(stars[i].x, stars[i].y);
+              ctx.lineTo(stars[j].x, stars[j].y);
+              ctx.strokeStyle = `rgba(201,168,76,${(1 - d/55) * 0.18})`;
+              ctx.lineWidth = 0.6;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+
+      init();
+      draw();
+      window.addEventListener('resize', init);
+    })();
+
+    /* ── Filter ── */
+    const btns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        cards.forEach(c => {
+          c.style.display = (f === 'all' || c.dataset.category === f) ? '' : 'none';
+        });
+      });
+    });
+
+    /* ── Scroll top ── */
+    const st = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      st.classList.toggle('visible', window.scrollY > 300);
+    });
+
+    /* ── Google Drive download handler ──
+       Replace href values on .btn-download anchors with your actual Drive links.
+       Format for direct zip download:
+         https://drive.google.com/uc?export=download&id=YOUR_FILE_ID
+    */
+  </script>
+</body>
+</html>
