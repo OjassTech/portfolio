@@ -283,6 +283,13 @@
       font-size: 11px;
       color: var(--text-sub);
     }
+
+    .card-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Use 'contain' if you don't want the image cropped */
+      display: block;
+    }
     /* animated previews per category */
     .preview-anim { width: 100%; height: 100%; position: relative; }
 
@@ -799,7 +806,10 @@
       <!-- CARD 1 -->
       <div class="card" data-category="animation">
         <div class="card-glow"></div>
+        <!-- <div class="card-preview ring-preview"> -->
         <div class="card-preview ring-preview">
+          <img src="assets/thumbnail1.jpg" alt="thumbnail1" class="card-preview-img" />
+        </div>
           <div class="preview-anim" style="display:flex;align-items:center;justify-content:center;">
             <div class="ring">
               <div class="ring-inner"></div>
